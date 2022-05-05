@@ -1,0 +1,46 @@
+Table Users{
+  id integer
+  username varcharacter
+  profileURL varcharacter
+  email varcharacter
+  hashPassword varcharacter
+}
+
+Table Tasks{
+  id integer
+  content varcharacter
+  userId integer
+}
+
+Table Lists{
+  id integer
+  title varcharacter
+  userId integer
+  smartWord varcharacter
+  smart boolean
+}
+
+Table Subtasks{
+  id integer
+  content varcharacter
+  taskId integer
+  userId integer
+}
+
+Table ListTasks{
+  id integer
+  taskId integer
+  listId integer
+}
+
+Ref: "Tasks"."userId" > "Users"."id"
+
+Ref: "Subtasks"."taskId" > "Tasks"."id"
+
+Ref: "Subtasks"."userId" > "Users"."id"
+
+Ref: "Users"."id" < "Lists"."userId"
+
+Ref: "Tasks"."id" < "ListTasks"."taskId"
+
+Ref: "Lists"."id" < "ListTasks"."listId"
