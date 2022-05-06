@@ -1,3 +1,5 @@
+User Stories
+
 **Sign Up**
 > * As an unregistered and unauthorized user, I want to be able to sign up for the website via a sign-up form.
 > > * When I'm on the /signup page:
@@ -30,21 +32,103 @@
 > > > * I can log out of my account and be redirected to a page that displays BOBA-ye🧋👋
 > > > > * So that I can easily log out to keep my information secure.
 
-**Create task**
-> * As a logged in user, I want to be able to create a task.
-> > * When I'm on the /new-task page:
-> > > * I can write and submit a new FauxTweet.
-> > > > * So that I can share my thoughts and memes with my friends.
+**Search** 
+> > * As a logged in user, I want to be able to search my task by using the search bar feature on the navi-bar.
+> > > * When I’m on the search bar:
+> > > > * I can type in key word in a pop window that says “Key word:”
+> > > > * I can check the “list” box and select the list from the drop down menu to find the tasks in the specified list that includes the key word.
+> > > > * I can click "Search" button to submit my search request.
 
-Viewing FauxTweets
-As a logged in or logged out user, I want to be able to view a selection of the most recent FauxTweets.
+**Create List**
+> > * As a logged in user, I want to be able to click a button "Create List" to create a list.
+> > > * When I hover over a specific list:
+> > > > * I want to see a dropdown menu with options to rename and delete a list.
+> > > > * I want to be able to specify if the list is a Smart List
 
-When I'm on the /fauxtweets page:
-I can view the ten most recently posted FauxTweets.
-So that I can read and interact with the thoughts and memes of my friends.
-As a logged in or logged out user, I want to be able to view a specific FauxTweet and its associated FauxComments and FauxLikes.
+**View Lists**
+> * When I'm on the /lists page:
+> > * I can view all created lists.
+> * When I'm on the /lists/:id page:
+> > * I can view all the tasks in the list.
 
-When I'm on the /fauxtweets/:id page:
-I can view the content of the FauxTweet, as well as the associated FauxComments and FauxLikes.
-So that I can read and interact with the thoughts and memes of my friends, and add my own thoughts and memes in the FauxComments.
+**Edit List**
+> > * As a logged in user, I want to be able to edit my lists by clicking an Edit button associated with that list.
+> > > * When I'm on the /lists/:id pages:
+> > > > * I can click "Edit" button to make permanent changes to the list I have created.
+> > > > > * So that I can fix any errors I make in my list.
+> > > > * I can click "Save" button to save changes to the list I have edited.
+> > > > * I can click "Cancel" button to cancel changes to the list I have edited.
+
+**Delete List**
+> > * As a logged in user, I want to be able to delete my list by clicking a Delete button associated with the list.
+> > > * When I'm on the /lists/:id pages:
+> > > > * I can click "Delete" to permanently delete a list I have created.
+> > > > > * So that when I realize I don't need the list, I can easily remove it.
+> > > * When I click the "Delete" button: 
+> > > > * I want to get a pop-up confirmation that the correct list is being deleted.
+> > > > > * So that I don't delete the wrong list.
+
+**Create Task**
+> > * As a logged in user, I want to be able to create a task.
+> > > * When I'm on the /new-task page:
+> > > > * I can write and submit a new task.
+> > > > > * So that I can add this new task to my reminder 
+
+**View Tasks**
+> > * When I'm on the /tasks page:
+> > > * I can view all created tasks
+> > * When I'm on the /tasks/:id page:
+> > > * I can view all the details of the task.
+
+**Edit Task**
+> > * As a logged in user, I want to be able to edit my task by clicking an Edit button associated with the task.
+> > > * When I'm on the /tasks/:id pages:
+> > > > * I can click "Edit" button to make permanent changes to the task I have created.
+> > > > > * So that I can fix any errors I make in my task.
+> > > > * I can click "Save" button to save changes to the task I have edited.
+> > > > * I can click "Cancel" button to cancel changes to the task I have edited.
+
+**Delete Task**
+> > * As a logged in user, I want to be able to delete my task by clicking a Delete button associated with the task.
+> > > * When I'm on the /tasks/:id pages:
+> > > > * I can click "Delete" to permanently delete a task I have created.
+> > > > > * So that when I realize I don't need to do the task, I can easily remove it from my list.
+> > > * When I click "Delete" button: 
+> > > > * I want to get a pop-up confirmation that the correct task is being deleted.
+> > > > > * So that I don't delete the wrong task.
+
+**Create Subtask** 
+> > * As a logged in user, I want to be able to add subtasks to my task
+
+**View Subtask**
+> > * When I'm on the /tasks/id page:
+> > > * I can view the task details in addition to the subtasks
+
+**Edit Subtask**
+> > * As a logged in user, I want to be able to edit my subtask by clicking an Edit button associated with the task.
+> > > * When I'm on the /tasks/:id pages:
+> > > > * I can click "Edit" button to make permanent changes to the task I have created.
+> > > > > * So that I can fix any errors I make in my task.
+> > > > * I can click "Save" button to save changes to the task I have edited.
+> > > > * I can click "Cancel" button to cancel changes to the task I have edited.
+
+**Delete Subtask**
+> > * As a logged in user, I want to be able to delete my subtask by clicking a Delete button associated with the subtask.
+> > > * When I'm on the /tasks/:id pages:
+> > > > * I can click "Delete" to permanently delete a subtask I have created.
+> > > > > * So that when I realize I don't need to do the subtask, I can easily remove it from my task.
+> > > * When I click "Delete" button: 
+> > > > * I want to get a pop-up confirmation that the correct subtask is being deleted.
+> > > > > * So that I don't delete the wrong subtask.
+
+
+
+
+
+
+
+
+
+
+
 

@@ -18,7 +18,8 @@ Table Lists{
   id integer
   title varcharacter
   userId integer
-  smartWord varcharacter
+  includeWord varcharacter
+  excludeWord varcharacter
   smart boolean
 }
 
