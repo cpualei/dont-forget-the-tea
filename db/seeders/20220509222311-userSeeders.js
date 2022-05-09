@@ -3,16 +3,15 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
-      {firstName:'Weiqi', 
-      lastName: 'Mei', 
-      username: 'WeiqiMei', 
-      profilePicURL:'https://tinyurl.com/39nh2xrv',
-      email: 'weiqimei@gmail.com',
-      hashPassword: 'boba123',
-      createdAt: new Date(),
-      updatedAt: new Date()
-      
-    }
+      {firstName:'Demo', 
+        lastName: 'User', 
+        username: 'DemoUser', 
+        profilePicURL:'https://tinyurl.com/39nh2xrv',
+        email: 'DemoUser@gmail.com',
+        hashPassword: '$2a$10$tmIIJV3Gfqe.hBQ4IGVgsOqh3me/hwREZEuYlcnMe6jJCu5LdhzAe',
+        createdAt: new Date(),
+        updatedAt: new Date()
+     }
   ], {});
   },
 
