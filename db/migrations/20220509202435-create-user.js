@@ -18,15 +18,17 @@ module.exports = {
       },
       username: {
         allowNull: false,
-        type: Sequelize.STRING(50)
+        type: Sequelize.STRING(50),
+        unique: true
       },
-      profileURL: {
+      profilePicURL: {
         allowNull: false,
         type: Sequelize.STRING
       },
       email: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       hashPassword: {
         allowNull: false,

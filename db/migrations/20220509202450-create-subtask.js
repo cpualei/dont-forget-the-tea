@@ -9,13 +9,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       content: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       taskId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {model: 'Tasks'}
       },
       userId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Users' }
       },
       createdAt: {
         allowNull: false,
