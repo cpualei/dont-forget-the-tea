@@ -30,6 +30,6 @@ Update your working branch by switching to that branch and using 'git merge main
 4.	Git stash drop – delete all the changes
 
 # Sequelize Scripts
-"reseed": "npx sequelize db:seed:undo:all && npx sequelize db:migrate:undo && npx sequelize db:migrate && npx sequelize db:seed:all",
-"reset": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
-"create": "npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
+"reseed": "npx dotenv sequelize db:seed:undo:all && npx dotenv sequelize db:migrate:undo && npx dotenv sequelize db:migrate && npx dotenv sequelize db:seed:all",
+"reset": "npx dotenv sequelize db:drop && npx dotenv sequelize db:create && npx dotenv sequelize db:migrate && npx dotenv sequelize db:seed:all",
+"create": "npx dotenv sequelize db:create && npx dotenv sequelize db:migrate && npx dotenv sequelize db:seed:all"
