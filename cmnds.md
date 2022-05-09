@@ -39,8 +39,15 @@ Update your working branch by switching to that branch and using 'git merge main
 CREATE USER boba_app WITH CREATEDB PASSWORD 'boba123';
 CREATE DATABASE boba_development WITH OWNER boba_app;
 
+(go into db file before generate)
+npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,username:string,profileURL:string,email:string,hashPassword:string
+npx sequelize-cli model:generate --name Subtask --attributes content:string,taskId:integer,userId:integer
+npx sequelize-cli model:generate --name Task --attributes content:string,userId:integer
+npx sequelize-cli model:generate --name List --attributes title:string,userId:integer,includeWord:string,excludeWord:string,smart:boolean
+npx sequelize-cli model:generate --name ListTask --attributes taskId:integer,listId:integer
 
 # npm Packages
 npm install sequelize
 npm install sequelize-cli
 npm install pg
+
