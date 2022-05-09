@@ -45,6 +45,10 @@ npx sequelize-cli model:generate --name Subtask --attributes content:string,task
 npx sequelize-cli model:generate --name Task --attributes content:string,userId:integer
 npx sequelize-cli model:generate --name List --attributes title:string,userId:integer,includeWord:string,excludeWord:string,smart:boolean
 npx sequelize-cli model:generate --name ListTask --attributes taskId:integer,listId:integer
+npx dotenv sequelize-cli db:migrate
+
+npx sequelize-cli seed:generate --name User
+
 
 # npm Packages
 npm install sequelize
