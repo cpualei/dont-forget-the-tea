@@ -33,3 +33,14 @@ Update your working branch by switching to that branch and using 'git merge main
 "reseed": "npx dotenv sequelize db:seed:undo:all && npx dotenv sequelize db:migrate:undo && npx dotenv sequelize db:migrate && npx dotenv sequelize db:seed:all",
 "reset": "npx dotenv sequelize db:drop && npx dotenv sequelize db:create && npx dotenv sequelize db:migrate && npx dotenv sequelize db:seed:all",
 "create": "npx dotenv sequelize db:create && npx dotenv sequelize db:migrate && npx dotenv sequelize db:seed:all"
+
+
+# Sequelize Commands
+CREATE USER boba_app WITH CREATEDB PASSWORD 'boba123';
+CREATE DATABASE boba_development WITH OWNER boba_app;
+
+
+# npm Packages
+npm install sequelize
+npm install sequelize-cli
+npm install pg
