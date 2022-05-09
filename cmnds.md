@@ -30,7 +30,7 @@ Update your working branch by switching to that branch and using 'git merge main
 4.	Git stash drop – delete all the changes
 
 # Sequelize Scripts
-"reseed": "npx dotenv sequelize db:seed:undo:all && npx dotenv sequelize db:migrate:undo && npx dotenv sequelize db:migrate && npx dotenv sequelize db:seed:all",
+"reseed": "npx dotenv sequelize db:seed:undo:all && npx dotenv sequelize db:migrate:undo:all && npx dotenv sequelize db:migrate && npx dotenv sequelize db:seed:all",
 "reset": "npx dotenv sequelize db:drop && npx dotenv sequelize db:create && npx dotenv sequelize db:migrate && npx dotenv sequelize db:seed:all",
 "create": "npx dotenv sequelize db:create && npx dotenv sequelize db:migrate && npx dotenv sequelize db:seed:all"
 
@@ -45,6 +45,15 @@ npx sequelize-cli model:generate --name Subtask --attributes content:string,task
 npx sequelize-cli model:generate --name Task --attributes content:string,userId:integer
 npx sequelize-cli model:generate --name List --attributes title:string,userId:integer,includeWord:string,excludeWord:string,smart:boolean
 npx sequelize-cli model:generate --name ListTask --attributes taskId:integer,listId:integer
+npx dotenv sequelize-cli db:migrate
+
+npx sequelize-cli seed:generate --name userSeeders
+npx sequelize-cli seed:generate --name taskSeeders
+npx sequelize-cli seed:generate --name subtaskSeeders
+npx sequelize-cli seed:generate --name listSeeders
+npx sequelize-cli seed:generate --name listTaskSeeders
+npx dotenv sequelize-cli db:seed:all
+
 
 # npm Packages
 npm install sequelize
@@ -52,5 +61,8 @@ npm install sequelize-cli
 npm install pg
 
 
-
-
+# Demo User Passwords
+password: boba123
+hash password: $2a$10$tmIIJV3Gfqe.hBQ4IGVgsOqh3me/hwREZEuYlcnMe6jJCu5LdhzAe
+password: password123
+hash password: $2a$10$BxK67eCPuwREeWxbvFkn.OAMr37IteK569/nPfOjhwAGV6AchoCMm

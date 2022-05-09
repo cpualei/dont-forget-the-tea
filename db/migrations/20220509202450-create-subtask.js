@@ -15,7 +15,7 @@ module.exports = {
       taskId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {model: 'Tasks'}
+        references: { model: 'Tasks' }
       },
       userId: {
         allowNull: false,
