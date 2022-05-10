@@ -3,16 +3,16 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 
-const db = require('../db/models');
+const { User } = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
 const router = express.Router();
 
 router.get('/signup', csrfProtection, (req, res) => {
-  const user = db.User.build();
-  res.render('create-user', {
+  res.render('signup', {
     title: 'Sign Up',
-    user,
+    user: {},
+    errors: [],
     csrfToken: req.csrfToken(),
   });
 });
@@ -32,7 +32,7 @@ const userValidators = [
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for username')
     .isLength({ max: 50 })
-    .withMessage('Last Name must not be more than 50 characters long'),
+    .withMessage('Username must not be more than 50 characters long'),
   check('email')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Email Address')
@@ -40,7 +40,7 @@ const userValidators = [
     .withMessage('Email Address must not be more than 255 characters long')
     .isEmail()
     .withMessage('Email Address is not a valid email'),
-  check('hashPassword')
+  check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Password')
 
@@ -48,32 +48,38 @@ const userValidators = [
 
 router.post('/signup', csrfProtection, userValidators,
   asyncHandler(async (req, res) => {
+    // destructure user input
     const {
       email,
       firstName,
       lastName,
       username,
-      hashPassword,
+      password
     } = req.body;
 
-    const user = db.User.build({
-      email,
-      firstName,
-      lastName,
-      username,
-    });
+    const validatorErrors = validationResult(req); // check req object for no errors
 
-    // ---------------------------------------
-
-    const validatorErrors = validationResult(req);
-
-    if (validatorErrors.isEmpty()) {
-      await user.save();
+    if (validatorErrors.isEmpty()) { // if no errors, hash pwd, create the user in db
+      const hashedPassword = await bcrypt.hash(password, 12);
+      await User.create({
+        email,
+        firstName,
+        lastName,
+        username,
+        hashedPassword
+      });
       res.redirect('/');
-    } else {
-      const errors = validatorErrors.array().map((error) => error.msg);
-      res.render('user-register', {
-        title: 'Register',
+
+    } else { // if there are errors
+      const errors = validatorErrors.array().map((error) => error.msg); // create errors array
+      const user = { // create user object
+        email,
+        firstName,
+        lastName,
+        username
+      };
+      res.render('signup', { // re-render registration page w/ user data and error data
+        title: 'Sign Up',
         user,
         errors,
         csrfToken: req.csrfToken(),

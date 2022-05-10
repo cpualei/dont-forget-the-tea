@@ -59,6 +59,8 @@ npx dotenv sequelize-cli db:seed:all
 npm install sequelize
 npm install sequelize-cli
 npm install pg
+npm install express-validator
+npm install csurf
 
 
 # Demo User Passwords
