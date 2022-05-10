@@ -14,10 +14,7 @@ block content
       input(type="text" name="lastName" required)
     div 
       label(for="email") Email
-      input(type="text" name="email" required)      
-    div 
-      label(for="profilePic") Profile Pic Url
-      input(type="url" name="profilePic")      
+      input(type="text" name="email" required)       
     div 
       label(for="username") Username
       input(type="text" name="username" required)      
@@ -26,3 +23,5 @@ block content
       input(type="text" name="password" required)      
     div 
       button(type='submit' class='btn btn-primary') Sign Up
+    div 
+      a(href='/users/login' class='already-have-acc') Already have an account?

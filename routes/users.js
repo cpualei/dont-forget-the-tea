@@ -8,24 +8,24 @@ const { csrfProtection, asyncHandler } = require('./utils');
 
 const router = express.Router();
 
-router.get('/signup', csrfProtection, (req, res) => {
+router.get('/signup', csrfProtection, asyncHandler( async (req, res) => {
   res.render('signup', {
     title: 'Sign Up',
     user: {},
     errors: [],
     csrfToken: req.csrfToken(),
   });
-});
+}));
 
-const userValidators = [
+const userSignUpValidators = [
   check('firstName')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for First Name')
+    .withMessage('Please provide a value for first name')
     .isLength({ max: 50 })
     .withMessage('First Name must not be more than 50 characters long'),
   check('lastName')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Last Name')
+    .withMessage('Please provide a value for last name')
     .isLength({ max: 50 })
     .withMessage('Last Name must not be more than 50 characters long'),
   check('username')
@@ -35,24 +35,24 @@ const userValidators = [
     .withMessage('Username must not be more than 50 characters long'),
   check('email')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Email Address')
+    .withMessage('Please provide a value for email address')
     .isLength({ max: 255 })
     .withMessage('Email Address must not be more than 255 characters long')
     .isEmail()
     .withMessage('Email Address is not a valid email'),
   check('password')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Password')
+    .withMessage('Please provide a value for password')
 
 ];
 router.use((req, res, next) => {
-  console.log("THE REQUEST REACHES HERE------------")
+  console.log('THE REQUEST REACHES HERE------------')
   next();
 })
-router.post('/signup', csrfProtection, userValidators,
+router.post('/signup', csrfProtection, userSignUpValidators,
   asyncHandler(async (req, res) => {
     // destructure user input
-    console.log("IN POST SIGN UP ROUTE----" )
+    console.log('IN POST SIGN UP ROUTE----' )
     const {
       email,
       firstName,
@@ -60,7 +60,7 @@ router.post('/signup', csrfProtection, userValidators,
       username,
       password
     } = req.body;
-    console.log("FORM VARIABLE: ",
+    console.log('FORM VARIABLE: ',
     email,
     firstName,
     lastName,
@@ -69,7 +69,7 @@ router.post('/signup', csrfProtection, userValidators,
     const validatorErrors = validationResult(req); // check req object for no errors
 
     if (validatorErrors.isEmpty()) { // if no errors, hash pwd, create the user in db
-      console.log("IN IF VALIDATOR IS EMPTY STATEMENT----", validatorErrors.isEmpty() )
+      console.log('IN IF VALIDATOR IS EMPTY STATEMENT----', validatorErrors.isEmpty() )
       const hashPassword = await bcrypt.hash(password, 12);
       console.log(hashPassword)
       const newUser = await User.create({
@@ -79,20 +79,20 @@ router.post('/signup', csrfProtection, userValidators,
         username,
         hashPassword
       });
-      console.log("newuser", newUser)
+      console.log('newuser', newUser)
       res.redirect('/users/signup');
 
     } else { // if there are errors
-      console.log("ELSE BLOCK RUNNING: DIDNT PASS VALIDATION")
+      console.log('ELSE BLOCK RUNNING: DIDNT PASS VALIDATION')
       const errors = validatorErrors.array().map((error) => error.msg); // create errors array
-      console.log("THIS IS THE ERROR ARR ", errors)
+      console.log('THIS IS THE ERROR ARR ', errors)
       const user = { // create user object
         email,
         firstName,
         lastName,
         username
       };
-      console.log("THIS IS USER OBJECT RETURNING TO FORM", user)
+      console.log('THIS IS USER OBJECT RETURNING TO FORM', user)
       res.render('signup', { // re-render registration page w/ user data and error data
         title: 'Sign Up',
         user,
@@ -101,5 +101,50 @@ router.post('/signup', csrfProtection, userValidators,
       });
     }
   }));
+  const userLoginValidator = [
+    check('username')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a valid username'),
+    check('password')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a password')
+  ]
+
+  router.get('/login', csrfProtection, asyncHandler(async (req, res) =>{
+    res.render('login',  { //render login page
+      csrfToken: req.csrfToken(), 
+      errors: [], 
+      user: {} 
+    })
+  }));
+  
+  router.post('/login', csrfProtection, asyncHandler(async (req, res) => {
+    const {
+      username,
+      password
+    }= req.body
+    //add "username or email" this option later
+    const user = await User.findOne({
+      where: {
+        username
+      }
+    })
+    const isPassword = await bcrypt.compare(password, user.hashPassword)
+    if (user && isPassword) {
+      console.log('Successful login!')
+      req.session.auth = {
+        username: user.username,
+        userId: user.id
+      }
+      res.redirect('/users/tasks')
+    }else{
+      req.errors.push('Invalid username or password. Please try again.')
+      res.render('login',  { //re-render login page
+        csrfToken: req.csrfToken(), 
+        errors: req.errors,
+        user: {} 
+      })
+    }
+  }))
 
 module.exports = router;

@@ -1,0 +1,15 @@
+extends layout.pug
+block content
+    form(action='/users/login' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div
+            label(for="username") Username
+            input(type="text" name="username" required)      
+        div 
+            label(for="password") Password
+            input(type="text" name="password" required)      
+        div 
+            button(type='submit' class='btn btn-primary') Log in
+        div 
+            a(href='/users/signup' class='dont-have-acc') Don't have an account?
+        
