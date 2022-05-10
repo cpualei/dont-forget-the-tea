@@ -2,7 +2,7 @@
 
 const express = require('express');
 const { check, validationResult } = require('express-validator');
-
+const bcrypt = require('bcryptjs')
 const { User } = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
@@ -45,10 +45,14 @@ const userValidators = [
     .withMessage('Please provide a value for Password')
 
 ];
-
+router.use((req, res, next) => {
+  console.log("THE REQUEST REACHES HERE------------")
+  next();
+})
 router.post('/signup', csrfProtection, userValidators,
   asyncHandler(async (req, res) => {
     // destructure user input
+    console.log("IN POST SIGN UP ROUTE----" )
     const {
       email,
       firstName,
@@ -56,28 +60,39 @@ router.post('/signup', csrfProtection, userValidators,
       username,
       password
     } = req.body;
-
+    console.log("FORM VARIABLE: ",
+    email,
+    firstName,
+    lastName,
+    username,
+    password)
     const validatorErrors = validationResult(req); // check req object for no errors
 
     if (validatorErrors.isEmpty()) { // if no errors, hash pwd, create the user in db
-      const hashedPassword = await bcrypt.hash(password, 12);
-      await User.create({
+      console.log("IN IF VALIDATOR IS EMPTY STATEMENT----", validatorErrors.isEmpty() )
+      const hashPassword = await bcrypt.hash(password, 12);
+      console.log(hashPassword)
+      const newUser = await User.create({
         email,
         firstName,
         lastName,
         username,
-        hashedPassword
+        hashPassword
       });
-      res.redirect('/');
+      console.log("newuser", newUser)
+      res.redirect('/users/signup');
 
     } else { // if there are errors
+      console.log("ELSE BLOCK RUNNING: DIDNT PASS VALIDATION")
       const errors = validatorErrors.array().map((error) => error.msg); // create errors array
+      console.log("THIS IS THE ERROR ARR ", errors)
       const user = { // create user object
         email,
         firstName,
         lastName,
         username
       };
+      console.log("THIS IS USER OBJECT RETURNING TO FORM", user)
       res.render('signup', { // re-render registration page w/ user data and error data
         title: 'Sign Up',
         user,

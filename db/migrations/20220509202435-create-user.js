@@ -22,7 +22,6 @@ module.exports = {
         unique: true
       },
       profilePicURL: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       email: {
