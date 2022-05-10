@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Task = sequelize.define('Task', {
     content: DataTypes.STRING,
+    dueDate: DataTypes.DATE,
     userId: DataTypes.INTEGER
   }, {});
   Task.associate = function(models) {

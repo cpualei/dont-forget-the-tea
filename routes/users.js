@@ -46,10 +46,10 @@ const userSignUpValidators = [
 
 ];
 
-router.use((req, res, next) => {
-  console.log('THE REQUEST REACHES HERE------------')
-  next();
-});
+// router.use((req, res, next) => {
+//   console.log('THE REQUEST REACHES HERE------------')
+//   next();
+// });
 
 router.post('/signup', csrfProtection, userSignUpValidators,
   asyncHandler(async (req, res) => {
@@ -132,15 +132,16 @@ router.post('/login', csrfProtection, asyncHandler(async (req, res) => {
       username
     }
   });
-
-  const isPassword = await bcrypt.compare(password, user.hashPassword)
+  console.log("Password: ", password)
+  console.log("HASH PASSWORD: ", user.hashPassword.toString())
+  const isPassword = await bcrypt.compare(password, user.hashPassword.toString())
   if (user && isPassword) {
     console.log('Successful login!')
     req.session.auth = {
       username: user.username,
       userId: user.id
     }
-    res.redirect('/users/tasks')
+    res.redirect('/tasks')
   } else {
     req.errors.push('Invalid username or password. Please try again.')
     res.render('login',  { //re-render login page

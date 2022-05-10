@@ -3,7 +3,7 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
-const { Task } = require('../db/models');
+const { Task, List, ListTask, User } = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
 const router = express.Router();
@@ -44,13 +44,20 @@ const validateTask = [
       .withMessage("Task can't be empty."),
     //  Task name cannot be longer than 255 characters:
     check('content')
-      .isLength({ max: 280 })
+      .isLength({ max: 255 })
       .withMessage("Task can't be longer than 255 characters."),
 ];
 
-router.get('/', asyncHandler(async(req, res) => {
+router.get('/', csrfProtection, asyncHandler(async(req, res) => {
+    const {userId} = req.session.auth;
     const tasks = await Task.findAll();
-    res.render('tasks', { tasks })
+    console.log(tasks)
+    const lists = await List.findAll({
+        where:{
+            userId
+        }});
+    console.log(lists)
+    res.render('tasks', { lists, tasks, csrfToken: req.csrfToken()})
 }));
 
 router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
@@ -64,19 +71,20 @@ router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
     };
 }));
 
-router.post('/', csrfProtection, asyncHandler(async(req, res) => {
-    const { content, listId } = req.body;
+router.post('/', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async(req, res) => {
+    const { content, dueDate, listId} = req.body;
+    const newTask = await Task.create({
+        content,
+        dueDate,
+        userId: req.session.auth.userId
+    });
+    await ListTask.create({
+        taskId: newTask.id,
+        listId
+    })
+    res.redirect('/')
 
-    if (req.errors.length > 0) {
-        res.render('create-task', { errors: req.errors, data: req.body })
-    } else {
-        const task = await Task.create({
-            content,
-            listId,
-            userId: req.session.auth.userId
-        });
-        res.redirect('/')
-    };
+
 }));
 
 module.exports = router;
