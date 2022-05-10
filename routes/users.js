@@ -45,10 +45,12 @@ const userSignUpValidators = [
     .withMessage('Please provide a value for password')
 
 ];
+
 router.use((req, res, next) => {
   console.log('THE REQUEST REACHES HERE------------')
   next();
-})
+});
+
 router.post('/signup', csrfProtection, userSignUpValidators,
   asyncHandler(async (req, res) => {
     // destructure user input
@@ -99,8 +101,9 @@ router.post('/signup', csrfProtection, userSignUpValidators,
         errors,
         csrfToken: req.csrfToken(),
       });
-    }
+    };
   }));
+
   const userLoginValidator = [
     check('username')
       .exists({ checkFalsy: true })
@@ -110,41 +113,48 @@ router.post('/signup', csrfProtection, userSignUpValidators,
       .withMessage('Please provide a password')
   ]
 
-  router.get('/login', csrfProtection, asyncHandler(async (req, res) =>{
-    res.render('login',  { //render login page
-      csrfToken: req.csrfToken(), 
-      errors: [], 
-      user: {} 
-    })
-  }));
-  
-  router.post('/login', csrfProtection, asyncHandler(async (req, res) => {
-    const {
-      username,
-      password
-    }= req.body
-    //add "username or email" this option later
-    const user = await User.findOne({
-      where: {
-        username
-      }
-    })
-    const isPassword = await bcrypt.compare(password, user.hashPassword)
-    if (user && isPassword) {
-      console.log('Successful login!')
-      req.session.auth = {
-        username: user.username,
-        userId: user.id
-      }
-      res.redirect('/users/tasks')
-    }else{
-      req.errors.push('Invalid username or password. Please try again.')
-      res.render('login',  { //re-render login page
-        csrfToken: req.csrfToken(), 
-        errors: req.errors,
-        user: {} 
-      })
+router.get('/login', csrfProtection, asyncHandler(async (req, res) =>{
+  res.render('login',  { //render login page
+    csrfToken: req.csrfToken(),
+    errors: [],
+    user: {}
+  });
+}));
+
+router.post('/login', csrfProtection, asyncHandler(async (req, res) => {
+  const {
+    username,
+    password
+  }= req.body
+  //add "username or email" this option later
+  const user = await User.findOne({
+    where: {
+      username
     }
-  }))
+  });
+
+  const isPassword = await bcrypt.compare(password, user.hashPassword)
+  if (user && isPassword) {
+    console.log('Successful login!')
+    req.session.auth = {
+      username: user.username,
+      userId: user.id
+    }
+    res.redirect('/users/tasks')
+  } else {
+    req.errors.push('Invalid username or password. Please try again.')
+    res.render('login',  { //re-render login page
+      csrfToken: req.csrfToken(),
+      errors: req.errors,
+      user: {}
+    });
+  };
+}));
+
+// ADD LOGOUT PAGE???
+// router.post('/logout', (req, res) => {
+//   delete req.session.auth
+//   req.session.save(() => res.redirect('/'));
+// });
 
 module.exports = router;

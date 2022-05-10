@@ -1,0 +1,16 @@
+extends layout.pug
+
+block content
+    //- nav.menu
+    //-     ul
+    //-         li
+    //-             input(type='text' name='search' placeholder='Search') Search Bar
+    //-         li
+    //-             a(href='/') Home
+    //-         li
+    //-             a(href='') About
+    //-         li
+    //-             a(href='') Contact
+
+    each task in tasks
+        p= task.content
