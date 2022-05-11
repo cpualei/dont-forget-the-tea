@@ -105,20 +105,14 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next
 );
 
 router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res, next) => {
-    const { userId } = req.session.auth;
     const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
-    const lists = await List.findAll({
-        where: {
-            userId
-        }
-    });
     if (task) {
         await task.update({ content: req.body.content });
-        res.render('edit-task', { task, lists, csrfToken: req.csrfToken() });
     } else {
         next(taskNotFoundError(taskId));
     }
+    res.redirect('/tasks')
 })
 );
 
