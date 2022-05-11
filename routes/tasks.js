@@ -56,7 +56,7 @@ router.get('/', csrfProtection, asyncHandler(async (req, res) => {
         }
     });
     console.log(lists)
-    res.render('create-tasks', { lists, tasks, csrfToken: req.csrfToken() })
+    res.render('create-task', { lists, tasks, csrfToken: req.csrfToken() })
 })
 );
 

@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       smart: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN || false,
       },
       createdAt: {
         allowNull: false,
