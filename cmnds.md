@@ -68,3 +68,23 @@ password: boba123
 hash password: $2a$10$tmIIJV3Gfqe.hBQ4IGVgsOqh3me/hwREZEuYlcnMe6jJCu5LdhzAe
 password: password123
 hash password: $2a$10$BxK67eCPuwREeWxbvFkn.OAMr37IteK569/nPfOjhwAGV6AchoCMm
+
+
+# Import Scripts
+import script file into pug
+delete btns should have an id which stores the id of whatever we want to delete
+the divs that contain the lists should have unique ids with the list id (so you can select the div with that id)
+the script file will query select all delete btns,
+    loop through the delete btn array,
+    add event listeners (click event listeners),
+    e.prevent default,
+    e.target.id.split (get id)
+send a fetch request with a method of delete and path which includes id
+delete route will get the id with req.params.id
+findByPk in the database
+then destroy it
+
+if it successfully destroyed, json a msg of 'success' back to the front end
+then on the front end, translate the msg again with json,
+check if you have msg of success,
+if successful, find the div where the list is contained and remove the div
