@@ -5,5 +5,7 @@ block content
         input(type='hidden' name='_csrf' value=csrfToken)
     each list in lists
         p= list.title
-
-
+        button(type='submit' class='btn btn-edit-task') Edit List
+        button(type='submit' class='btn btn-delete-task') Delete List
+    div 
+        button(onclick="window.location.href='/lists/create'" type='submit' class='btn btn-list-create') Create New List

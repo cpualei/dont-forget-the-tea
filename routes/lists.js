@@ -28,16 +28,13 @@ const handleValidationErrors = (req, res, next) => {
     next();
 };
 
-const validateTask = [
+const validateList = [
     //  Task name cannot be empty:
     check('title')
         .exists({ checkFalsy: true })
         .withMessage("List can't be empty.")
         .isLength({ max: 255 })
         .withMessage("List can't be longer than 255 characters."),
-    check('smart')
-        .exists({ checkFalsy: true })
-        .withMessage("Smart list")
 ];
 
 router.get('/', csrfProtection, asyncHandler(async (req, res) => {
@@ -52,9 +49,9 @@ router.get('/create', csrfProtection, asyncHandler(async (req, res) => {
 })
 );
 
-router.post('/create', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res) => {
+router.post('/create', csrfProtection, validateList, handleValidationErrors, asyncHandler(async (req, res) => {
     const { title, includeWord, excludeWord, smart } = req.body;
-    const newList = await List.create({
+    await List.create({
         title, 
         userId: req.session.auth.userId,
         includeWord, 
@@ -68,4 +65,28 @@ router.post('/create', csrfProtection, validateTask, handleValidationErrors, asy
     res.redirect('/lists')
 })
 );
+
+router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+    const listId = parseInt(req.params.id, 10);
+    const list = await List.findByPk(listId);
+    if (list) {
+        res.render('edit-list', { list, csrfToken: req.csrfToken() });
+    } else {
+        next(taskNotFoundError(listId));
+    };
+})
+);
+
+router.post("/:id(\\d+)/edit", csrfProtection, validateList, handleValidationErrors, asyncHandler(async (req, res, next) => {
+    const listId = parseInt(req.params.id, 10);
+    const list = await List.findByPk(listId);
+    if (list) {
+        await list.update({ list, title: req.body.title,csrfToken: req.csrfToken() });
+    } else {
+        next(taskNotFoundError(listId));
+    }
+    res.redirect('/lists')
+})
+);
+
 module.exports = router;
