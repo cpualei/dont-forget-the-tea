@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
@@ -40,39 +38,30 @@ const handleValidationErrors = (req, res, next) => {
 const validateTask = [
     //  Task name cannot be empty:
     check('content')
-      .exists({ checkFalsy: true })
-      .withMessage("Task can't be empty."),
+        .exists({ checkFalsy: true })
+        .withMessage("Task can't be empty."),
     //  Task name cannot be longer than 255 characters:
     check('content')
-      .isLength({ max: 255 })
-      .withMessage("Task can't be longer than 255 characters."),
+        .isLength({ max: 255 })
+        .withMessage("Task can't be longer than 255 characters."),
 ];
 
-router.get('/', csrfProtection, asyncHandler(async(req, res) => {
-    const {userId} = req.session.auth;
+router.get('/', csrfProtection, asyncHandler(async (req, res) => {
+    const { userId } = req.session.auth;
     const tasks = await Task.findAll();
     console.log(tasks)
     const lists = await List.findAll({
-        where:{
+        where: {
             userId
-        }});
+        }
+    });
     console.log(lists)
-    res.render('tasks', { lists, tasks, csrfToken: req.csrfToken()})
-}));
+    res.render('tasks', { lists, tasks, csrfToken: req.csrfToken() })
+})
+);
 
-router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
-    const taskId = parseInt(req.params.id, 10);
-    const task = await Task.findByPk(taskId);
-
-    if (task) {
-        res.render('task-details', { task });
-    } else {
-        next(taskNotFoundError(taskId));
-    };
-}));
-
-router.post('/', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async(req, res) => {
-    const { content, dueDate, listId} = req.body;
+router.post('/', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res) => {
+    const { content, dueDate, listId } = req.body;
     const newTask = await Task.create({
         content,
         dueDate,
@@ -83,8 +72,68 @@ router.post('/', csrfProtection, validateTask, handleValidationErrors, asyncHand
         listId
     })
     res.redirect('/')
+})
+);
 
+router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+    const taskId = parseInt(req.params.id, 10);
+    const task = await Task.findByPk(taskId);
 
-}));
+    if (task) {
+        res.render('task-details', { task });
+    } else {
+        next(taskNotFoundError(taskId));
+    };
+})
+);
+
+router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+    const { userId } = req.session.auth;
+    const taskId = parseInt(req.params.id, 10);
+    const task = await Task.findByPk(taskId);
+    const lists = await List.findAll({
+        where: {
+            userId
+        }
+    });
+    if (task) {
+        res.render('edit-task', { task, lists, csrfToken: req.csrfToken() });
+    } else {
+        next(taskNotFoundError(taskId));
+    };
+})
+);
+
+router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res, next) => {
+    const { userId } = req.session.auth;
+    const taskId = parseInt(req.params.id, 10);
+    const task = await Task.findByPk(taskId);
+    const lists = await List.findAll({
+        where: {
+            userId
+        }
+    });
+    if (task) {
+        await task.update({ content: req.body.content });
+        res.render('edit-task', { task, lists, csrfToken: req.csrfToken() });
+    } else {
+        next(taskNotFoundError(taskId));
+    }
+})
+);
+
+router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
+    const taskId = parseInt(req.params.id, 10);
+    const task = await Task.findByPk(taskId);
+
+    if (task) {
+        await task.destroy();
+        res.status(204).end();
+    } else {
+        next(taskNotFoundError(taskId));
+    }
+})
+);
+
 
 module.exports = router;
