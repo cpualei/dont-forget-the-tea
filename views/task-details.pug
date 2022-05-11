@@ -5,3 +5,8 @@ block content
     p= task.content
     p= task.createdAt
     p= task.updatedAt
+
+    div 
+        button(onclick="window.location.href='/tasks'" type='submit' class='btn btn-edit-task') Edit Task
+    div 
+        button(onclick="window.location.href='/tasks'" type='submit' class='btn btn-delete-task') Delete Task
