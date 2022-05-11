@@ -7,5 +7,5 @@ block content
   div
     form(action=`/lists/${list.id}/delete` method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
-      button(class='btn btn-danger' type='submit') Delete List
+      button(type='submit' class='btn btn-btn-danger') Delete List
       a(class='btn btn-warning ml-2' href=`/lists/${list.id}` role='button') Cancel
