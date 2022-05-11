@@ -1,7 +1,7 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
-const { Task, List, ListTask, User } = require('../db/models');
+const { Task, List, ListTask, User, Subtask } = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
 const router = express.Router();
@@ -56,7 +56,7 @@ router.get('/', csrfProtection, asyncHandler(async (req, res) => {
         }
     });
     console.log(lists)
-    res.render('tasks', { lists, tasks, csrfToken: req.csrfToken() })
+    res.render('create-tasks', { lists, tasks, csrfToken: req.csrfToken() })
 })
 );
 
@@ -116,16 +116,44 @@ router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErr
 })
 );
 
+// -------------------------DELETE------------------------
+router.get('/:id(\\d+)/delete', csrfProtection,
+    asyncHandler(async (req, res) => {
+        const taskId = parseInt(req.params.id, 10);
+        const task = await Task.findByPk(taskId);
+        res.render('delete-task', {
+            title: 'Delete Task',
+            task,
+            csrfToken: req.csrfToken(),
+        });
+    }));
+
+
 router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
     const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
-
+    const listTasks = await ListTask.findAll({
+        where: {
+            taskId
+        }        
+    })
+    const subtasks = await Subtask.findAll({
+        where: {
+            taskId
+        }
+    })
     if (task) {
+        for (let i = 0; i < subtasks.length; i++) {            
+            await subtasks[i].destroy();
+        }
+        for (let i = 0; i < listTasks.length; i++) {
+            await listTasks[i].destroy();
+        }        
         await task.destroy();
-        res.status(204).end();
     } else {
         next(taskNotFoundError(taskId));
     }
+    res.redirect('/tasks')
 })
 );
 
