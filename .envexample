@@ -1,5 +1,0 @@
-PORT=8080
-DB_USERNAME=boba_app
-DB_PASSWORD=boba123
-DB_DATABASE=boba_development
-DB_HOST=localhost
