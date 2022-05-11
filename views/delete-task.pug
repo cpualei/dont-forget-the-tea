@@ -2,7 +2,7 @@ extends layout.pug
 
 block content
   h3= task.content 
-  div(class='py-4')
+  div
     p Proceed with deleting this task?
   div
     form(action=`/tasks/${task.id}/delete` method='post')
