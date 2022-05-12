@@ -8,20 +8,20 @@ block content
         p= task.createdAt
         p= task.updatedAt
 
-    div 
+    div
         button(onclick=`window.location.href='/tasks/${task.id}/edit'` type='submit' class='btn btn-edit-task') Edit Task
-    div 
+    div(id=`task-container-${task.id}`)
         button(onclick=`window.location.href='/tasks/${task.id}/delete'` type='submit' class='btn btn-delete-task') Delete Task
-        
+
     div(class="subtasks-in-detail-pg")
         p Create Subtasks:
         form(action=`/tasks/${task.id}` method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
             div
-                label(for="content") Content: 
-                input(type="text" name="content" required)      
-            div 
-                button(type='submit' class='btn btn-create-task') Add Subtask   
+                label(for="content") Content:
+                input(type="text" name="content" required)
+            div
+                button(type='submit' class='btn btn-create-task') Add Subtask
     div
         p Subtasks list:
             each subtask in subtasks
@@ -29,5 +29,3 @@ block content
                     li= `${subtask.id}. ${subtask.content}`
                     button(onclick=`window.location.href='/subtasks/${subtask.id}/edit'` type='submit' class='btn btn-edit-subtask' ) Edit
                     button(onclick=`window.location.href='/subtasks/${subtask.id}/delete'` type='submit' class='btn btn-delete-subtask' ) Delete
-                   
-
