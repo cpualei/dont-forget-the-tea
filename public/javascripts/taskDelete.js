@@ -1,5 +1,3 @@
-window.addEventListener("load", (event)=>{
-    console.log("hello from javascript!")
 
     const deleteBtns = document.querySelectorAll('.btn-delete-task')
 
@@ -10,6 +8,7 @@ window.addEventListener("load", (event)=>{
             const taskId = e.target.id.split('-')[2]
             const res = await fetch(`/tasks/${taskId}`, {
                 method: 'DELETE'
+
             })
 
             const data = await res.json()
@@ -21,4 +20,3 @@ window.addEventListener("load", (event)=>{
             }
         })
     }
-})

@@ -77,7 +77,7 @@ router.post('/', csrfProtection, validateTask, handleValidationErrors, asyncHand
         taskId: newTask.id,
         listId
     })
-    res.redirect('/')
+    res.redirect('/tasks')
 })
 );
 
@@ -125,46 +125,57 @@ router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErr
 })
 );
 
-// -------------------------GET DELETE TASK PAGE------------------------
-router.get('/:id(\\d+)/delete', csrfProtection,
-    asyncHandler(async (req, res) => {
-        const taskId = parseInt(req.params.id, 10);
-        const task = await Task.findByPk(taskId);
-        res.render('delete-task', {
-            title: 'Delete Task',
-            task,
-            csrfToken: req.csrfToken(),
-        });
-    }));
-
 // -------------------------DELETE TASK------------------------
-router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
-    const taskId = parseInt(req.params.id, 10);
-    const task = await Task.findByPk(taskId);
-    const listTasks = await ListTask.findAll({
-        where: {
-            taskId
-        }        
-    })
-    const subtasks = await Subtask.findAll({
-        where: {
-            taskId
-        }
-    })
+router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
+    const task = await Task.findByPk(req.params.id)
     if (task) {
-        for (let i = 0; i < subtasks.length; i++) {            
-            await subtasks[i].destroy();
-        }
-        for (let i = 0; i < listTasks.length; i++) {
-            await listTasks[i].destroy();
-        }        
-        await task.destroy();
+        await task.destroy()
+        res.redirect('/tasks')
     } else {
-        next(taskNotFoundError(taskId));
+        res.redirect('/tasks')
     }
-    res.redirect('/tasks')
-})
-);
+}))
+
+// // -------------------------GET DELETE TASK PAGE------------------------
+// router.get('/:id(\\d+)/delete', csrfProtection,
+//     asyncHandler(async (req, res) => {
+//         const taskId = parseInt(req.params.id, 10);
+//         const task = await Task.findByPk(taskId);
+//         res.render('delete-task', {
+//             title: 'Delete Task',
+//             task,
+//             csrfToken: req.csrfToken(),
+//         });
+//     }));
+
+// // -------------------------DELETE TASK------------------------
+// router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
+//     const taskId = parseInt(req.params.id, 10);
+//     const task = await Task.findByPk(taskId);
+//     const listTasks = await ListTask.findAll({
+//         where: {
+//             taskId
+//         }        
+//     })
+//     const subtasks = await Subtask.findAll({
+//         where: {
+//             taskId
+//         }
+//     })
+//     if (task) {
+//         for (let i = 0; i < subtasks.length; i++) {            
+//             await subtasks[i].destroy();
+//         }
+//         for (let i = 0; i < listTasks.length; i++) {
+//             await listTasks[i].destroy();
+//         }        
+//         await task.destroy();
+//     } else {
+//         next(taskNotFoundError(taskId));
+//     }
+//     res.redirect('/tasks')
+// })
+// );
 
 // -------------------------CREATE SUBTASK------------------------
 router.post('/:id(\\d+)', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res) => {
