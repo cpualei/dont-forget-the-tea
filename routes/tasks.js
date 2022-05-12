@@ -93,39 +93,19 @@ router.get('/:id(\\d+)', csrfProtection,asyncHandler(async (req, res, next) => {
     };
 })
 );
+// -------------------------EDIT TASK (API)------------------------
+router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
+    console.log('from put route handler: ', req.body)
+    const task = await Task.findByPk(req.params.id)
+    task.content = req.body.content
+    await task.save()
+    res.json({
+        message: 'Success',
+        task
+    })
+}))
 
-//-----------------------GET EDIT TASK DETAIL PAGE-----------------------
-router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
-    const { userId } = req.session.auth;
-    const taskId = parseInt(req.params.id, 10);
-    const task = await Task.findByPk(taskId);
-    const lists = await List.findAll({
-        where: {
-            userId
-        }
-    });
-    if (task) {
-        res.render('edit-task', { task, lists, csrfToken: req.csrfToken() });
-    } else {
-        next(taskNotFoundError(taskId));
-    };
-})
-);
-
-//-----------------------EDIT TASK DETAIL-----------------------
-router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res, next) => {
-    const taskId = parseInt(req.params.id, 10);
-    const task = await Task.findByPk(taskId);
-    if (task) {
-        await task.update({ content: req.body.content });
-    } else {
-        next(taskNotFoundError(taskId));
-    }
-    res.redirect('/tasks')
-})
-);
-
-// -------------------------DELETE TASK------------------------
+// -------------------------DELETE TASK (API)------------------------
 router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
     const task = await Task.findByPk(req.params.id)
     if (task) {
@@ -135,6 +115,37 @@ router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
         res.redirect('/tasks')
     }
 }))
+
+// //-----------------------GET EDIT TASK DETAIL PAGE-----------------------
+// router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+//     const { userId } = req.session.auth;
+//     const taskId = parseInt(req.params.id, 10);
+//     const task = await Task.findByPk(taskId);
+//     const lists = await List.findAll({
+//         where: {
+//             userId
+//         }
+//     });
+//     if (task) {
+//         res.render('edit-task', { task, lists, csrfToken: req.csrfToken() });
+//     } else {
+//         next(taskNotFoundError(taskId));
+//     };
+// })
+// );
+
+// //-----------------------EDIT TASK DETAIL-----------------------
+// router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res, next) => {
+//     const taskId = parseInt(req.params.id, 10);
+//     const task = await Task.findByPk(taskId);
+//     if (task) {
+//         await task.update({ content: req.body.content });
+//     } else {
+//         next(taskNotFoundError(taskId));
+//     }
+//     res.redirect('/tasks')
+// })
+// );
 
 // // -------------------------GET DELETE TASK PAGE------------------------
 // router.get('/:id(\\d+)/delete', csrfProtection,

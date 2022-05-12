@@ -34,4 +34,4 @@ block content
         p= task.content
         button(onclick=`window.location.href='/tasks/${task.id}/edit'` type='submit' class='btn btn-edit-task') Edit Task
         div(id=`task-container-${task.id}` class=taskDeleteContainer)
-            button(id=`delete-task-${task.id}` type='submit' class='btn btn-delete-task' onclick="window.location.href='/tasks'") Delete Task
+            button(id=`delete-task-${task.id}` type='submit' class='btn btn-delete-task') Delete Task
