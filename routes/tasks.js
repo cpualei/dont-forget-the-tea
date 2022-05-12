@@ -93,26 +93,15 @@ router.get('/:id(\\d+)', csrfProtection,asyncHandler(async (req, res, next) => {
     };
 })
 );
-// -------------------------EDIT TASK (API)------------------------
-router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
-    console.log('from put route handler: ', req.body)
-    const task = await Task.findByPk(req.params.id)
-    task.content = req.body.content
-    await task.save()
-    res.json({
-        message: 'Success',
-        task
-    })
-}))
 
 // -------------------------DELETE TASK (API)------------------------
 router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
     const task = await Task.findByPk(req.params.id)
     if (task) {
         await task.destroy()
-        res.redirect('/tasks')
+        res.json({message: 'Success'})
     } else {
-        res.redirect('/tasks')
+        res.json({message: 'Fail'})
     }
 }))
 

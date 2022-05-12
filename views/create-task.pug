@@ -1,17 +1,6 @@
 extends layout.pug
 
 block content
-    //- nav.menu
-    //-     ul
-    //-         li
-    //-             input(type='text' name='search' placeholder='Search') Search Bar
-    //-         li
-    //-             a(href='/') Home
-    //-         li
-    //-             a(href='') About
-    //-         li
-    //-             a(href='') Contact
-
     form(action='/tasks' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div
@@ -31,7 +20,8 @@ block content
         //- div
         //-     button(type='submit' class='btn btn-create-task') Clear Task
     each task in tasks
-        p= task.content
-        button(onclick=`window.location.href='/tasks/${task.id}/edit'` type='submit' class='btn btn-edit-task') Edit Task
         div(id=`task-container-${task.id}` class=taskDeleteContainer)
+            p= task.content
+            button(onclick=`window.location.href='/tasks/${task.id}/edit'` type='submit' class='btn btn-edit-task') Edit Task
             button(id=`delete-task-${task.id}` type='submit' class='btn btn-delete-task') Delete Task
+        

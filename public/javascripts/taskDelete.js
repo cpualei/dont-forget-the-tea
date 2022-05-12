@@ -1,22 +1,20 @@
+document.addEventListener("DOMContentLoaded", async () => {
 
-    const deleteBtns = document.querySelectorAll('.btn-delete-task')
+    const deleteBtnsArr = document.querySelectorAll('.btn-delete-task')
 
-    for (let i = 0; i < deleteBtns.length; i++) {
-        const btn = deleteBtns[i];
+    deleteBtnsArr.forEach( btn => {
         btn.addEventListener('click', async(e) => {
             e.preventDefault()
             const taskId = e.target.id.split('-')[2]
             const res = await fetch(`/tasks/${taskId}`, {
                 method: 'DELETE'
-
             })
-
             const data = await res.json()
             if (data.message === 'Success') {
-                const container = document.getElementById(`post-container-${taskId}`)
+                const container = document.getElementById(`task-container-${taskId}`)
                 container.remove()
-            } else {
-
             }
         })
-    }
+
+})
+    })
