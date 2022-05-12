@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+    div(class="subtasks-in-detail-pg")
+        p= `Subtask ${subtask.id} Detail:`
+        li= `Subtask Content: ${subtask.content}`
+        li= `Subtask created at: ${subtask.createdAt}`
+        li= `Subtask updated at:${subtask.updatedAt}`
+
+    div 
+        button(onclick=`window.location.href='/subtasks/${subtask.id}/edit'` type='submit' class='btn btn-edit-subtask') Edit Subtask
+    div 
+        button(onclick=`window.location.href='/subtasks/${subtask.id}/delete'` type='submit' class='btn btn-delete-subtask') Delete Subtask
+

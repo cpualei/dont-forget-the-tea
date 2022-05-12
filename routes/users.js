@@ -8,49 +8,48 @@ const { csrfProtection, asyncHandler } = require('./utils');
 
 const router = express.Router();
 
-router.get('/signup', csrfProtection, asyncHandler( async (req, res) => {
-  res.render('signup', {
-    title: 'Sign Up',
-    user: {},
-    errors: [],
-    csrfToken: req.csrfToken(),
-  });
-}));
 
+//-----------------------SIGN UP VALIDATOR----------------------
 const userSignUpValidators = [
   check('firstName')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for first name')
-    .isLength({ max: 50 })
-    .withMessage('First Name must not be more than 50 characters long'),
+  .exists({ checkFalsy: true })
+  .withMessage('Please provide a value for first name')
+  .isLength({ max: 50 })
+  .withMessage('First Name must not be more than 50 characters long'),
   check('lastName')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for last name')
+  .exists({ checkFalsy: true })
+  .withMessage('Please provide a value for last name')
     .isLength({ max: 50 })
     .withMessage('Last Name must not be more than 50 characters long'),
-  check('username')
+    check('username')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for username')
     .isLength({ max: 50 })
     .withMessage('Username must not be more than 50 characters long'),
-  check('email')
+    check('email')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for email address')
     .isLength({ max: 255 })
     .withMessage('Email Address must not be more than 255 characters long')
     .isEmail()
     .withMessage('Email Address is not a valid email'),
-  check('password')
+    check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for password')
+    
+  ];
 
-];
+  //-----------------------GET SIGN UP PAGE-----------------------
+  router.get('/signup', csrfProtection, asyncHandler( async (req, res) => {
+    res.render('signup', {
+      title: 'Sign Up',
+      user: {},
+      errors: [],
+      csrfToken: req.csrfToken(),
+    });
+  }));
 
-// router.use((req, res, next) => {
-//   console.log('THE REQUEST REACHES HERE------------')
-//   next();
-// });
-
+//-----------------------SIGN UP--------------------------------
 router.post('/signup', csrfProtection, userSignUpValidators,
   asyncHandler(async (req, res) => {
     // destructure user input
@@ -104,6 +103,8 @@ router.post('/signup', csrfProtection, userSignUpValidators,
     };
   }));
 
+
+//-----------------------LOG IN VALIDATOR----------------------
   const userLoginValidator = [
     check('username')
       .exists({ checkFalsy: true })
@@ -113,6 +114,7 @@ router.post('/signup', csrfProtection, userSignUpValidators,
       .withMessage('Please provide a password')
   ]
 
+//-----------------------GET LOG IN PAGE----------------------
 router.get('/login', csrfProtection, asyncHandler(async (req, res) =>{
   res.render('login',  { //render login page
     csrfToken: req.csrfToken(),
@@ -121,6 +123,7 @@ router.get('/login', csrfProtection, asyncHandler(async (req, res) =>{
   });
 }));
 
+//-----------------------LOG IN-------------------------------
 router.post('/login', csrfProtection, asyncHandler(async (req, res) => {
   const {
     username,
@@ -152,6 +155,7 @@ router.post('/login', csrfProtection, asyncHandler(async (req, res) => {
   };
 }));
 
+//-----------------------LOG OUT------------------------------
 // ADD LOGOUT PAGE???
 // router.post('/logout', (req, res) => {
 //   delete req.session.auth
