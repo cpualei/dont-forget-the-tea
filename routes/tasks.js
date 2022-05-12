@@ -6,21 +6,22 @@ const { csrfProtection, asyncHandler } = require('./utils');
 
 const router = express.Router();
 
+//----------------------ERROR HANDLING-----------------------
 const taskNotFoundError = (id) => {
     const err = Error(`Task with id of ${id} could not be found`);
     err.title = 'Task not found';
     err.status = 404;
     return err;
-};
-
-const handleValidationErrors = (req, res, next) => {
+  };
+  
+  const handleValidationErrors = (req, res, next) => {
     const validationErrors = validationResult(req);
-
+  
     // If the validation errors are not empty,
     if (!validationErrors.isEmpty()) {
         // Generate an array of error messages
         const errors = validationErrors.array().map((error) => error.msg);
-
+  
         // Generate a new `400 Bad request.` Error object
         // and invoke the next function passing in `err`
         // to pass control to the global error handler.
@@ -30,10 +31,12 @@ const handleValidationErrors = (req, res, next) => {
         err.errors = errors;
         return next(err);
     }
-
+  
     // Invoke the next middleware function
     next();
-};
+  };
+
+//-----------------------TASK VALIDATOR-----------------------
 
 const validateTask = [
     //  Task name cannot be empty:
@@ -45,6 +48,8 @@ const validateTask = [
         .isLength({ max: 255 })
         .withMessage("Task can't be longer than 255 characters."),
 ];
+
+//-----------------------TASKS PAGE-----------------------
 
 router.get('/', csrfProtection, asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
@@ -60,6 +65,7 @@ router.get('/', csrfProtection, asyncHandler(async (req, res) => {
 })
 );
 
+//-----------------------CREATE TASK-----------------------
 router.post('/', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res) => {
     const { content, dueDate, listId } = req.body;
     const newTask = await Task.create({
@@ -75,18 +81,20 @@ router.post('/', csrfProtection, validateTask, handleValidationErrors, asyncHand
 })
 );
 
-router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+//-----------------------TASK DETAIL & SUBTASKS PAGE -----------------------
+router.get('/:id(\\d+)', csrfProtection,asyncHandler(async (req, res, next) => {
     const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
-
+    const subtasks = await Subtask.findAll();
     if (task) {
-        res.render('task-details', { task });
+        res.render('task-details', { subtasks, task, csrfToken: req.csrfToken() });
     } else {
         next(taskNotFoundError(taskId));
     };
 })
 );
 
+//-----------------------GET EDIT TASK DETAIL PAGE-----------------------
 router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
     const { userId } = req.session.auth;
     const taskId = parseInt(req.params.id, 10);
@@ -104,6 +112,7 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next
 })
 );
 
+//-----------------------EDIT TASK DETAIL-----------------------
 router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
@@ -116,7 +125,7 @@ router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErr
 })
 );
 
-// -------------------------DELETE------------------------
+// -------------------------GET DELETE TASK PAGE------------------------
 router.get('/:id(\\d+)/delete', csrfProtection,
     asyncHandler(async (req, res) => {
         const taskId = parseInt(req.params.id, 10);
@@ -128,7 +137,7 @@ router.get('/:id(\\d+)/delete', csrfProtection,
         });
     }));
 
-
+// -------------------------DELETE TASK------------------------
 router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
     const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
@@ -156,6 +165,21 @@ router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, n
     res.redirect('/tasks')
 })
 );
+
+// -------------------------CREATE SUBTASK------------------------
+router.post('/:id(\\d+)', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res) => {
+    const taskId = parseInt(req.params.id, 10);
+    const { content } = req.body;
+    await Subtask.create({
+        content,
+        taskId,
+        userId: req.session.auth.userId
+    });
+    res.redirect(`/tasks/${taskId}`)
+})
+);
+
+
 
 
 module.exports = router;
