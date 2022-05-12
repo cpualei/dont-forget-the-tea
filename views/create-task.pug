@@ -15,21 +15,22 @@ block content
     form(action='/tasks' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div
-            label(for="content") Content: 
-            input(type="text" name="content" required)      
-        div 
-            label(for="dueDate") Due Date: 
-            input(type="date" name="dueDate") 
-        div        
-            label(for="listId") List: 
+            label(for="content") Content:
+            input(type="text" name="content" required)
+        div
+            label(for="dueDate") Due Date:
+            input(type="date" name="dueDate")
+        div
+            label(for="listId") List:
             select(name="listId")
-                each list in lists
-                    option(value=list.id)= list.title
-        div 
+                option(value='') --Select a list--
+                    each list in lists
+                        option(value=list.id)= list.title
+        div
             button(type='submit' class='btn btn-create-task') Add Task
-        //- div 
+        //- div
         //-     button(type='submit' class='btn btn-create-task') Clear Task
     each task in tasks
         p= task.content
-
-
+        button(onclick=`window.location.href='/tasks/${task.id}/edit'` type='submit' class='btn btn-edit-task') Edit Task
+        button(onclick=`window.location.href='/tasks/${task.id}/delete'` type='submit' class='btn btn-delete-task') Delete Task
