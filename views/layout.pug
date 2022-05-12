@@ -1,8 +1,20 @@
 doctype html
 html
   head
-      block head
-        title="Don't Forget The Tea"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
+    block head
+      title="Don't Forget The Tea!"
+      link(rel='stylesheet' href='/stylesheets/reset.css')
+
+      nav#navbar-default
+        ul
+          li
+            a(href='/' class='navHome') DON'T FORGET THE TEA
+          li
+            a(href='' class='navAboutUs') About Us
+          li
+            a(href='/users/login' class='navLogIn') Log In
+          li
+            a(href='/users/signup' class='navSignUp') Sign Up
+
   body
     block content

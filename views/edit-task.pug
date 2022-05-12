@@ -6,17 +6,18 @@ block content
     form(action=`/tasks/${task.id}/edit` method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div
-            label(for="content") Content: 
-            input(type="text" name="content" required)      
-        div 
-            label(for="dueDate") Due Date: 
-            input(type="date" name="dueDate") 
-        div        
-            label(for="listId") List: 
+            label(for="content") Content:
+            input(type='text' name='content' value=`${task.content}` required)
+        div
+            label(for='dueDate') Due Date:
+            input(type='date' name='dueDate' value=`${date}`)
+        div
+            label(for="listId") List:
             select(name="listId")
-                each list in lists
-                    option(value=list.id)= list.title
-        div 
-            button(type='submit' class='btn btn-create-task') Edit Task
-        //- div 
+                option(value='') --Select a list--
+                    each list in lists
+                        option(value=list.id)= list.title
+        div
+            button(type='submit' class='btn btn-create-task') Submit
+        //- div
         //-     button(type='submit' class='btn btn-create-task') Clear Task

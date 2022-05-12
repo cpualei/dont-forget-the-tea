@@ -52,15 +52,15 @@ router.get('/create', csrfProtection, asyncHandler(async (req, res) => {
 router.post('/create', csrfProtection, validateList, handleValidationErrors, asyncHandler(async (req, res) => {
     const { title, includeWord, excludeWord, smart } = req.body;
     await List.create({
-        title, 
+        title,
         userId: req.session.auth.userId,
-        includeWord, 
-        excludeWord, 
+        includeWord,
+        excludeWord,
         smart
     });
     // await ListTask.create({
     //     taskId,
-    //     listId: newList.id 
+    //     listId: newList.id
     // })
     res.redirect('/lists')
 })
@@ -111,29 +111,16 @@ router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, n
     const listTasks = await ListTask.findAll({
         where: {
             listId
-        }        
+        }
     })
-    console.log("LIST ID ", listId)
-    console.log("LIST ", list)
-    console.log("lIST TASKS ", listTasks)
-   
-    // list.forEach( task =>{
-    //     let subtasks = await Subtask.findAll({
-    //     where: {
-    //         taskId
-    //     }
 
-    // })
-            
-    // }
-    // )
     if (list) {
-        // for (let i = 0; i < subtasks.length; i++) {            
-        //     await subtasks[i].destroy();
+        // // for (let i = 0; i < subtasks.length; i++) {
+        // //     await subtasks[i].destroy();
+        // // }
+        // for (let i = 0; i < listTasks.length; i++) {
+        //     await listTasks[i].destroy();
         // }
-        for (let i = 0; i < listTasks.length; i++) {
-            await listTasks[i].destroy();
-        }        
         await list.destroy();
     } else {
         next(taskNotFoundError(listId));
