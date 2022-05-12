@@ -12,8 +12,18 @@ block content
     //-         li
     //-             a(href='') Contact
 
+
+
+
     form(action='/tasks' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
+        div
+            script(src='./searchbar.js')
+            input.search(id='searchbar' type='text' placeholder='Search...') 
+        div 
+            button(onclick="window.location.href='/tasks'" type='search' class='btn btn-search') Search
+            //- button(onclick=`window.location.href='/tasks/${task.id}` type='search' class='btn btn-search') Search
+
         div
             label(for="content") Content: 
             input(type="text" name="content" required)      
@@ -30,6 +40,5 @@ block content
         //- div 
         //-     button(type='submit' class='btn btn-create-task') Clear Task
     each task in tasks
-        p= task.content
-
-
+        p= task.content 
+        //-  class='single-task' //give each task a class name, so we can search for it

@@ -1,0 +1,12 @@
+extends layout.pug
+block content
+
+head
+  link(href='searchbar.css' rel='stylesheet' type='text/css' media='all')
+  script(src='jquery.min.js' type='text/javascript')
+  script(src='search.js' type='text/javascript')
+input.search(type='text' value='Search...')
+img#mglass(src='search.png')
+
+//create a search bar that searches for tasks from database
+//and displays the results 

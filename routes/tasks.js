@@ -38,15 +38,15 @@ const handleValidationErrors = (req, res, next) => {
 const validateTask = [
     //  Task name cannot be empty:
     check('content')
-        .exists({ checkFalsy: true })
-        .withMessage("Task can't be empty."),
+    .exists({ checkFalsy: true })
+    .withMessage("Task can't be empty."),
     //  Task name cannot be longer than 255 characters:
     check('content')
-        .isLength({ max: 255 })
-        .withMessage("Task can't be longer than 255 characters."),
+    .isLength({ max: 255 })
+    .withMessage("Task can't be longer than 255 characters."),
 ];
 
-router.get('/', csrfProtection, asyncHandler(async (req, res) => {
+router.get('/', csrfProtection, asyncHandler(async(req, res) => {
     const { userId } = req.session.auth;
     const tasks = await Task.findAll();
     console.log(tasks)
@@ -57,10 +57,9 @@ router.get('/', csrfProtection, asyncHandler(async (req, res) => {
     });
     console.log(lists)
     res.render('create-task', { lists, tasks, csrfToken: req.csrfToken() })
-})
-);
+}));
 
-router.post('/', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res) => {
+router.post('/', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async(req, res) => {
     const { content, dueDate, listId } = req.body;
     const newTask = await Task.create({
         content,
@@ -72,10 +71,9 @@ router.post('/', csrfProtection, validateTask, handleValidationErrors, asyncHand
         listId
     })
     res.redirect('/')
-})
-);
+}));
 
-router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
     const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
 
@@ -84,10 +82,9 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     } else {
         next(taskNotFoundError(taskId));
     };
-})
-);
+}));
 
-router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async(req, res, next) => {
     const { userId } = req.session.auth;
     const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
@@ -101,10 +98,9 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next
     } else {
         next(taskNotFoundError(taskId));
     };
-})
-);
+}));
 
-router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res, next) => {
+router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErrors, asyncHandler(async(req, res, next) => {
     const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
     if (task) {
@@ -113,12 +109,11 @@ router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErr
         next(taskNotFoundError(taskId));
     }
     res.redirect('/tasks')
-})
-);
+}));
 
 // -------------------------DELETE------------------------
 router.get('/:id(\\d+)/delete', csrfProtection,
-    asyncHandler(async (req, res) => {
+    asyncHandler(async(req, res) => {
         const taskId = parseInt(req.params.id, 10);
         const task = await Task.findByPk(taskId);
         res.render('delete-task', {
@@ -129,13 +124,13 @@ router.get('/:id(\\d+)/delete', csrfProtection,
     }));
 
 
-router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
+router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async(req, res, next) => {
     const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
     const listTasks = await ListTask.findAll({
         where: {
             taskId
-        }        
+        }
     })
     const subtasks = await Subtask.findAll({
         where: {
@@ -143,19 +138,18 @@ router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, n
         }
     })
     if (task) {
-        for (let i = 0; i < subtasks.length; i++) {            
+        for (let i = 0; i < subtasks.length; i++) {
             await subtasks[i].destroy();
         }
         for (let i = 0; i < listTasks.length; i++) {
             await listTasks[i].destroy();
-        }        
+        }
         await task.destroy();
     } else {
         next(taskNotFoundError(taskId));
     }
     res.redirect('/tasks')
-})
-);
+}));
 
 
 module.exports = router;
