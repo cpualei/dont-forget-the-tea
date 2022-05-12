@@ -23,8 +23,9 @@ block content
         div
             label(for="listId") List:
             select(name="listId")
-                each list in lists
-                    option(value=list.id)= list.title
+                option(value='') --Select a list--
+                    each list in lists
+                        option(value=list.id)= list.title
         div
             button(type='submit' class='btn btn-create-task') Add Task
         //- div
@@ -33,4 +34,3 @@ block content
         p= task.content
         button(onclick=`window.location.href='/tasks/${task.id}/edit'` type='submit' class='btn btn-edit-task') Edit Task
         button(onclick=`window.location.href='/tasks/${task.id}/delete'` type='submit' class='btn btn-delete-task') Delete Task
-
