@@ -13,15 +13,15 @@ const taskNotFoundError = (id) => {
     err.status = 404;
     return err;
   };
-  
+
   const handleValidationErrors = (req, res, next) => {
     const validationErrors = validationResult(req);
-  
+
     // If the validation errors are not empty,
     if (!validationErrors.isEmpty()) {
         // Generate an array of error messages
         const errors = validationErrors.array().map((error) => error.msg);
-  
+
         // Generate a new `400 Bad request.` Error object
         // and invoke the next function passing in `err`
         // to pass control to the global error handler.
@@ -31,7 +31,7 @@ const taskNotFoundError = (id) => {
         err.errors = errors;
         return next(err);
     }
-  
+
     // Invoke the next middleware function
     next();
   };
@@ -138,33 +138,43 @@ router.get('/:id(\\d+)/delete', csrfProtection,
     }));
 
 // -------------------------DELETE TASK------------------------
-router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
-    const taskId = parseInt(req.params.id, 10);
-    const task = await Task.findByPk(taskId);
-    const listTasks = await ListTask.findAll({
-        where: {
-            taskId
-        }        
-    })
-    const subtasks = await Subtask.findAll({
-        where: {
-            taskId
-        }
-    })
+// router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
+//     const taskId = parseInt(req.params.id, 10);
+//     const task = await Task.findByPk(taskId);
+//     const listTasks = await ListTask.findAll({
+//         where: {
+//             taskId
+//         }
+//     })
+//     const subtasks = await Subtask.findAll({
+//         where: {
+//             taskId
+//         }
+//     })
+//     if (task) {
+//         for (let i = 0; i < subtasks.length; i++) {
+//             await subtasks[i].destroy();
+//         }
+//         for (let i = 0; i < listTasks.length; i++) {
+//             await listTasks[i].destroy();
+//         }
+//         await task.destroy();
+//     } else {
+//         next(taskNotFoundError(taskId));
+//     }
+//     res.redirect('/tasks')
+// })
+// );
+
+router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
+    const task = await Task.findByPk(req.params.id)
     if (task) {
-        for (let i = 0; i < subtasks.length; i++) {            
-            await subtasks[i].destroy();
-        }
-        for (let i = 0; i < listTasks.length; i++) {
-            await listTasks[i].destroy();
-        }        
-        await task.destroy();
+        await task.destroy()
+        res.json({message: 'Success'})
     } else {
-        next(taskNotFoundError(taskId));
+        res.json({message: 'Fail'})
     }
-    res.redirect('/tasks')
-})
-);
+}))
 
 // -------------------------CREATE SUBTASK------------------------
 router.post('/:id(\\d+)', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res) => {

@@ -8,13 +8,15 @@ window.addEventListener("load", (event)=>{
         btn.addEventListener('click', async(e) => {
             e.preventDefault()
             const taskId = e.target.id.split('-')[2]
+            console.log(taskId)
             const res = await fetch(`/tasks/${taskId}`, {
                 method: 'DELETE'
             })
+            console.log(res)
 
             const data = await res.json()
             if (data.message === 'Success') {
-                const container = document.getElementById(`post-container-${taskId}`)
+                const container = document.getElementById(`task-container-${task.id}`)
                 container.remove()
             } else {
 
