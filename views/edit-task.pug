@@ -10,11 +10,13 @@ block content
             input(type='text' name='content' value=`${task.content}` required)
         div
             label(for='dueDate') Due Date:
-            input(type='date' name='dueDate')
+            input(type='date' name='dueDate' value=`${date}`)
         div
-            label(for='listId')
-                each list in lists
-                    option(value=list.id)= list.title
+            label(for="listId") List:
+            select(name="listId")
+                option(value='') --Select a list--
+                    each list in lists
+                        option(value=list.id)= list.title
         div
             button(type='submit' class='btn btn-create-task') Submit
         //- div
