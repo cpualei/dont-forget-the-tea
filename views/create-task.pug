@@ -19,23 +19,7 @@ block content
             button(type='submit' class='btn btn-create-task') Add Task
         //- div
         //-     button(type='submit' class='btn btn-create-task') Clear Task
-    form(action='/tasks' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        div
-            label(for="content") Content:
-            input(type="text" name="content" required)
-        div
-            label(for="dueDate") Due Date:
-            input(type="date" name="dueDate")
-        div
-            label(for="listId") List:
-            select(name="listId")
-                option(value='') --Select a list--
-                    each list in lists
-                        option(value=list.id)= list.title
-        div
-            button(type='submit' class='btn btn-create-task') Add Task
-            
+
     each task in tasks
         div(id=`task-container-${task.id}`)
             p(id=`${taskId}-content`)= task.content
