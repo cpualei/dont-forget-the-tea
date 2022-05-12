@@ -12,16 +12,16 @@ const taskNotFoundError = (id) => {
     err.title = 'Task not found';
     err.status = 404;
     return err;
-  };
-  
-  const handleValidationErrors = (req, res, next) => {
+};
+
+const handleValidationErrors = (req, res, next) => {
     const validationErrors = validationResult(req);
-  
+
     // If the validation errors are not empty,
     if (!validationErrors.isEmpty()) {
         // Generate an array of error messages
         const errors = validationErrors.array().map((error) => error.msg);
-  
+
         // Generate a new `400 Bad request.` Error object
         // and invoke the next function passing in `err`
         // to pass control to the global error handler.
@@ -31,10 +31,10 @@ const taskNotFoundError = (id) => {
         err.errors = errors;
         return next(err);
     }
-  
+
     // Invoke the next middleware function
     next();
-  };
+};
 
 //-----------------------TASK VALIDATOR-----------------------
 
@@ -82,7 +82,7 @@ router.post('/', csrfProtection, validateTask, handleValidationErrors, asyncHand
 );
 
 //-----------------------TASK DETAIL & SUBTASKS PAGE -----------------------
-router.get('/:id(\\d+)', csrfProtection,asyncHandler(async (req, res, next) => {
+router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
     const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
     const subtasks = await Subtask.findAll();
@@ -97,26 +97,39 @@ router.get('/:id(\\d+)', csrfProtection,asyncHandler(async (req, res, next) => {
 // -------------------------EDIT TASK (API)------------------------
 router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
     const task = await Task.findByPk(req.params.id)
-    task.content = req.body.content
-    if(task) {
+    const content = req.body.content
+
+    const errors = {}
+
+    if (content.length > 255) {
+        errors.tooLong = 'Content cannot be longers than 255 characters'
+    }
+
+    if (content === '') {
+        errors.tooShort = 'Content cannot be empty'
+    }
+
+    if (errors.tooLong || errors.tooShort) {
+        errors.message = 'Failure'
+        res.json({ errors })
+    } else if (task) {
+        task.content = req.body.content
+        task.dueDate = req.body.dueDate
+        task.listId = req.body.listId
+
         await task.save()
-        res.json({
-            message: 'Success',
-            task
-        })
-    }else{
-        res.json({message: 'Fail'})
-    }   
+        res.json({ message: 'Success' })
+    }
 }))
 
 // -------------------------DELETE TASK (API)------------------------
-router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
+router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
     const task = await Task.findByPk(req.params.id)
     if (task) {
         await task.destroy()
-        res.json({message: 'Success'})
+        res.json({ message: 'Success' })
     } else {
-        res.json({message: 'Fail'})
+        res.json({ message: 'Fail' })
     }
 }))
 

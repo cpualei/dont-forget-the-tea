@@ -22,12 +22,12 @@ block content
 
     each task in tasks
         div(id=`task-container-${task.id}`)
-            p(id=`${taskId}-content`)= task.content
-            form(class='hidden' id=`edit-task-form-${task.id}` method='post')
+            p(id=`content-${task.id}`)= task.content
+            form(class='hidden' class='edit-task-form' id=`edit-task-form-${task.id}` method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
                 div
                     label(for="content") Content:
-                    input(type='text' name='content' value=`${task.content}` required)
+                    input(type='text' name='content' value=`${task.content}`)
                 div
                     label(for='dueDate') Due Date:
                     input(type='date' name='dueDate' value=`${date}`)
