@@ -18,8 +18,6 @@ block content
                         option(value=list.id)= list.title
         div
             button(type='submit' class='btn btn-create-task') Add Task
-        //- div
-        //-     button(type='submit' class='btn btn-create-task') Clear Task
 
     each task in tasks
         div(id=`task-container-${task.id}`)
@@ -42,7 +40,7 @@ block content
                     button(type='submit' class='btn btn-create-task') Save
                 div
                     button(id=`cancel-task-form-${task.id}` type='submit' class='btn btn-cancel-task') Cancel
-
+            button(id=`view-task-${task.id}` type='submit' class='btn btn-view-task' onclick=`window.location.href='/tasks/${task.id}'`) View
             button(id=`edit-task-${task.id}` type='submit' class='btn btn-edit-task') Edit Task
             button(id=`delete-task-${task.id}` type='submit' class='btn btn-delete-task') Delete Task
             div(id=`task-error-container-${task.id}`)

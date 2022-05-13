@@ -1,0 +1,53 @@
+
+html {
+    padding: 20px;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.navbar-left {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-right {
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+}
+
+.header-left {
+    display: flex;
+    justify-content: left;
+}
+
+.header-right {
+    display: flex;
+    justify-content: right;
+    align-content: space-around;
+}
+
+.other-navbar-links {
+    display: flex;
+    justify-content: space-evenly;
+    padding-left: 13px;
+}
+
+#nav-home {
+    text-decoration: none;
+}
+#nav-demoUser {
+    text-decoration: none;
+}
+#nav-login {
+    text-decoration: none;
+}
+#nav-signup {
+    text-decoration: none;
+}

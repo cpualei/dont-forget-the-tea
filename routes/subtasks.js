@@ -60,55 +60,92 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     };
 })
 );
+// -------------------------EDIT SUBTASK (API)------------------------
+router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
+    const subtask = await Subtask.findByPk(req.params.id)
+    console.log("THIS IS SUBTASK IN ROUTE", subtask)
+    const content = req.body.content
+    const taskId = req.body.taskId
+    const errors = {}
 
-//-----------------------GET EDIT SUBTASK DETAIL PAGE-----------------------
-router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
-    const subtaskId = parseInt(req.params.id, 10);
-    const subtask = await Subtask.findByPk(subtaskId);
-    if (subtask) {
-        res.render('edit-subtask', { subtask, csrfToken: req.csrfToken() });
-    } else {
-        next(taskNotFoundError(subtaskId));
-    };
-})
-);
-//-----------------------EDIT SUBTASK-----------------------
-router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res, next) => {
-    const subtaskId = parseInt(req.params.id, 10);
-    const subtask = await Subtask.findByPk(subtaskId);
-    if (subtask) {
-        await subtask.update({ content: req.body.content });
-    } else {
-        next(taskNotFoundError(subtaskId));
+    if (content.length > 255) {
+        errors.tooLong = 'Content cannot be longers than 255 characters'
     }
-    res.redirect(`/subtasks/${subtaskId}`)
-})
-);
 
-// -------------------------GET DELETE TASK PAGE------------------------
-router.get('/:id(\\d+)/delete', csrfProtection,
-    asyncHandler(async (req, res) => {
-        const subtaskId = parseInt(req.params.id, 10);
-        const subtask = await Subtask.findByPk(subtaskId);
-        res.render('delete-subtask', {
-            title: 'Delete subtask',
-            subtask,
-            csrfToken: req.csrfToken(),
-        });
-    }));
-
-// -------------------------DELETE TASK------------------------
-router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
-    const subtaskId = parseInt(req.params.id, 10);
-    const subtask = await Subtask.findByPk(subtaskId);
-
-    if (subtask) {
-        await subtask.destroy();
-    } else {
-        next(taskNotFoundError(subtaskId));
+    if (content === '') {
+        errors.tooShort = 'Content cannot be empty'
     }
-    res.redirect('/tasks/')
-    //*** we want to redirect to task/:id page
-})
-);
+
+    if (errors.tooLong || errors.tooShort) {
+        errors.message = 'Failure'
+        res.json({ errors })
+    } else if (subtask) {
+        subtask.content = req.body.content
+        subtask.taskId = req.body.taskId
+
+        await subtask.save()
+        res.json({ message: 'Success' })
+    }
+}))
+
+// -------------------------DELETE TASK (API)------------------------
+router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
+    const subtask = await Subtask.findByPk(req.params.id)
+    if (subtask) {
+        await subtask.destroy()
+        res.json({ message: 'Success' })
+    } else {
+        res.json({ message: 'Fail' })
+    }
+}))
+
+// //-----------------------GET EDIT SUBTASK DETAIL PAGE-----------------------
+// router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+//     const subtaskId = parseInt(req.params.id, 10);
+//     const subtask = await Subtask.findByPk(subtaskId);
+//     if (subtask) {
+//         res.render('edit-subtask', { subtask, csrfToken: req.csrfToken() });
+//     } else {
+//         next(taskNotFoundError(subtaskId));
+//     };
+// })
+// );
+// //-----------------------EDIT SUBTASK-----------------------
+// router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res, next) => {
+//     const subtaskId = parseInt(req.params.id, 10);
+//     const subtask = await Subtask.findByPk(subtaskId);
+//     if (subtask) {
+//         await subtask.update({ content: req.body.content });
+//     } else {
+//         next(taskNotFoundError(subtaskId));
+//     }
+//     res.redirect(`/subtasks/${subtaskId}`)
+// })
+// );
+// // -------------------------GET DELETE TASK PAGE------------------------
+// router.get('/:id(\\d+)/delete', csrfProtection,
+//     asyncHandler(async (req, res) => {
+//         const subtaskId = parseInt(req.params.id, 10);
+//         const subtask = await Subtask.findByPk(subtaskId);
+//         res.render('delete-subtask', {
+//             title: 'Delete subtask',
+//             subtask,
+//             csrfToken: req.csrfToken(),
+//         });
+//     }));
+
+// // -------------------------DELETE TASK------------------------
+// router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
+//     const subtaskId = parseInt(req.params.id, 10);
+//     const subtask = await Subtask.findByPk(subtaskId);
+
+//     if (subtask) {
+//         await subtask.destroy();
+//     } else {
+//         next(taskNotFoundError(subtaskId));
+//     }
+//     res.redirect('/tasks/')
+//     //*** we want to redirect to task/:id page
+// })
+// );
 module.exports = router;

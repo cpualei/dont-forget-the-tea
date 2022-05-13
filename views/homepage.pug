@@ -5,15 +5,12 @@ html
       title="Don't Forget The Tea!"
 
       link(rel='stylesheet' href='/stylesheets/reset.css')
-      link(rel='stylesheet' href='/stylesheets/index.css')
       link(rel='stylesheet' href='/stylesheets/taskDeleteBtn.css')
       link(rel='stylesheet' href='/stylesheets/taskEdit.css')
       link(rel='stylesheet' href='/stylesheets/layout.css')
 
       script(src="/javascripts/taskDelete.js" type="module")
       script(src="/javascripts/taskEdit.js" type="module")
-      script(src="/javascripts/subtaskDelete.js" type="module")
-      script(src="/javascripts/subtaskEdit.js" type="module")
 
 
   body
@@ -28,7 +25,9 @@ html
         div(class='other-navbar-links')
           a(href='' id='nav-demoUser') Demo User
         div(class='other-navbar-links')
-          a(href='/users/signup' id='nav-signup') Sign Out
+          a(href='/users/login' id='nav-login') Log In
+        div(class='other-navbar-links')
+          a(href='/users/signup' id='nav-signup') Sign Up
   block content
 
   footer

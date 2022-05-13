@@ -29,7 +29,7 @@ const handleValidationErrors = (req, res, next) => {
         err.status = 400;
         err.title = "Bad request.";
         err.errors = errors;
-        return next(err);
+        return next(err);   
     }
 
     // Invoke the next middleware function
@@ -53,7 +53,11 @@ const validateTask = [
 
 router.get('/', csrfProtection, asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
-    const tasks = await Task.findAll();
+    const tasks = await Task.findAll({
+        where: {
+            userId
+        }
+    });
     console.log(tasks)
     const lists = await List.findAll({
         where: {

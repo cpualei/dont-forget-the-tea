@@ -13,4 +13,9 @@ block content
             button(id='button' type='submit' class='btn btn-primary') Log in
         div 
             a(href='/users/signup' class='dont-have-acc') Don't have an account?
-        
+
+    form(action='/users/login' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        input(type="hidden" name="username" value="DemoUser")      
+        input(type="hidden" name="password" value="boba123")      
+        button(type='submit' class='btn btn-primary') Demo Login
