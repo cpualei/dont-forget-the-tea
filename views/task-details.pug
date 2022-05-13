@@ -1,6 +1,8 @@
 extends layout.pug
 
 block content
+    link(rel="stylesheet" href="/stylesheets/index.css")
+
     div(class="subtasks-in-detail-pg")
         p= `Tasks ID : ${task.id}`
         p= `Tasks Content : ${task.content}`
@@ -15,7 +17,7 @@ block content
                 label(for="content") Content:
                 input(type="text" name="content" required)
             div
-                button(type='submit' class='btn btn-create-task') Add Subtask
+                button(id='task-buttons' type='submit' class='btn btn-create-task') Add Subtask
     div
         p Subtasks list:
         each subtask in subtasks
