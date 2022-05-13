@@ -22,12 +22,12 @@ block content
     each task in tasks
         div(id=`task-container-${task.id}`)
         section.lists-container
-        .list
-            ul.list-items        
-                p(id=`content-${task.id}`)= task.content
-                    button(id=`view-task-${task.id}` type='submit' class='btn btn-view' onclick=`window.location.href='/tasks/${task.id}'`) View
-                    button(id=`edit-task-${task.id}` type='submit' class='btn btn-edit') Edit
-                    button(id=`delete-task-${task.id}` type='submit' class='btn btn-delete') Delete
+            .list
+                ul.list-items        
+                    p(id=`content-${task.id}`)= task.content
+                        button(id=`view-task-${task.id}` type='submit' class='btn btn-view' onclick=`window.location.href='/tasks/${task.id}'`) View
+                        button(id=`edit-task-${task.id}` type='submit' class='btn btn-edit') Edit
+                        button(id=`delete-task-${task.id}` type='submit' class='btn btn-delete') Delete
             form(class='hidden' class='edit-task-form' id=`edit-task-form-${task.id}` method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
                 div
