@@ -25,7 +25,7 @@ block content
     div
         p Subtasks list:
             each subtask in subtasks
-                div
-                    li= `${subtask.id}. ${subtask.content}`
-                    button(onclick=`window.location.href='/subtasks/${subtask.id}/edit'` type='submit' class='btn btn-edit-subtask' ) Edit
-                    button(onclick=`window.location.href='/subtasks/${subtask.id}/delete'` type='submit' class='btn btn-delete-subtask' ) Delete
+                div(id=`subtask-container-${subtask.id}`)
+                    li=`${subtask.id}. ${subtask.content}`
+                    button(id=`delete-subtask-${subtask.id}` type='submit' class='btn btn-edit-subtask' ) Edit
+                    button(id=`delete-subtask-${subtask.id}` type='submit' class='btn btn-delete-subtask' ) Delete

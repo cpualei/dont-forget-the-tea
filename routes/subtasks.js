@@ -61,6 +61,17 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 })
 );
 
+// -------------------------DELETE TASK (API)------------------------
+router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
+    const subtask = await Subtask.findByPk(req.params.id)
+    if (subtask) {
+        await subtask.destroy()
+        res.json({ message: 'Success' })
+    } else {
+        res.json({ message: 'Fail' })
+    }
+}))
+
 //-----------------------GET EDIT SUBTASK DETAIL PAGE-----------------------
 router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
     const subtaskId = parseInt(req.params.id, 10);
@@ -84,31 +95,30 @@ router.post("/:id(\\d+)/edit", csrfProtection, validateTask, handleValidationErr
     res.redirect(`/subtasks/${subtaskId}`)
 })
 );
+// // -------------------------GET DELETE TASK PAGE------------------------
+// router.get('/:id(\\d+)/delete', csrfProtection,
+//     asyncHandler(async (req, res) => {
+//         const subtaskId = parseInt(req.params.id, 10);
+//         const subtask = await Subtask.findByPk(subtaskId);
+//         res.render('delete-subtask', {
+//             title: 'Delete subtask',
+//             subtask,
+//             csrfToken: req.csrfToken(),
+//         });
+//     }));
 
-// -------------------------GET DELETE TASK PAGE------------------------
-router.get('/:id(\\d+)/delete', csrfProtection,
-    asyncHandler(async (req, res) => {
-        const subtaskId = parseInt(req.params.id, 10);
-        const subtask = await Subtask.findByPk(subtaskId);
-        res.render('delete-subtask', {
-            title: 'Delete subtask',
-            subtask,
-            csrfToken: req.csrfToken(),
-        });
-    }));
+// // -------------------------DELETE TASK------------------------
+// router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
+//     const subtaskId = parseInt(req.params.id, 10);
+//     const subtask = await Subtask.findByPk(subtaskId);
 
-// -------------------------DELETE TASK------------------------
-router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
-    const subtaskId = parseInt(req.params.id, 10);
-    const subtask = await Subtask.findByPk(subtaskId);
-
-    if (subtask) {
-        await subtask.destroy();
-    } else {
-        next(taskNotFoundError(subtaskId));
-    }
-    res.redirect('/tasks/')
-    //*** we want to redirect to task/:id page
-})
-);
+//     if (subtask) {
+//         await subtask.destroy();
+//     } else {
+//         next(taskNotFoundError(subtaskId));
+//     }
+//     res.redirect('/tasks/')
+//     //*** we want to redirect to task/:id page
+// })
+// );
 module.exports = router;
