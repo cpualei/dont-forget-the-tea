@@ -45,6 +45,7 @@ const validateList = [
 
 router.get('/', csrfProtection, asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
+    console.log("THIS IS USER ID", userId)
     const lists = await List.findAll({
         where: {
             userId

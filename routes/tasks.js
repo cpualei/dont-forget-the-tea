@@ -59,7 +59,6 @@ router.get('/', csrfProtection, asyncHandler(async (req, res) => {
         }
     });
     // console.log("THIS IS TASKS", tasks)
-    console.log("THIS IS TASKS", tasks[0].Lists[0].title)
     const lists = await List.findAll({
         where: {
             userId

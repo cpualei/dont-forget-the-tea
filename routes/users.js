@@ -41,6 +41,9 @@ const userSignUpValidators = [
 
   //-----------------------GET SIGN UP PAGE-----------------------
   router.get('/signup', csrfProtection, asyncHandler( async (req, res) => {
+    if(req.session.auth){
+      res.redirect('/lists')
+    }
     res.render('signup', {
       title: 'Sign Up',
       user: {},
@@ -85,7 +88,7 @@ router.post('/signup', csrfProtection, userSignUpValidators,
         username: newUser.username,
         userId: newUser.id
       }
-      res.redirect('/tasks');
+      res.redirect('/lists');
 
     } else { // if there are errors
       console.log('ELSE BLOCK RUNNING: DIDNT PASS VALIDATION')
@@ -120,6 +123,9 @@ router.post('/signup', csrfProtection, userSignUpValidators,
 
 //-----------------------GET LOG IN PAGE----------------------
 router.get('/login', csrfProtection, asyncHandler(async (req, res) =>{
+  if(req.session.auth){
+    res.redirect('/lists')
+  }
   res.render('login',  { //render login page
     csrfToken: req.csrfToken(),
     errors: [],
@@ -148,7 +154,7 @@ router.post('/login', csrfProtection, asyncHandler(async (req, res) => {
       username: user.username,
       userId: user.id
     }
-    res.redirect('/tasks')
+    res.redirect('/lists')
   } else {
     req.errors.push('Invalid username or password. Please try again.')
     res.render('login',  { //re-render login page
