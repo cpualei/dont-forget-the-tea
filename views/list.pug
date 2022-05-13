@@ -9,8 +9,8 @@ block content
         section.lists-container
         .list
             ul.list-items
-                li= list.title
-                    button(onclick=`window.location.href='/lists/${list.id}/edit'` type='submit' class='btn btn-edit-task') Edit List
-                    button(onclick=`window.location.href='/lists/${list.id}/delete'` type='submit' class='btn btn-delete-task') Delete List
+                li= list.title 
+                    button(onclick=`window.location.href='/lists/${list.id}/edit'` type='submit' class='btn btn-edit-task') Edit 
+                    button(onclick=`window.location.href='/lists/${list.id}/delete'` type='submit' class='btn btn-delete-task') Delete
     div
         button(onclick="window.location.href='/lists/create'" type='submit' class='btn btn-list-create') Create New List
