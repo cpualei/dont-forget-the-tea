@@ -6,19 +6,20 @@ html
       link(rel='stylesheet' href='/stylesheets/reset.css')
       link(rel='stylesheet' href='/stylesheets/taskDeleteBtn.css')
       link(rel='stylesheet' href='/stylesheets/taskEdit.css')
+      link(rel='stylesheet' href='/stylesheets/layout.css')
       script(src="/javascripts/taskDelete.js" type="module")
       script(src="/javascripts/taskEdit.js" type="module")
 
       nav#navbar-default
-        ul
+        ul(class='navbar-list')
           li
-            a(href='/' class='navHome') DON'T FORGET THE TEA
+            a(href='/' id='nav-home') DON'T FORGET THE TEA
           li
-            a(href='' class='navAboutUs') About Us
+            a(href='' id='nav-aboutUs' class='other-navbar-links') About Us
           li
-            a(href='/users/login' class='navLogIn') Log In
+            a(href='/users/login' id='nav-login' class='other-navbar-links') Log In
           li
-            a(href='/users/signup' class='navSignUp') Sign Up
+            a(href='/users/signup' id='nav-signup' class='other-navbar-links') Sign Up
 
   body
     block content

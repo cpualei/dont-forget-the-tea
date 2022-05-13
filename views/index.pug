@@ -3,8 +3,10 @@ extends layout
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
+  link(rel='stylesheet' href='/stylesheets/layout.css')
   //- add page specific js
-  script(src="/javascripts/index.js" type="module" defer)
+  script(src="/javascripts/taskDelete.js" type="module")
+  script(src="/javascripts/taskEdit.js" type="module")
 
 block content
   h1= title
