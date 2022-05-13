@@ -2,16 +2,12 @@ extends layout.pug
 
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
-
+    button(onclick="window.location.href='/tasks'" type='submit' class='btn btn-list-create') View All Tasks
     form(action='/lists' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
     each list in lists
-        div.todos
-            ul#todos
-                li
-                input#checkbox-1(type='checkbox')
-                label(for='checkbox-1') 
-                    p= list.title
+        
+        li= list.title
 
         button(onclick=`window.location.href='/lists/${list.id}/'` type='submit' class='btn btn-view-list') View List
         button(onclick=`window.location.href='/lists/${list.id}/edit'` type='submit' class='btn btn-edit-list') Edit List
