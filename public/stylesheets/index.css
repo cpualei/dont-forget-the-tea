@@ -1,4 +1,41 @@
-h1 {
-    color: #555555;
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+
+body {
+  padding: 50px;
+  font-family: 'Karla', sans-serif;
+  font-weight: normal;
 }
 
+a {
+  color: #00B7FF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, a, ol, li, ul, div, span,
+body, header, nav {
+  font-size: 1rem;
+  color: inherit;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+
+.smartOption{
+  display: none;
+}
+ 
+
+.linkedin-pic{
+
+}

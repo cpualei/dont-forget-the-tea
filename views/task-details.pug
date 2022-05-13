@@ -2,16 +2,10 @@ extends layout-loggedin.pug
 
 block content
     div(class="subtasks-in-detail-pg")
-        p Tasks:
-        p= task.id
-        p= task.content
-        p= task.createdAt
-        p= task.updatedAt
-
-    div
-        button(onclick=`window.location.href='/tasks/${task.id}/edit'` type='submit' class='btn btn-edit-task') Edit Task
-    div(id=`task-container-${task.id}`)
-        button(onclick=`window.location.href='/tasks/${task.id}/delete'` type='submit' class='btn btn-delete-task') Delete Task
+        p= `Tasks ID : ${task.id}`
+        p= `Tasks Content : ${task.content}`
+        p= `Tasks Due Date : ${task.dueDate}`
+        p= `Tasks Created At : ${task.createdAt}`
 
     div(class="subtasks-in-detail-pg")
         p Create Subtasks:
@@ -24,8 +18,21 @@ block content
                 button(type='submit' class='btn btn-create-task') Add Subtask
     div
         p Subtasks list:
-            each subtask in subtasks
-                div
-                    li= `${subtask.id}. ${subtask.content}`
-                    button(onclick=`window.location.href='/subtasks/${subtask.id}/edit'` type='submit' class='btn btn-edit-subtask' ) Edit
-                    button(onclick=`window.location.href='/subtasks/${subtask.id}/delete'` type='submit' class='btn btn-delete-subtask' ) Delete
+        each subtask in subtasks
+            div(id=`subtask-container-${subtask.id}`)
+                p(id=`content-${subtask.id}`)= `Subtask ${subtask.id} : ${subtask.content}`
+                form(class='hidden edit-subtask-form' id=`edit-subtask-form-${subtask.id}` method='post')
+                    input(type='hidden' name='_csrf' value=csrfToken)
+                    div
+                        label(for="content") Content:
+                        input(type='text' name='content' value=`${subtask.content}`)
+                    div(class="hidden")
+                        label(for="taskId") TaskId: 
+                        input(readonly="readonly" type='text' name='taskId' value=`${task.id}`)
+                    div
+                        button(type='submit' class='btn btn-create-subtask') Save
+                    div
+                        button(id=`cancel-subtask-form-${subtask.id}` type='submit' class='btn btn-cancel-subtask') Cancel
+                button(id=`edit-subtask-${subtask.id}` type='submit' class='btn btn-edit-subtask' ) Edit
+                button(id=`delete-subtask-${subtask.id}` type='submit' class='btn btn-delete-subtask' ) Delete
+                div(id=`subtask-error-container-${subtask.id}`)
