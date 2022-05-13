@@ -7,8 +7,7 @@ block content
         li= `Subtask created at: ${subtask.createdAt}`
         li= `Subtask updated at:${subtask.updatedAt}`
 
-    div 
+    div
         button(onclick=`window.location.href='/subtasks/${subtask.id}/edit'` type='submit' class='btn btn-edit-subtask') Edit Subtask
-    div 
+    div
         button(onclick=`window.location.href='/subtasks/${subtask.id}/delete'` type='submit' class='btn btn-delete-subtask') Delete Subtask
-
