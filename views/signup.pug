@@ -9,19 +9,19 @@ block content
   form(action='/users/signup' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
     div 
-      label(for="firstName") First Name 
+      label(class='signup' for="firstName") First Name 
       input(type="text" name="firstName" required)
     div 
-      label(for="lastName") Last Name 
+      label(class='signup' for="lastName") Last Name 
       input(type="text" name="lastName" required)
     div 
-      label(for="email") Email
+      label(class='signup' for="email") Email
       input(type="text" name="email" required)       
     div 
-      label(for="username") Username
+      label(class='signup' for="username") Username
       input(type="text" name="username" required)      
     div 
-      label(for="password") Password
+      label(class='signup' for="password") Password
       input(type="text" name="password" required)      
     div 
       button(type='submit' id='button' class='btn btn-primary') Sign Up
