@@ -4,20 +4,29 @@ html
     block head
       title="Don't Forget The Tea!"
 
-      link(rel='stylesheet' href='/stylesheets/reset.css')
-      link(rel='stylesheet' href='/stylesheets/taskDeleteBtn.css')
-      link(rel='stylesheet' href='/stylesheets/taskEdit.css')
-      link(rel='stylesheet' href='/stylesheets/layout.css')
+      //- link(rel='stylesheet' href='/stylesheets/taskDeleteBtn.css')
+      //- link(rel='stylesheet' href='/stylesheets/taskEdit.css')
+      //- link(rel='stylesheet' href='/stylesheets/layout.css')
 
-      script(src="/javascripts/taskDelete.js" type="module")
-      script(src="/javascripts/taskEdit.js" type="module")
+      //- script(src="/javascripts/taskDelete.js" type="module")
+      //- script(src="/javascripts/taskEdit.js" type="module")
+
+        //- add page specific styles by appending to the head
+    link(rel="stylesheet" href="/stylesheets/index.css")
+    link(rel='stylesheet' href='/stylesheets/layout.css')
+    link(rel='stylesheet' href='/stylesheets/homepage.css')
+    //- add page specific js
+    script(src="/javascripts/taskDelete.js" type="module")
+    script(src="/javascripts/taskEdit.js" type="module")
 
 
   body
   header.navbar
     div.header-left
       div(class='navbar-left')
+        //- div(class='boba-logo')
         div(class='home-link')
+          img(src='./images/bobatea.jpg' style='width:35px;height:30px;')
           a(href='/' id='nav-home') DON'T FORGET THE TEA
 
     div.header-right
@@ -28,7 +37,10 @@ html
           a(href='/users/login' id='nav-login') Log In
         div(class='other-navbar-links')
           a(href='/users/signup' id='nav-signup') Sign Up
+
   block content
+  h1= title
+  button(id='button' onclick="window.location.href='/users/signup'" type='submit' name='signUpButton') Sign Up Now!
 
   footer
     block footer

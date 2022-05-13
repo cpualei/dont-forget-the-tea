@@ -1,0 +1,10 @@
+body {
+    background-color: rgba(6, 123, 170, 1);
+}
+
+.navbar {
+    color: whitesmoke;
+    /* stroke: black;
+    stroke-width: 5px; */
+    /* text-shadow: 15px black; */
+}
