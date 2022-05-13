@@ -1,10 +1,86 @@
 body {
-    background-color: rgba(6, 123, 170, 1);
+    margin: 20px;
+    /* background-color: rgba(6, 123, 170, 1); */
+    background-color: rgb(20, 149, 93);
 }
+
 
 .navbar {
     color: whitesmoke;
-    /* stroke: black;
-    stroke-width: 5px; */
-    /* text-shadow: 15px black; */
+}
+
+.home-link {
+    overflow-wrap: break-word;
+}
+
+.boba-icon {
+    display: inline-flex;
+}
+
+.boba-logo {
+    display: flex;
+    align-content: center;
+}
+
+.signup-button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+h1 {
+    font-size: 40px;
+    color: whitesmoke;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.matcha-boba {
+    display: flex;
+    justify-content: center;
+}
+
+.quote-under-matcha-img {
+    color: whitesmoke;
+    font-size: 30px;
+    margin-top: 20px;
+    /* margin-bottom: 20px; */
+    display: flex;
+    justify-content: center;
+}
+
+/* .body-footer-container {
+    display: flex;
+    flex-direction: column;
+} */
+
+.footer-div {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+    color: whitesmoke;
+    /* position: absolute; */
+    /* bottom: 0px; */
+    width: 100%;
+}
+
+.rena-div {
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.weiqi-div {
+    display: flex;
+    padding-right: 10px;
+}
+
+.caitlin-div {
+    display: flex;
+    padding-right: 10px;
+}
+
+.icon-div {
+    display: flex;
 }
