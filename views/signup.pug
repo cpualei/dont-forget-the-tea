@@ -1,6 +1,8 @@
 extends layout.pug
 
 block content 
+
+  link(rel="stylesheet" href="/stylesheets/index.css")
   if errors.length > 0
     each error in errors 
       p= error 
@@ -22,6 +24,6 @@ block content
       label(for="password") Password
       input(type="text" name="password" required)      
     div 
-      button(type='submit' class='btn btn-primary') Sign Up
+      button(type='submit' id='button' class='btn btn-primary') Sign Up
     div 
       a(href='/users/login' class='already-have-acc') Already have an account?
