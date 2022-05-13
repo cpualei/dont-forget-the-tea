@@ -1,4 +1,8 @@
 
+html {
+    padding: 20px;
+}
+
 .navbar {
     display: flex;
     flex-direction: row;
@@ -38,7 +42,7 @@
 #nav-home {
     text-decoration: none;
 }
-#nav-aboutUs {
+#nav-demoUser {
     text-decoration: none;
 }
 #nav-login {
