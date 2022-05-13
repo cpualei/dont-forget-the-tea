@@ -81,7 +81,11 @@ router.post('/signup', csrfProtection, userSignUpValidators,
         hashPassword
       });
       console.log('newuser', newUser)
-      res.redirect('/users/signup');
+      req.session.auth = {
+        username: newUser.username,
+        userId: newUser.id
+      }
+      res.redirect('/tasks');
 
     } else { // if there are errors
       console.log('ELSE BLOCK RUNNING: DIDNT PASS VALIDATION')

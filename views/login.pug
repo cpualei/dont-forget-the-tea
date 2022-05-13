@@ -1,6 +1,7 @@
 extends layout.pug
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
+    p PLEASE LOG IN!
     form(action='/users/login' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div

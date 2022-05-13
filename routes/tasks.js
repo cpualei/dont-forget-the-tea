@@ -143,6 +143,46 @@ router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
         res.json({ message: 'Fail' })
     }
 }))
+router.use((req, res, next) => {
+    console.log("REQUEST GETS HERE")
+    next();
+})
+
+//------------------------COMPLETED TASK PAGE ---------------------
+router.get('/completed', csrfProtection, asyncHandler(async (req, res) => {
+    const { userId } = req.session.auth;
+    const tasks = await Task.findAll({
+        include: List,
+        where: {
+            userId,
+            completed:true
+        }
+    });
+    // console.log("THIS IS TASKS", tasks)
+
+    const lists = await List.findAll({
+        where: {
+            userId
+        }
+    });
+    // console.log(lists)
+    res.render('completed-list', { lists, tasks, csrfToken: req.csrfToken() })
+})
+);
+//------------------------COMPLETED TASK (API)----------------------
+router.post('/completed/:id(\\d+)', asyncHandler(async (req, res) => {
+    console.log("COMPLETED TASK ROUTER", req.params.id)
+    const task = await Task.findByPk(req.params.id)
+    
+    console.log("THIS IS TASK ", task)
+    console.log("AFTER DATABASE QUERY ")
+    console.log("THIS IS COMPLETED BEFORE ", task.completed)
+    task.completed = !task.completed;
+    console.log("THIS IS COMPLETED AFTER ", task.completed)
+    await task.save();
+    console.log("THIS IS AFTER SAVE")
+    res.json({message: 'Success'})
+}))
 
 // -------------------------CREATE SUBTASK UNDER TASK DETAIL------------------------
 router.post('/:id(\\d+)', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res) => {
