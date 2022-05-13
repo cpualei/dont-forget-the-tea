@@ -1,4 +1,4 @@
-extends layout-loggedin.pug
+extends layout.pug
 
 block content
     div(class="subtasks-in-detail-pg")
@@ -27,7 +27,7 @@ block content
                         label(for="content") Content:
                         input(type='text' name='content' value=`${subtask.content}`)
                     div(class="hidden")
-                        label(for="taskId") TaskId: 
+                        label(for="taskId") TaskId:
                         input(readonly="readonly" type='text' name='taskId' value=`${task.id}`)
                     div
                         button(type='submit' class='btn btn-create-subtask') Save
