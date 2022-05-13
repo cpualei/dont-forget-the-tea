@@ -1,28 +1,49 @@
 
-
-.navbar-list {
-
-    list-style: none;
-    margin: 0;
-    width: 42em;
-    display: inline-flex;
+.navbar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-content: center;
     justify-content: space-between;
-    height: 10.4em;
-    user-select: none;
-    position: relative;
-    align-items: center;
-    padding: 0 1.9em 2.5em;
-    background-color: #fefefe;
-    border-radius: 1em 1em 4.5em 4.5em;
-    -webkit-tap-highlight-color: transparent;
+}
+
+.navbar-left {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-right {
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+}
+
+.header-left {
+    display: flex;
+    justify-content: left;
+}
+
+.header-right {
+    display: flex;
+    justify-content: right;
+    align-content: space-around;
 }
 
 .other-navbar-links {
-    display: inline-flex;
-
+    display: flex;
+    justify-content: space-evenly;
+    padding-left: 13px;
 }
 
 #nav-home {
-    display: inline-flex;
-
+    text-decoration: none;
+}
+#nav-aboutUs {
+    text-decoration: none;
+}
+#nav-login {
+    text-decoration: none;
+}
+#nav-signup {
+    text-decoration: none;
 }
