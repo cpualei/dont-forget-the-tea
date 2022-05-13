@@ -214,7 +214,7 @@ select {
     box-shadow: 5px 0 5px -5px black,
         -5px 0 5px -5px black; */
 
-    background: #FFF;
+    background: #f4f7f8;
     font-size: 20px;
     max-width: 30em;
     margin: auto;
@@ -226,6 +226,7 @@ select {
     margin: 10px auto;
     cursor: pointer;
     border-bottom: solid 1px #ddd;
+    border-radius: 10px;
 }
 
 ul {
