@@ -6,7 +6,7 @@ block content
   if errors.length > 0
     each error in errors 
       p= error 
-  form(action='/users/signup' method='post')
+  form(action='/tasks' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
     div 
       label(class='forms' for="firstName") First Name 

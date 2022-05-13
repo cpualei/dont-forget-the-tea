@@ -155,11 +155,11 @@ router.post('/login', csrfProtection, asyncHandler(async (req, res) => {
   };
 }));
 
-//-----------------------LOG OUT------------------------------
-// ADD LOGOUT PAGE???
-// router.post('/logout', (req, res) => {
-//   delete req.session.auth
-//   req.session.save(() => res.redirect('/'));
-// });
+// -----------------------LOG OUT------------------------------
+router.post('/logout', (req, res) => {
+  console.log("IN POST LOGOUT")
+  delete req.session.auth
+  req.session.save(() => res.redirect('/'));
+});
 
 module.exports = router;

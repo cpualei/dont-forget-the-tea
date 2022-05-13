@@ -28,7 +28,9 @@ html
         div(class='other-navbar-links')
           a(href='' id='nav-demoUser') Demo User
         div(class='other-navbar-links')
-          a(href='/users/signup' id='nav-signup') Sign Out
+          form(action='/users/logout' method='post')
+            button(id='button' type='submit' class='btn btn-logout') Log out
+ 
   block content
 
   footer

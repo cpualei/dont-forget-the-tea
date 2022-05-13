@@ -13,8 +13,8 @@ block content
                 label(for='checkbox-1') 
                     p= list.title
 
-        //- p= list.title
-        button(onclick=`window.location.href='/lists/${list.id}/edit'` type='submit' class='btn btn-edit-task') Edit List
-        button(onclick=`window.location.href='/lists/${list.id}/delete'` type='submit' class='btn btn-delete-task') Delete List
+        button(onclick=`window.location.href='/lists/${list.id}/'` type='submit' class='btn btn-view-list') View List
+        button(onclick=`window.location.href='/lists/${list.id}/edit'` type='submit' class='btn btn-edit-list') Edit List
+        button(onclick=`window.location.href='/lists/${list.id}/delete'` type='submit' class='btn btn-delete-list') Delete List
     div
         button(onclick="window.location.href='/lists/create'" type='submit' class='btn btn-list-create') Create New List

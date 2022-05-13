@@ -4,7 +4,9 @@ const bcrypt = require('bcryptjs')
 const { Task, List, ListTask, User, Subtask } = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
+
 const router = express.Router();
+
 
 //----------------------ERROR HANDLING-----------------------
 const taskNotFoundError = (id) => {
@@ -16,12 +18,10 @@ const taskNotFoundError = (id) => {
 
 const handleValidationErrors = (req, res, next) => {
     const validationErrors = validationResult(req);
-
     // If the validation errors are not empty,
     if (!validationErrors.isEmpty()) {
         // Generate an array of error messages
         const errors = validationErrors.array().map((error) => error.msg);
-
         // Generate a new `400 Bad request.` Error object
         // and invoke the next function passing in `err`
         // to pass control to the global error handler.
@@ -31,7 +31,6 @@ const handleValidationErrors = (req, res, next) => {
         err.errors = errors;
         return next(err);   
     }
-
     // Invoke the next middleware function
     next();
 };
@@ -54,17 +53,19 @@ const validateTask = [
 router.get('/', csrfProtection, asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
     const tasks = await Task.findAll({
+        include: List,
         where: {
             userId
         }
     });
-    console.log(tasks)
+    // console.log("THIS IS TASKS", tasks)
+    console.log("THIS IS TASKS", tasks[0].Lists[0].title)
     const lists = await List.findAll({
         where: {
             userId
         }
     });
-    console.log(lists)
+    // console.log(lists)
     res.render('create-task', { lists, tasks, csrfToken: req.csrfToken() })
 })
 );
@@ -87,9 +88,15 @@ router.post('/', csrfProtection, validateTask, handleValidationErrors, asyncHand
 
 //-----------------------TASK DETAIL & SUBTASKS PAGE -----------------------
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
+    const { userId } = req.session.auth;
     const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
-    const subtasks = await Subtask.findAll();
+    const subtasks = await Subtask.findAll({
+        include: Task,
+        where: {
+            userId
+        }
+    });
     if (task) {
         res.render('task-details', { subtasks, task, csrfToken: req.csrfToken() });
     } else {
@@ -137,6 +144,20 @@ router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
     }
 }))
 
+// -------------------------CREATE SUBTASK UNDER TASK DETAIL------------------------
+router.post('/:id(\\d+)', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res) => {
+    const taskId = parseInt(req.params.id, 10);
+    const { content } = req.body;
+    await Subtask.create({
+        content,
+        taskId,
+        userId: req.session.auth.userId
+    });
+    res.redirect(`/tasks/${taskId}`)
+})
+);
+
+//--------------(UNUSED CODE) ROUTE WITHOUT DOM-MANIPULATION--------------------------------
 // //-----------------------GET EDIT TASK DETAIL PAGE-----------------------
 // router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
 //     const { userId } = req.session.auth;
@@ -209,18 +230,6 @@ router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
 // })
 // );
 
-// -------------------------CREATE SUBTASK------------------------
-router.post('/:id(\\d+)', csrfProtection, validateTask, handleValidationErrors, asyncHandler(async (req, res) => {
-    const taskId = parseInt(req.params.id, 10);
-    const { content } = req.body;
-    await Subtask.create({
-        content,
-        taskId,
-        userId: req.session.auth.userId
-    });
-    res.redirect(`/tasks/${taskId}`)
-})
-);
 
 
 

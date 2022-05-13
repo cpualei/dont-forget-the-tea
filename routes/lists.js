@@ -4,8 +4,10 @@ const bcrypt = require('bcryptjs')
 const { Task, List, ListTask, User, Subtask } = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
+
 const router = express.Router();
 
+//----------------------ERROR HANDLING-----------------------
 const handleValidationErrors = (req, res, next) => {
     const validationErrors = validationResult(req);
 
@@ -28,6 +30,8 @@ const handleValidationErrors = (req, res, next) => {
     next();
 };
 
+//-----------------------LIST VALIDATOR-----------------------
+
 const validateList = [
     //  Task name cannot be empty:
     check('title')
@@ -37,8 +41,15 @@ const validateList = [
         .withMessage("List can't be longer than 255 characters."),
 ];
 
+//-----------------------LISTS PAGE-----------------------
+
 router.get('/', csrfProtection, asyncHandler(async (req, res) => {
-    const lists = await List.findAll();
+    const { userId } = req.session.auth;
+    const lists = await List.findAll({
+        where: {
+            userId
+        }
+    });
     console.log(lists)
     res.render('list', { lists, csrfToken: req.csrfToken() })
 })
@@ -48,7 +59,7 @@ router.get('/create', csrfProtection, asyncHandler(async (req, res) => {
     res.render('create-list', { csrfToken: req.csrfToken() })
 })
 );
-
+//-----------------------CREATE LIST PAGE-----------------------
 router.post('/create', csrfProtection, validateList, handleValidationErrors, asyncHandler(async (req, res) => {
     const { title, includeWord, excludeWord, smart } = req.body;
     await List.create({
@@ -58,14 +69,29 @@ router.post('/create', csrfProtection, validateList, handleValidationErrors, asy
         excludeWord,
         smart
     });
-    // await ListTask.create({
-    //     taskId,
-    //     listId: newList.id
-    // })
     res.redirect('/lists')
 })
 );
 
+//-----------------------GET LIST DETAIL PAGE----------------------------
+
+router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+    const { userId } = req.session.auth;
+    const listId = parseInt(req.params.id, 10);
+    const list = await List.findByPk(listId);
+    const listofTasks = await Task.findAll({
+        include: List,
+            where: {
+                userId
+            }
+        }
+    )
+    console.log("THIS IS LIST OF TASKS", listofTasks)
+    res.render('list-detail', { list, listofTasks, csrfToken: req.csrfToken() })
+})
+);
+
+//-----------------------GET LIST DETAIL EDIT PAGE----------------------------
 router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
     const listId = parseInt(req.params.id, 10);
     const list = await List.findByPk(listId);
@@ -77,7 +103,10 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next
 })
 );
 
+//-----------------------EDIT LIST DETAIL----------------------------
+
 router.post("/:id(\\d+)/edit", csrfProtection, validateList, handleValidationErrors, asyncHandler(async (req, res, next) => {
+    const { userId } = req.session.auth;
     const listId = parseInt(req.params.id, 10);
     const list = await List.findByPk(listId);
     if (list) {
@@ -89,11 +118,14 @@ router.post("/:id(\\d+)/edit", csrfProtection, validateList, handleValidationErr
 })
 );
 
-// -------------------------DELETE------------------------
+// -------------------------GET LIST DETAIL DELETE PAGE------------------------
 router.get('/:id(\\d+)/delete', csrfProtection,
     asyncHandler(async (req, res) => {
         const listId = parseInt(req.params.id, 10);
-        const list = await List.findByPk(listId);
+        const list = await List.findByPk(listId,{
+            include: User
+        });
+        console.log("THIS IS LIST ", list)
         res.render('delete-list', {
             title: 'Delete List',
             list,
@@ -101,26 +133,14 @@ router.get('/:id(\\d+)/delete', csrfProtection,
         });
     }));
 
+//------------------------LIST DELETE PAGE------------------------------
 
 router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, next) => {
     const listId = parseInt(req.params.id, 10);
     const list = await List.findByPk(listId);
-    const tasks = await Task.findAll()
-    //delete task, subtask, listtask
-    //find out all the tasks associated to the list
-    const listTasks = await ListTask.findAll({
-        where: {
-            listId
-        }
-    })
 
     if (list) {
-        // // for (let i = 0; i < subtasks.length; i++) {
-        // //     await subtasks[i].destroy();
-        // // }
-        // for (let i = 0; i < listTasks.length; i++) {
-        //     await listTasks[i].destroy();
-        // }
+
         await list.destroy();
     } else {
         next(taskNotFoundError(listId));
