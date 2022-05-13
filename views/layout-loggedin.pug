@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    block head
+      title="Don't Forget The Tea!"
+
+      link(rel='stylesheet' href='/stylesheets/reset.css')
+      link(rel='stylesheet' href='/stylesheets/taskDeleteBtn.css')
+      link(rel='stylesheet' href='/stylesheets/taskEdit.css')
+      link(rel='stylesheet' href='/stylesheets/layout.css')
+
+      script(src="/javascripts/taskDelete.js" type="module")
+      script(src="/javascripts/taskEdit.js" type="module")
+
+
+  body
+  header.navbar
+    div.header-left
+      div(class='navbar-left')
+        div(class='home-link')
+          a(href='/' id='nav-home') DON'T FORGET THE TEA
+
+    div.header-right
+      div(class='navbar-right')
+        div(class='other-navbar-links')
+          a(href='' id='nav-demoUser') Demo User
+        div(class='other-navbar-links')
+          a(href='/users/signup' id='nav-signup') Sign Out
+  block content
+
+  footer
+    block footer
+      footer='CREATED BY: Rena, Weiqi, Caitlin'

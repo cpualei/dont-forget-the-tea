@@ -1,10 +1,10 @@
-extends layout.pug
+extends layout-loggedin.pug
 
 block content
     form(action=`/subtasks/${subtask.id}/edit` method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div
-            label(for="content") Content: 
-            input(type="text" name="content" required)      
-        div 
-            button(type='submit' class='btn btn-edit-subtask') Edit 
+            label(for="content") Content:
+            input(type="text" name="content" required)
+        div
+            button(type='submit' class='btn btn-edit-subtask') Edit
