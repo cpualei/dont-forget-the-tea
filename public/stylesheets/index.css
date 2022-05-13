@@ -136,7 +136,7 @@ body {
 }
 
 .btn-edit {
-    background: white;
+    background: rgb(230, 235, 178);
 }
 
 .btn-cancel {
@@ -208,11 +208,24 @@ select {
 
 
 .list {
-    padding: em(10px) em(25px);
+    /* padding: em(10px) em(25px);
     margin: 20px;
     border-radius: .3em;
     box-shadow: 5px 0 5px -5px black,
-        -5px 0 5px -5px black;
+        -5px 0 5px -5px black; */
+
+    background: #FFF;
+    font-size: 20px;
+    max-width: 30em;
+    margin: auto;
+    padding: 0.5em 1em;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+
+    display: block;
+    position: relative;
+    margin: 10px auto;
+    cursor: pointer;
+    border-bottom: solid 1px #ddd;
 }
 
 ul {
