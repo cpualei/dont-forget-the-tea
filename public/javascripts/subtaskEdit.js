@@ -60,7 +60,7 @@ editSubtaskFormsArr.forEach(form => {
                 taskId
             })
         });
-
+        
         const data = await res.json()
         if (data.message === 'Success') {
             const editForm = document.querySelector(`#edit-subtask-form-${subtaskId}`);
