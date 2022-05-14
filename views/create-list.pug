@@ -4,8 +4,9 @@ block content
     link(rel="stylesheet" href="/stylesheets/index.css")
     form(action='/lists/create' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        div
-            label(for="title") List Name:
-            input(type="text" name="title" required)
-        div
-            button(type='submit' class='btn btn-add-list') Add List
+        div(class='create-lists-labels')
+            div
+                label(for="title") List Name:
+                input(type="text" name="title" required)
+            div
+                button(type='submit' class='btn btn-add-list') Add List
