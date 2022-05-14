@@ -6,18 +6,20 @@ block content
     //------------- CREATE TASK FORM -------------------- 
     form(action='/tasks' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        div
-            label(for="content") Content:
-            input(type="text" name="content" required)
-        div
-            label(for="dueDate") Due Date:
-            input(type="date" name="dueDate")
-        div
-            label(for="listId") List:
-            select(name="listId")
-                option(value='') --Select a list--
-                    each list in lists
-                        option(value=list.id)= list.title
+        div(class='tasks-page-div') Tasks
+        div(class='all-task-labels-div') 
+            div
+                label(for="content") Content:
+                input(type="text" name="content" required)
+            div
+                label(for="dueDate") Due Date:
+                input(type="date" name="dueDate")
+            div
+                label(for="listId") List:
+                select(name="listId")
+                    option(value='') --Select a list--
+                        each list in lists
+                            option(value=list.id)= list.title
         div
             button(type='submit' class='btn btn-add-task') Add Task
 
@@ -37,7 +39,7 @@ block content
                     //------------- TASK NAME -------------------- 
                     p(id=`content-${task.id}`)= task.content
                     each list in task.Lists
-                        a(href=`/lists/${list.id}`) 
+                        a(href=`/lists/${list.id}`)
                             p(id=`task-${task.id}-list-name`)= `${list.title}`
 
                     //------------- HIDDEN EDIT TASK FORM --------------------       
@@ -47,7 +49,7 @@ block content
                             label(for="content") Content:
                             input(type='text' name='content' value=`${task.content}`)
                         div
-                            label(for='dueDate') Due Date: 
+                            label(for='dueDate') Due Date:
                             input(type='date' name='dueDate' value=`${date}`)
                         div
                             label(for="listId") List:

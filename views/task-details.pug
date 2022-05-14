@@ -11,7 +11,7 @@ block content
 
     //------------- TASK CHECKBOX TO COMPLETE-------------------- 
     div(class="check-to-complete")
-        label(for="completed") Check to Completed ^_^
+        label(for="completed") Check to Complete ^_^
         if task.completed 
             input(type="checkbox" checked class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
         else
@@ -35,9 +35,7 @@ block content
 
             //------------- EACH SUBTASK WILL SHOW THE FOLLOWING -------------------- 
             div(id=`subtask-container-${subtask.id}`)
-                p(id=`content-${subtask.id}`)= `Subtask ${subtask.id} : ${subtask.content}`
-
-                //------------- HIDDEN EDIT SUBTASK FORM -------------------- 
+                p(class='each-subtasks' id=`content-${subtask.id}`)= `Subtask ${subtask.id} : ${subtask.content}`
                 form(class='hidden edit-subtask-form' id=`edit-subtask-form-${subtask.id}` method='post')
                     input(type='hidden' name='_csrf' value=csrfToken)
                     div

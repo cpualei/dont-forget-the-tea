@@ -2,8 +2,11 @@ extends layout.pug
 
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
-    button(onclick="window.location.href='/lists/create'" type='submit' class='btn btn-create-list') Create New List
-    button(onclick="window.location.href='/tasks'" type='submit' class='btn btn-list-create') View All Tasks
+    div(class='lists-page-top')
+      button(onclick="window.location.href='/lists/create'" type='submit' class='btn btn-create-list') Create List
+      button(onclick="window.location.href='/tasks'" type='submit' class='btn btn-list-create') View All Tasks
+      div(class='create-view-buttons-div') Lists
+
     each list in lists
 
        section.lists-container
@@ -12,5 +15,3 @@ block content
           button(onclick=`window.location.href='/lists/${list.id}/'` type='submit' class='btn btn-view-list') View
           button(onclick=`window.location.href='/lists/${list.id}/edit'` type='submit' class='btn btn-edit-list') Edit
           button(onclick=`window.location.href='/lists/${list.id}/delete'` type='submit' class='btn btn-delete-list') Delete
-
-
