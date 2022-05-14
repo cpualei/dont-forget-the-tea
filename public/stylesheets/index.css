@@ -40,10 +40,11 @@ body {
 }
 
 
+
 .btn {
     font-family: 'Karla', sans-serif;
     width: 130px;
-    height: 40px;
+    height: 30px;
     color: #fff;
     border-radius: 5px;
     padding: 10px 25px;
@@ -59,10 +60,10 @@ body {
     outline: none;
 
     background: #009dff;
-    line-height: 42px;
+    line-height: 20px;
     padding: 0;
     border: none;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     margin: 10px;
 }
 
@@ -98,7 +99,7 @@ body {
 /* ---------delete btn--------*/
 .btn-delete-subtask {
     color: #fff;
-    background: #d9534f;
+    background: #ffffff;
 }
 .btn-delete-task {
     color: #fff;
@@ -179,13 +180,17 @@ body {
 }
 
 form {
-    max-width: 300px;
-    margin: 10px auto;
-    padding: 10px 20px;
-    background: #f4f7f8;
+    /* max-width: 300px; */
+    /* margin: 10px auto;
+    padding: 10px 20px; */
+    /* background: #f4f7f8; */
     border-radius: 8px;
     margin-bottom: 50px;
 }
+
+/* .signout-btn {
+
+} */
 
 input[type="text"],
 input[type="password"],
@@ -264,5 +269,5 @@ a {
 
 
 .btn-logout{
-    
+
 }

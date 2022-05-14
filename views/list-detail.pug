@@ -7,8 +7,7 @@ block content
         p= `List ID : ${list.id}`
         p= `List Content : ${list.title}`
 
-    
+
     each task in listofTasks
         p(id=`content-${task.id}`)= `task ${task.id} : ${task.content}`
-        button(onclick=`window.location.href='/tasks/${task.id}'` type='submit' class='btn btn-view-task') Edit task
-
+        button(onclick=`window.location.href='/tasks/${task.id}'` type='submit' class='btn btn-view-task') Edit

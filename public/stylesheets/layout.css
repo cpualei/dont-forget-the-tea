@@ -50,6 +50,10 @@ h1 {
     padding-left: 13px;
 }
 
+.home-link {
+    font-size: 18px;
+}
+
 #nav-home {
     color: whitesmoke;
     text-decoration: none;
@@ -59,15 +63,19 @@ h1 {
     text-decoration: none;
 }
 #nav-login {
+    font-size: 18px;
     color: whitesmoke;
     text-decoration: none;
 }
 #nav-signup {
+    font-size: 18px;
     color: whitesmoke;
     text-decoration: none;
 }
 
 footer {
+    display: flex;
+    justify-content: center;
     color: whitesmoke;
     position: absolute;
     bottom: 0;
