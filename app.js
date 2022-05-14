@@ -12,6 +12,7 @@ const usersRouter = require('./routes/users');
 const tasksRouter = require('./routes/tasks');
 const listsRouter = require('./routes/lists');
 const subtasksRouter = require('./routes/subtasks');
+const { restoreUser, requireAuth } = require('./auth');
 
 const app = express();
 
@@ -35,13 +36,18 @@ app.use(
     saveUninitialized: false,
     resave: false,
   })
-);
+  );
+  
+  // create Session table if it doesn't already exist
+  store.sync();
 
-// create Session table if it doesn't already exist
-store.sync();
+app.use(restoreUser);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.use(requireAuth);
+
 app.use('/tasks', tasksRouter);
 app.use('/lists', listsRouter);
 app.use('/subtasks', subtasksRouter);

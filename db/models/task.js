@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const Task = sequelize.define('Task', {
     content: DataTypes.STRING,
     dueDate: DataTypes.DATE,
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    completed: DataTypes.BOOLEAN
   }, {});
   Task.associate = function(models) {
     // associations can be defined here
