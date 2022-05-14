@@ -6,9 +6,22 @@ body {
     font-weight: normal;
 }
 
-/* .signup-form-div {
-    height: 50px;
-} */
+.signup-form-div {
+    background: whitesmoke;
+    border-radius: 20px;
+    height: 600px;
+    width: 500px;
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.form-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
 
 #button {
     color: black;
