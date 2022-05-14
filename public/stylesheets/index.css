@@ -208,8 +208,7 @@ body {
 /* ---------delete btn--------*/
 .btn-delete-subtask {
     color: #fff;
-    background: #ffffff;
-}
+    background: #d9534f;}
 
 .btn-delete-task {
     color: #fff;
