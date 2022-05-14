@@ -416,10 +416,43 @@ a {
     /* padding-top: 15px; */
 }
 
+/* .task-detail {
+    background: whitesmoke;
+    border-radius: 20px;
+} */
+
 .edit-lists-labels {
     background-color: white;
     border-radius: 10px;
     padding: 15px;
+}
+
+.details-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.details {
+    background: whitesmoke;
+    border-radius: 15px;
+    width: 500px;
+    margin-top: 60px;
+}
+
+.tasks-in-detail-pg {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: baseline;
+    font-size: larger;
+}
+
+.tasks-pg {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .btn-logout {}
