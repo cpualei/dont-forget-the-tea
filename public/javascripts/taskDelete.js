@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
-
+    //selecting all btn-delete-task 
     const deleteBtnsArr = document.querySelectorAll('.btn-delete-task')
-
+    //iterate through each button
     deleteBtnsArr.forEach( btn => {
         btn.addEventListener('click', async(e) => {
             e.preventDefault()

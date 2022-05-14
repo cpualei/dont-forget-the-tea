@@ -4,10 +4,11 @@ block content
   div(class='signup-form-div')
     link(rel="stylesheet" href="/stylesheets/index.css")
     link(rel='stylesheet' href='/stylesheets/layout.css')
-
+    //------------- SIGN UP ERROR DISPLAY -------------------- 
     if errors.length > 0
       each error in errors
         p= error
+    //------------- SIGN UP FORM -------------------- 
     form(action='/users/signup' method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
       div
