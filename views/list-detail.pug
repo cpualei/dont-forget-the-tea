@@ -2,12 +2,14 @@ extends layout.pug
 
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
+    div(class='details-div')
+        div(class='details')
+            div(class='task-detail')
+                div(class="tasks-in-detail-pg")
+                    //- p= `List ID : ${list.id}`
+                    p= `List Content : ${list.title}`
 
-    div(class="tasks-in-detail-pg")
-        p= `List ID : ${list.id}`
-        p= `List Content : ${list.title}`
-
-
-    each task in listofTasks
-        p(id=`content-${task.id}`)= `task ${task.id} : ${task.content}`
-        button(onclick=`window.location.href='/tasks/${task.id}'` type='submit' class='btn btn-view-task') Edit
+            div(class="tasks-pg")
+                each task in listofTasks
+                    p(id=`content-${task.id}`)= `task ${task.id} : ${task.content}`
+                    button(onclick=`window.location.href='/tasks/${task.id}'` type='submit' class='btn btn-view-task') Edit
