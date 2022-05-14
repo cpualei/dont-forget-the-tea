@@ -127,6 +127,71 @@ body {
     margin: 10px;
 }
 
+/* demo login button */
+#demo-login-button {
+    font-family: 'Karla', sans-serif;
+    width: 150px;
+    height: 50px;
+    color: black;
+    border-radius: 15px;
+    padding: 10px 25px;
+    font-weight: 700;
+    font-size: larger;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+        7px 7px 20px 0px rgba(0, 0, 0, .1),
+        4px 4px 5px 0px rgba(0, 0, 0, .1);
+    outline: none;
+
+    background: greenyellow;
+    line-height: 20px;
+    padding: 0;
+    border: none;
+    margin-top: 50px;
+}
+
+#demo-login-button:hover {
+    background: transparent;
+    color: #76aef1;
+    box-shadow: none;
+}
+
+*/ #demo-login-button {
+    font-family: 'Karla', sans-serif;
+    width: 70px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+        7px 7px 20px 0px rgba(0, 0, 0, .1),
+        4px 4px 5px 0px rgba(0, 0, 0, .1);
+    outline: none;
+
+    line-height: 42px;
+    padding: 0;
+    border: none;
+    margin-top: 10px;
+    margin: 10px;
+}
+
+#demo-login-div {
+    display: flex;
+    flex-direction: row;
+    align-content: stretch;
+    justify-content: center;
+}
+
+
 /* ---------delete btn--------*/
 .btn-delete-subtask {
     color: #fff;
@@ -328,7 +393,7 @@ a {
 .create-lists-labels {
     background-color: white;
     border-radius: 10px;
-    padding: 15px;
+    /* padding-top: 15px; */
 }
 
 .edit-lists-labels {
