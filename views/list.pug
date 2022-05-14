@@ -2,18 +2,16 @@ extends layout.pug
 
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
+    button(onclick="window.location.href='/lists/create'" type='submit' class='btn btn-create-list') Create New List
     button(onclick="window.location.href='/tasks'" type='submit' class='btn btn-list-create') View All Tasks
-    form(action='/lists' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
     each list in lists
 
        section.lists-container
         ul.list-items
           li= list.title
 
-          button(onclick=`window.location.href='/lists/${list.id}/'` type='submit' class='btn btn-view') View
-          button(onclick=`window.location.href='/lists/${list.id}/edit'` type='submit' class='btn btn-edit') Edit
-          button(onclick=`window.location.href='/lists/${list.id}/delete'` type='submit' class='btn btn-delete') Delete
+          button(onclick=`window.location.href='/lists/${list.id}/'` type='submit' class='btn btn-view-list') View
+          button(onclick=`window.location.href='/lists/${list.id}/edit'` type='submit' class='btn btn-edit-list') Edit
+          button(onclick=`window.location.href='/lists/${list.id}/delete'` type='submit' class='btn btn-delete-list') Delete
 
-    div
-        button(onclick="window.location.href='/lists/create'" type='submit' class='btn btn-create') Create New List
+

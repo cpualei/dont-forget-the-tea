@@ -28,11 +28,12 @@ html
 
     div.header-right
       div(class='navbar-right')
-        div(class='other-navbar-links')
-          a(href='/users/signup' id='nav-signup') Sign Out
+        form(action='/users/logout' method='post')
+          button(id='button' type='submit' class='btn btn-logout') Sign out
 
   block content
 
   footer
     block footer
-      footer='CREATED BY: Rena, Weiqi, Caitlin'
+      div
+        footer='CREATED BY: Rena, Weiqi, Caitlin'

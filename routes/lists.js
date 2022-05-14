@@ -66,9 +66,6 @@ router.post('/create', csrfProtection, validateList, handleValidationErrors, asy
     await List.create({
         title,
         userId: req.session.auth.userId,
-        includeWord,
-        excludeWord,
-        smart
     });
     res.redirect('/lists')
 })
@@ -146,7 +143,7 @@ router.post("/:id(\\d+)/delete", csrfProtection, asyncHandler(async (req, res, n
     } else {
         next(taskNotFoundError(listId));
     }
-    res.redirect('/tasks')
+    res.redirect('/lists')
 })
 );
 
