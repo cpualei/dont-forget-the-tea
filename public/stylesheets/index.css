@@ -308,7 +308,6 @@ a {
     background-clip: text;
     text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
     margin-bottom: 70px;
-    /* text-decoration: underline; */
 }
 
 .lists-page-top {
@@ -317,4 +316,19 @@ a {
     justify-content: space-evenly;
     align-items: center;
     margin-bottom: 100px;
+}
+
+.tasks-page-div {
+    display: flex;
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    background: #666666;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    text-shadow: 0px 3px 3px rgb(255 255 255 / 50%);
+    margin-bottom: 70px;
+    flex-direction: row;
+    justify-content: center;
 }
