@@ -295,8 +295,26 @@ a {
     padding: 15px;
 }
 
+.create-lists-labels {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.edit-lists-labels {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+}
+
 .btn-logout {}
 
+
+.subtasks-in-detail-pg {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+}
 
 .create-view-buttons-div {
     font-size: 80px;
@@ -332,3 +350,10 @@ a {
     flex-direction: row;
     justify-content: center;
 }
+
+.lists-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+}
+
