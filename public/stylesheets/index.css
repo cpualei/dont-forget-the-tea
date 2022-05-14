@@ -2,8 +2,8 @@
 
 
 body {
-  font-family: 'Karla', sans-serif;
-  font-weight: normal;
+    font-family: 'Karla', sans-serif;
+    font-weight: normal;
 }
 
 /* .signup-form-div {
@@ -71,9 +71,9 @@ body {
     background: transparent;
     color: #76aef1;
     box-shadow: none;
-} */
+}
 
-.btn {
+*/ .btn {
     font-family: 'Karla', sans-serif;
     width: 70px;
     height: 40px;
@@ -96,15 +96,18 @@ body {
     margin-top: 10px;
     margin: 10px;
 }
+
 /* ---------delete btn--------*/
 .btn-delete-subtask {
     color: #fff;
     background: #ffffff;
 }
+
 .btn-delete-task {
     color: #fff;
     background: #d9534f;
 }
+
 .btn-delete-list {
     color: #fff;
     background: #d9534f;
@@ -112,22 +115,29 @@ body {
 
 /* ---------edit btn--------*/
 .btn-edit-subtask {
-    background: rgb(230, 235, 178);
+    background: rgb(107 108 241);
+    ;
 }
+
 .btn-edit-task {
-    background: rgb(230, 235, 178);
+    background: rgb(107 108 241);
+    ;
 }
+
 .btn-edit-list {
-    background: rgb(230, 235, 178);
+    background: rgb(107 108 241);
+    ;
 }
 
 
 .btn-cancel-subtask {
     background: yellowgreen;
 }
+
 .btn-cancel-task {
     background: yellowgreen;
 }
+
 .btn-cancel-list {
     background: yellowgreen;
 }
@@ -154,11 +164,13 @@ body {
     height: 40px;
     background: #00B7FF;
 }
+
 .btn-add-subtask {
     width: 110px;
     height: 40px;
     background: #00B7FF;
 }
+
 .btn:hover {
     background: transparent;
     color: #76aef1;
@@ -236,6 +248,7 @@ select {
 ul {
     text-align: center;
     margin: em(10px) 0;
+    padding-inline-end: 40px;
 }
 
 li {
@@ -264,7 +277,7 @@ a {
 }
 
 /*weiqi can change the style of this div (for all tasks)*/
-.all-tasks-div{
+.all-tasks-div {
     background-color: white;
     border-radius: 10px;
     padding: 15px;
@@ -282,6 +295,26 @@ a {
     padding: 15px;
 }
 
-.btn-logout{
+.btn-logout {}
 
+
+.create-view-buttons-div {
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    background: #666666;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
+    margin-bottom: 70px;
+    /* text-decoration: underline; */
+}
+
+.lists-page-top {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 100px;
 }
