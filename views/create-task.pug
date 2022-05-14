@@ -4,20 +4,21 @@ block content
     link(rel="stylesheet" href="/stylesheets/index.css")
     form(action='/tasks' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        div
-            label(for="content") Content:
-            input(type="text" name="content" required)
-        div
-            label(for="dueDate") Due Date:
-            input(type="date" name="dueDate")
-        div
-            label(for="listId") List:
-            select(name="listId")
-                option(value='') --Select a list--
-                    each list in lists
-                        option(value=list.id)= list.title
-        div
-            button(type='submit' class='btn btn-add-task') Add Task
+        div(class='all-task-labels-div')
+            div
+                label(for="content") Content:
+                input(type="text" name="content" required)
+            div
+                label(for="dueDate") Due Date:
+                input(type="date" name="dueDate")
+            div
+                label(for="listId") List:
+                select(name="listId")
+                    option(value='') --Select a list--
+                        each list in lists
+                            option(value=list.id)= list.title
+            div
+                button(type='submit' class='btn btn-add-task') Add Task
     div(class='all-tasks-div')
         each task in tasks
             div(id=`task-container-${task.id}`)
@@ -25,16 +26,16 @@ block content
                 ul.list-items
                     p(id=`content-${task.id}`)= task.content
                     each list in task.Lists
-                        a(href=`/lists/${list.id}`) 
+                        a(href=`/lists/${list.id}`)
                             p(id=`task-${task.id}-list-name`)= `${list.title}`
-                            
+
                     form(class='hidden' class='edit-task-form' id=`edit-task-form-${task.id}` method='post')
                         input(type='hidden' name='_csrf' value=csrfToken)
                         div
                             label(for="content") Content:
                             input(type='text' name='content' value=`${task.content}`)
                         div
-                            label(for='dueDate') Due Date: 
+                            label(for='dueDate') Due Date:
                             input(type='date' name='dueDate' value=`${date}`)
                         div
                             label(for="listId") List:
@@ -61,10 +62,10 @@ block content
             //-         input#checkbox-1(type='checkbox')
             //-         label(for='checkbox-1')
             //-         p= list.title
-            //-         span.box    
-            
+            //-         span.box
+
             //- div.todos
-            //-     #todos 
+            //-     #todos
             //-         input#checkbox-1(type='checkbox')
-            //-         label(for='checkbox-1') 
+            //-         label(for='checkbox-1')
             //-             p= list.title

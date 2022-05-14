@@ -252,13 +252,16 @@ ul {
 }
 
 li {
+    color: whitesmoke;
     font-size: 25px;
     margin: 20px;
     padding: 10px 0;
     display: block;
 }
 
-
+.each-subtask {
+    color: whitesmoke;
+}
 
 
 
@@ -277,9 +280,20 @@ a {
 .all-tasks-div {
     background-color: white;
     border-radius: 10px;
-
+    padding: 15px;
 }
 
+.all-task-labels-div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.all-login-labels-div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+}
 
 .btn-logout {}
 
