@@ -6,9 +6,6 @@ module.exports = {
       {
         title:'week 1 plan',
         userId:'1',
-        includeWord:'',
-        excludeWord:'',
-        smart:false,
         createdAt: new Date(),
         updatedAt: new Date()
       }
