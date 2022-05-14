@@ -2,8 +2,8 @@ extends homepage.pug
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
 
-    div(class='all-login-labels-div')
-        form(action='/users/login' method='post')
+    div(class='all-login-labels-div') 
+        form(action='/users/login' method='post') 
             input(type='hidden' name='_csrf' value=csrfToken)
             div
                 label(for="username") Username
