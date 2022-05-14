@@ -118,7 +118,7 @@ router.post('/signup', csrfProtection, userSignUpValidators,
       .withMessage('Please provide a valid username'),
     check('password')
       .exists({ checkFalsy: true })
-      .withMessage('Please provide a password')
+      .withMessage('Please provide a password'),
   ]
 
 //-----------------------GET LOG IN PAGE----------------------
@@ -134,35 +134,45 @@ router.get('/login', csrfProtection, asyncHandler(async (req, res) =>{
 }));
 
 //-----------------------LOG IN-------------------------------
-router.post('/login', csrfProtection, asyncHandler(async (req, res) => {
+router.post('/login', csrfProtection, userLoginValidator, asyncHandler(async (req, res) => {
   const {
     username,
     password
   }= req.body
   //add "username or email" this option later
-  const user = await User.findOne({
-    where: {
-      username
-    }
+  
+
+  let errors = [];
+  const validatorErrors = validationResult(req);
+  if (validatorErrors.isEmpty()) {
+    const user = await User.findOne({
+      where: {
+        username
+      }
   });
-  console.log("Password: ", password)
-  console.log("HASH PASSWORD: ", user.hashPassword.toString())
-  const isPassword = await bcrypt.compare(password, user.hashPassword.toString())
-  if (user && isPassword) {
-    console.log('Successful login!')
-    req.session.auth = {
-      username: user.username,
-      userId: user.id
+    if(user !== null){
+      console.log("Password: ", password)
+      console.log("HASH PASSWORD: ", user.hashPassword.toString())
+      const isPassword = await bcrypt.compare(password, user.hashPassword.toString())
+      if(isPassword){
+        console.log('Successful login!')
+        req.session.auth = {
+          username: user.username,
+          userId: user.id
+        }
+        res.redirect('/lists')
+      }
     }
-    res.redirect('/lists')
-  } else {
-    req.errors.push('Invalid username or password. Please try again.')
+    errors.push('Invalid username and password');
+  }else {
+    console.log("REACHES ERROR HANDLER")
+    errors = validatorErrors.array().map((error) => error.msg);
+  }
     res.render('login',  { //re-render login page
       csrfToken: req.csrfToken(),
-      errors: req.errors,
+      errors,
       user: {}
     });
-  };
 }));
 
 // -----------------------LOG OUT------------------------------
