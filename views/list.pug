@@ -12,7 +12,6 @@ block content
        section.lists-container
         ul.list-items
           li= list.title
-
           button(onclick=`window.location.href='/lists/${list.id}/'` type='submit' class='btn btn-view-list') View
           button(onclick=`window.location.href='/lists/${list.id}/edit'` type='submit' class='btn btn-edit-list') Edit
           button(onclick=`window.location.href='/lists/${list.id}/delete'` type='submit' class='btn btn-delete-list') Delete

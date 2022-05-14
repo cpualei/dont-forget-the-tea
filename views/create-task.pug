@@ -2,6 +2,8 @@ extends layout.pug
 
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
+
+    //------------- CREATE TASK FORM -------------------- 
     form(action='/tasks' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div(class='tasks-page-div') Tasks
@@ -18,18 +20,29 @@ block content
                     option(value='') --Select a list--
                         each list in lists
                             option(value=list.id)= list.title
-            div
-                button(type='submit' class='btn btn-add-task') Add Task
+        div
+            button(type='submit' class='btn btn-add-task') Add Task
+
+    //------------- VIEW COMPLETED TASKS BUTTON -------------------- 
+    button(onclick=`window.location.href='/tasks/completed'` type='submit' class='btn btn-completed-tasks') Completed Tasks 
+
+    //------------- TASKS LIST -------------------- 
+
     div(class='all-tasks-div')
         each task in tasks
+
+            //------------- EACH TASK WILL SHOW THE FOLLOWING -------------------- 
             div(id=`task-container-${task.id}`)
             section.lists-container
                 ul.list-items
+
+                    //------------- TASK NAME -------------------- 
                     p(id=`content-${task.id}`)= task.content
                     each list in task.Lists
                         a(href=`/lists/${list.id}`)
                             p(id=`task-${task.id}-list-name`)= `${list.title}`
 
+                    //------------- HIDDEN EDIT TASK FORM --------------------       
                     form(class='hidden' class='edit-task-form' id=`edit-task-form-${task.id}` method='post')
                         input(type='hidden' name='_csrf' value=csrfToken)
                         div
@@ -48,25 +61,19 @@ block content
                             button(type='submit' class='btn btn-create-task') Save
                         div
                             button(id=`cancel-task-form-${task.id}` type='submit' class='btn btn-cancel-task') Cancel
+
+                    //------------- TASK CHECKBOX TO COMPLETE --------------------       
+                    div(class="check-to-complete")
+                        label(for="completed") Check to Completed ^_^
+                        if task.completed 
+                            input(type="checkbox" checked class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
+                        else
+                            input(type="checkbox" class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
+
+                    //------------- TASK BUTTONS --------------------       
                     button(id=`view-task-${task.id}` type='submit' class='btn btn-view-task' onclick=`window.location.href='/tasks/${task.id}'`) View
                     button(id=`edit-task-${task.id}` type='submit' class='btn btn-edit-task') Edit
                     button(id=`delete-task-${task.id}` type='submit' class='btn btn-delete-task') Delete
-
+                    //------------- TASK ERROR -------------------- 
                     div(id=`task-error-container-${task.id}`)
 
-
-
-            //- section#to-do-app
-            //- .todos
-            //-     ul#todos
-            //-     li
-            //-         input#checkbox-1(type='checkbox')
-            //-         label(for='checkbox-1')
-            //-         p= list.title
-            //-         span.box
-
-            //- div.todos
-            //-     #todos
-            //-         input#checkbox-1(type='checkbox')
-            //-         label(for='checkbox-1')
-            //-             p= list.title

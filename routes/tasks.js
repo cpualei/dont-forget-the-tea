@@ -135,13 +135,17 @@ router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
 // -------------------------DELETE TASK (API)------------------------
 router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
     const task = await Task.findByPk(req.params.id)
+    console.log("THIS IS TASK TO DELETE", task)
     if (task) {
+        console.log('TASK EXIST READY TO DESTROY', task)
         await task.destroy()
+        console.log('SUCESSFULLY DESTROYED')
         res.json({ message: 'Success' })
     } else {
         res.json({ message: 'Fail' })
     }
 }))
+
 router.use((req, res, next) => {
     console.log("REQUEST GETS HERE")
     next();
@@ -168,6 +172,7 @@ router.get('/completed', csrfProtection, asyncHandler(async (req, res) => {
     res.render('completed-list', { lists, tasks, csrfToken: req.csrfToken() })
 })
 );
+
 //------------------------COMPLETED TASK (API)----------------------
 router.post('/completed/:id(\\d+)', asyncHandler(async (req, res) => {
     console.log("COMPLETED TASK ROUTER", req.params.id)

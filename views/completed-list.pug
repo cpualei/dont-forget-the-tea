@@ -3,6 +3,7 @@ extends layout.pug
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
     p BELOW ARE YOUR COMPLETED TASKS! 
+    //------------- COMPLETED TASKS LIST -------------------- 
     each task in tasks
         div(id=`task-container-${task.id}`)
             li(id=`content-${task.id}`)= task.content
