@@ -2,8 +2,8 @@ extends homepage.pug
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
 
-    div(class='all-login-labels-div')
-        form(action='/users/login' method='post')
+    div(class='all-login-labels-div') 
+        form(action='/users/login' method='post') 
             input(type='hidden' name='_csrf' value=csrfToken)
             div
                 label(for="username") Username
@@ -20,4 +20,5 @@ block content
         input(type='hidden' name='_csrf' value=csrfToken)
         input(type="hidden" name="username" value="DemoUser")
         input(type="hidden" name="password" value="boba123")
-        button(type='submit' class='btn btn-primary') Demo Login
+        div(id='demo-login-div')
+            button(type='submit' class='btn btn-primary' id='demo-login-button') Demo Login
