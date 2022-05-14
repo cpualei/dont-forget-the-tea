@@ -17,18 +17,24 @@ block content
                     each list in lists
                         option(value=list.id)= list.title
         div
-            button(type='submit' class='btn btn-create-task') Add Task
+            button(type='submit' class='btn btn-add') Add Task
 
     each task in tasks
         div(id=`task-container-${task.id}`)
-            p(id=`content-${task.id}`)= task.content
+        section.lists-container
+            .list
+                ul.list-items        
+                    p(id=`content-${task.id}`)= task.content
+                        button(id=`view-task-${task.id}` type='submit' class='btn btn-view' onclick=`window.location.href='/tasks/${task.id}'`) View
+                        button(id=`edit-task-${task.id}` type='submit' class='btn btn-edit') Edit
+                        button(id=`delete-task-${task.id}` type='submit' class='btn btn-delete') Delete
             form(class='hidden' class='edit-task-form' id=`edit-task-form-${task.id}` method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
                 div
                     label(for="content") Content:
                     input(type='text' name='content' value=`${task.content}`)
                 div
-                    label(for='dueDate') Due Date:
+                    label(for='dueDate') Due Date: 
                     input(type='date' name='dueDate' value=`${date}`)
                 div
                     label(for="listId") List:
@@ -39,8 +45,23 @@ block content
                 div
                     button(type='submit' class='btn btn-create-task') Save
                 div
-                    button(id=`cancel-task-form-${task.id}` type='submit' class='btn btn-cancel-task') Cancel
-            button(id=`view-task-${task.id}` type='submit' class='btn btn-view-task' onclick=`window.location.href='/tasks/${task.id}'`) View
-            button(id=`edit-task-${task.id}` type='submit' class='btn btn-edit-task') Edit Task
-            button(id=`delete-task-${task.id}` type='submit' class='btn btn-delete-task') Delete Task
+                    button(id=`cancel-task-form-${task.id}` type='submit' class='btn btn-cancel') Cancel
             div(id=`task-error-container-${task.id}`)
+
+
+
+
+        //- section#to-do-app
+        //- .todos
+        //-     ul#todos
+        //-     li
+        //-         input#checkbox-1(type='checkbox')
+        //-         label(for='checkbox-1')
+        //-         p= list.title
+        //-         span.box    
+        
+        //- div.todos
+        //-     #todos 
+        //-         input#checkbox-1(type='checkbox')
+        //-         label(for='checkbox-1') 
+        //-             p= list.title
