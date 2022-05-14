@@ -2,46 +2,16 @@
 
 
 body {
-  padding: 50px;
   font-family: 'Karla', sans-serif;
   font-weight: normal;
 }
 
-/* #button {
-    font-family: "Cormorant Garamond", serif;
-    width: 130px;
-    height: 40px;
-    color: #fff;
-    border-radius: 5px;
-    padding: 10px 25px;
-    font-weight: 500;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
-        7px 7px 20px 0px rgba(0, 0, 0, .1),
-        4px 4px 5px 0px rgba(0, 0, 0, .1);
-    outline: none;
-
-    background: #009dff;
-    line-height: 42px;
-    padding: 0;
-    border: none;
-}
-
-#button:hover {
-    background: transparent;
-    color: #76aef1;
-    box-shadow: none;
+/* .signup-form-div {
+    height: 50px;
 } */
-
-
 
 #button {
     color: black;
-    padding: 0.5em 0.5em;
     background: whitesmoke;
     border: 1px solid black;
     border-radius: 0.75em;
@@ -60,22 +30,18 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: black;
     border-radius: inherit;
-    box-shadow: 0 0 0 2px black, 0 0.625em 0 0 whitesmoke;
-    transform: translate3d(0, 0.75em, -1em);
-    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
-        box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #button:hover {
-    background: whitesmoke;
+    background: rgb(182, 232, 182);
     transform: translate(0, 0.25em);
 }
 
 
 .btn {
-    font-family: "Cormorant Garamond", serif;
+    font-family: 'Karla', sans-serif;
     width: 130px;
     height: 40px;
     color: #fff;
@@ -97,7 +63,67 @@ body {
     padding: 0;
     border: none;
     margin-top: 10px;
-    margin-right: 10px;
+    margin: 10px;
+}
+
+.btn:hover {
+    background: transparent;
+    color: #76aef1;
+    box-shadow: none;
+} */
+
+.btn {
+    font-family: 'Karla', sans-serif;
+    width: 70px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+        7px 7px 20px 0px rgba(0, 0, 0, .1),
+        4px 4px 5px 0px rgba(0, 0, 0, .1);
+    outline: none;
+
+    line-height: 42px;
+    padding: 0;
+    border: none;
+    margin-top: 10px;
+    margin: 10px;
+}
+
+.btn-delete {
+    color: #fff;
+    background: #d9534f;
+}
+
+.btn-edit {
+    background: rgb(230, 235, 178);
+}
+
+.btn-cancel {
+    background: yellowgreen;
+}
+
+.btn-create {
+    width: 130px;
+    height: 40px;
+    background: rgb(78, 136, 78);
+    color: #fff;
+}
+
+.btn-view {
+    background: #6ec09e;
+}
+
+.btn-add {
+    width: 110px;
+    height: 40px;
+    background: #00B7FF;
 }
 
 .btn:hover {
@@ -116,7 +142,7 @@ body {
 }
 
 .forms {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Karla', sans-serif;
     color: #384047;
 }
 
@@ -126,6 +152,7 @@ form {
     padding: 10px 20px;
     background: #f4f7f8;
     border-radius: 8px;
+    margin-bottom: 50px;
 }
 
 input[type="text"],
@@ -135,7 +162,6 @@ textarea,
 select {
     background: rgba(255, 255, 255, 0.1);
     border: none;
-    font-size: 16px;
     height: auto;
     margin: 0;
     outline: 0;
@@ -147,41 +173,52 @@ select {
     margin-bottom: 30px;
 }
 
-#todos {
-        place-items: center;
-        background: light-pink;
-        font-size: 1.4rem;
-        font-family: "Caladea", serif;
+
+.list {
+    /* padding: em(10px) em(25px);
+    margin: 20px;
+    border-radius: .3em;
+    box-shadow: 5px 0 5px -5px black,
+        -5px 0 5px -5px black; */
+
+    background: #f4f7f8;
+    font-size: 20px;
+    max-width: 30em;
+    margin: auto;
+    padding: 0.5em 1em;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+
+    display: block;
+    position: relative;
+    margin: 10px auto;
+    cursor: pointer;
+    border-bottom: solid 1px #ddd;
+    border-radius: 10px;
 }
+
+ul {
+    text-align: center;
+    margin: em(10px) 0;
+}
+
+li {
+    font-size: 25px;
+    margin: 20px;
+    padding: 10px 0;
+    display: block;
+}
+
+
+
+
+
+
+
+
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 * {
-  box-sizing: border-box;
-}
-
-h1, h2, h3, h4, h5, h6, a, ol, li, ul, div, span,
-body, header, nav {
-  font-size: 1rem;
-  color: inherit;
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
-  outline: 0;
-  font-weight: normal;
-}
-
-h1 {
-  font-size: 2rem;
-}
-
-
-.smartOption{
-  display: none;
-}
- 
-
-.linkedin-pic{
-
+    box-sizing: border-box;
 }

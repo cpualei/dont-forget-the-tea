@@ -1,22 +1,24 @@
-extends layout.pug
+extends homepage.pug
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
+
     p PLEASE LOG IN!
+
     form(action='/users/login' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div
             label(for="username") Username
-            input(type="text" name="username" required)      
-        div 
+            input(type="text" name="username" required)
+        div
             label(for="password") Password
-            input(type="text" name="password" required)      
-        div 
+            input(type="text" name="password" required)
+        div
             button(id='button' type='submit' class='btn btn-primary') Log in
-        div 
+        div
             a(href='/users/signup' class='dont-have-acc') Don't have an account?
 
     form(action='/users/login' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        input(type="hidden" name="username" value="DemoUser")      
-        input(type="hidden" name="password" value="boba123")      
+        input(type="hidden" name="username" value="DemoUser")
+        input(type="hidden" name="password" value="boba123")
         button(type='submit' class='btn btn-primary') Demo Login

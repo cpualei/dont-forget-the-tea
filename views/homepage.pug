@@ -4,19 +4,20 @@ html
     block head
       title="Don't Forget The Tea!"
 
-      link(rel='stylesheet' href='/stylesheets/reset.css')
-      link(rel='stylesheet' href='/stylesheets/taskDeleteBtn.css')
-      link(rel='stylesheet' href='/stylesheets/taskEdit.css')
-      link(rel='stylesheet' href='/stylesheets/layout.css')
-
-      script(src="/javascripts/taskDelete.js" type="module")
-      script(src="/javascripts/taskEdit.js" type="module")
-
+        //- add page specific styles by appending to the head
+    link(rel="stylesheet" href="/stylesheets/index.css")
+    link(rel='stylesheet' href='/stylesheets/layout.css')
+    link(rel='stylesheet' href='/stylesheets/homepage.css')
+    //- add page specific js
+    script(src="/javascripts/taskDelete.js" type="module")
+    script(src="/javascripts/taskEdit.js" type="module")
 
   body
   header.navbar
     div.header-left
       div(class='navbar-left')
+        div(class='boba-icon')
+          img(src='./icons/boba-icon.png' style='width:40px;height:40px;')
         div(class='home-link')
           a(href='/' id='nav-home') DON'T FORGET THE TEA
 
@@ -28,8 +29,33 @@ html
           a(href='/users/login' id='nav-login') Log In
         div(class='other-navbar-links')
           a(href='/users/signup' id='nav-signup') Sign Up
+
   block content
+    h1= title
+    div(class='signup-button-div')
+      button(id='button' onclick="window.location.href='/users/signup'" type='submit' name='signUpButton') Sign Up Now!
+    div(class='matcha-boba')
+      img(src='./icons/matcha-boba.png')
+    div(class='quote-under-matcha-img') You've got matcha to do!
 
   footer
     block footer
-      footer='CREATED BY: Rena, Weiqi, Caitlin'
+      div(class='footer-div') Created By:
+        div(class='rena-div')
+          div(class='icon-div') Rena
+            a(href='https://github.com/ZhiqiLinn')
+              img(src='./icons/github.png' style='width:20px;height:20px;')
+            a(href='https://www.linkedin.com/in/zhiqi-linn')
+              img(src='./icons/linkedin.png' style='width:20px;height:20px;')
+        div(class='weiqi-div')
+          div(class='icon-div') Weiqi
+            a(href='https://github.com/weiqimei')
+              img(src='./icons/github.png' style='width:20px;height:20px;')
+            a(href='https://www.linkedin.com/in/weiqimei/')
+              img(src='./icons/linkedin.png' style='width:20px;height:20px;')
+        div(class='caitlin-div')
+          div(class='icon-div') Caitlin
+            a(href='https://github.com/cpualei')
+              img(src='./icons/github.png' style='width:20px;height:20px;')
+            a(href='https://www.linkedin.com/in/caitlin-buen-lucas/')
+              img(src='./icons/linkedin.png' style='width:20px;height:20px;')

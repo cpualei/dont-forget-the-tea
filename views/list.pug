@@ -6,11 +6,14 @@ block content
     form(action='/lists' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
     each list in lists
-        
-        li= list.title
 
-        button(onclick=`window.location.href='/lists/${list.id}/'` type='submit' class='btn btn-view-list') View List
-        button(onclick=`window.location.href='/lists/${list.id}/edit'` type='submit' class='btn btn-edit-list') Edit List
-        button(onclick=`window.location.href='/lists/${list.id}/delete'` type='submit' class='btn btn-delete-list') Delete List
+       section.lists-container
+        ul.list-items
+          li= list.title
+
+          button(onclick=`window.location.href='/lists/${list.id}/'` type='submit' class='btn btn-view') View
+          button(onclick=`window.location.href='/lists/${list.id}/edit'` type='submit' class='btn btn-edit') Edit
+          button(onclick=`window.location.href='/lists/${list.id}/delete'` type='submit' class='btn btn-delete') Delete
+
     div
-        button(onclick="window.location.href='/lists/create'" type='submit' class='btn btn-list-create') Create New List
+        button(onclick="window.location.href='/lists/create'" type='submit' class='btn btn-create') Create New List

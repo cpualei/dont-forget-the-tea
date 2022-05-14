@@ -1,29 +1,31 @@
-extends layout.pug
+extends homepage.pug
 
-block content 
+block content
+  div(class='signup-form-div')
+    link(rel="stylesheet" href="/stylesheets/index.css")
+    link(rel='stylesheet' href='/stylesheets/layout.css')
 
-  link(rel="stylesheet" href="/stylesheets/index.css")
-  if errors.length > 0
-    each error in errors 
-      p= error 
-  form(action='/users/signup' method='post')
-    input(type='hidden' name='_csrf' value=csrfToken)
-    div 
-      label(class='forms' for="firstName") First Name 
-      input(type="text" name="firstName" required)
-    div 
-      label(class='forms' for="lastName") Last Name 
-      input(type="text" name="lastName" required)
-    div 
-      label(class='forms' for="email") Email
-      input(type="text" name="email" required)       
-    div 
-      label(class='forms' for="username") Username
-      input(type="text" name="username" required)      
-    div 
-      label(class='forms' for="password") Password
-      input(type="text" name="password" required)      
-    div 
-      button(type='submit' id='button' class='btn btn-primary') Sign Up
-    div 
-      a(href='/users/login' class='already-have-acc') Already have an account?
+    if errors.length > 0
+      each error in errors
+        p= error
+    form(action='/users/signup' method='post')
+      input(type='hidden' name='_csrf' value=csrfToken)
+      div
+        label(class='forms' for="firstName") First Name
+        input(type="text" name="firstName" required)
+      div
+        label(class='forms' for="lastName") Last Name
+        input(type="text" name="lastName" required)
+      div
+        label(class='forms' for="email") Email
+        input(type="text" name="email" required)
+      div
+        label(class='forms' for="username") Username
+        input(type="text" name="username" required)
+      div
+        label(class='forms' for="password") Password
+        input(type="text" name="password" required)
+      div
+        button(type='submit' id='button' class='btn btn-primary') Sign Up
+      div
+        a(href='/users/login' class='already-have-acc') Already have an account?
