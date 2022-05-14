@@ -33,46 +33,47 @@ block content
 
             //------------- EACH TASK WILL SHOW THE FOLLOWING -------------------- 
             div(id=`task-container-${task.id}`)
-            section.lists-container
-                ul.list-items
+                section.lists-container
+                    ul.list-items
 
-                    //------------- TASK NAME -------------------- 
-                    p(id=`content-${task.id}`)= task.content
-                    each list in task.Lists
-                        a(href=`/lists/${list.id}`)
-                            p(id=`task-${task.id}-list-name`)= `${list.title}`
+                        //------------- TASK NAME -------------------- 
+                        p(id=`content-${task.id}`)= task.content
+                        each list in task.Lists
+                            a(href=`/lists/${list.id}`)
+                                p(id=`task-${task.id}-list-name`)= `${list.title}`
 
-                    //------------- HIDDEN EDIT TASK FORM --------------------       
-                    form(class='hidden' class='edit-task-form' id=`edit-task-form-${task.id}` method='post')
-                        input(type='hidden' name='_csrf' value=csrfToken)
-                        div
-                            label(for="content") Content:
-                            input(type='text' name='content' value=`${task.content}`)
-                        div
-                            label(for='dueDate') Due Date:
-                            input(type='date' name='dueDate' value=`${date}`)
-                        div
-                            label(for="listId") List:
-                            select(name="listId")
-                                option(value='') --Select a list--
-                                    each list in lists
-                                        option(value=list.id)= list.title
-                        div
-                            button(type='submit' class='btn btn-create-task') Save
-                        div
-                            button(id=`cancel-task-form-${task.id}` type='submit' class='btn btn-cancel-task') Cancel
+                        //------------- HIDDEN EDIT TASK FORM --------------------       
+                        form(class='hidden' class='edit-task-form' id=`edit-task-form-${task.id}` method='post')
+                            input(type='hidden' name='_csrf' value=csrfToken)
+                            div
+                                label(for="content") Content:
+                                input(type='text' name='content' value=`${task.content}`)
+                            div
+                                label(for='dueDate') Due Date:
+                                input(type='date' name='dueDate' value=`${date}`)
+                            div
+                                label(for="listId") List:
+                                select(name="listId")
+                                    option(value='') --Select a list--
+                                        each list in lists
+                                            option(value=list.id)= list.title
+                            div
+                                button(type='submit' class='btn btn-create-task') Save
+                            div
+                                button(id=`cancel-task-form-${task.id}` type='submit' class='btn btn-cancel-task') Cancel
 
-                    //------------- TASK CHECKBOX TO COMPLETE --------------------       
-                    div(class="check-to-complete")
-                        label(for="completed") Check to Complete ^_^
-                        if task.completed 
-                            input(type="checkbox" checked class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
-                        else
-                            input(type="checkbox" class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
+                        //------------- TASK CHECKBOX TO COMPLETE --------------------       
+                        div(class="check-to-complete")
+                            label(for="completed") Check to Completed ^_^
+                            if task.completed 
+                                input(type="checkbox" checked class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
+                            else
+                                input(type="checkbox" class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
 
-                    //------------- TASK BUTTONS --------------------       
-                    button(id=`view-task-${task.id}` type='submit' class='btn btn-view-task' onclick=`window.location.href='/tasks/${task.id}'`) View
-                    button(id=`edit-task-${task.id}` type='submit' class='btn btn-edit-task') Edit
-                    button(id=`delete-task-${task.id}` type='submit' class='btn btn-delete-task') Delete
-                    //------------- TASK ERROR -------------------- 
-                    div(id=`task-error-container-${task.id}`)
+                        //------------- TASK BUTTONS --------------------       
+                        button(id=`view-task-${task.id}` type='submit' class='btn btn-view-task' onclick=`window.location.href='/tasks/${task.id}'`) View
+                        button(id=`edit-task-${task.id}` type='submit' class='btn btn-edit-task') Edit
+                        button(id=`delete-task-${task.id}` type='submit' class='btn btn-delete-task') Delete
+                        //------------- TASK ERROR -------------------- 
+                        div(id=`task-error-container-${task.id}`)
+
