@@ -23,7 +23,7 @@ block content
                 label(for="content") Content:
                 input(type="text" name="content" required)
             div
-                button(id='task-buttons' type='submit' class='btn btn-add') Add Subtask
+                button(id='task-buttons' type='submit' class='btn btn-add-subtask') Add Subtask
     div
         p Subtasks list:
         each subtask in subtasks
@@ -41,6 +41,6 @@ block content
                         button(type='submit' class='btn btn-create-subtask') Save
                     div
                         button(id=`cancel-subtask-form-${subtask.id}` type='submit' class='btn btn-cancel-subtask') Cancel
-                button(id=`edit-subtask-${subtask.id}` type='submit' class='btn btn-edit' ) Edit
-                button(id=`delete-subtask-${subtask.id}` type='submit' class='btn btn-delete' ) Delete
+                button(id=`edit-subtask-${subtask.id}` type='submit' class='btn btn-edit-task' ) Edit
+                button(id=`delete-subtask-${subtask.id}` type='submit' class='btn btn-delete-task' ) Delete
                 div(id=`subtask-error-container-${subtask.id}`)

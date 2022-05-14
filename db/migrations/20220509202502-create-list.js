@@ -17,16 +17,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Users' }
       },
-      includeWord: {
-        type: Sequelize.STRING
-      },
-      excludeWord: {
-        type: Sequelize.STRING
-      },
-      smart: {
-        defaultValue: false,
-        type: Sequelize.BOOLEAN,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
