@@ -2,6 +2,9 @@ extends layout.pug
 
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
+    //--------------BUTTON TO TASKS LIST------------------------
+    button(onclick=`window.location.href='/tasks'` type='submit' class='btn btn-view-task') VIEW ALL TASKS
+    
 
     //------------- TASK DETAIL -------------------- 
     div(class="subtasks-in-detail-pg")
