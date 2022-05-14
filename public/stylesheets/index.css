@@ -180,9 +180,9 @@ body {
 }
 
 form {
-    /* max-width: 300px; */
-    /* margin: 10px auto;
-    padding: 10px 20px; */
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 10px 20px;
     /* background: #f4f7f8; */
     border-radius: 8px;
     margin-bottom: 50px;
@@ -239,13 +239,16 @@ ul {
 }
 
 li {
+    color: whitesmoke;
     font-size: 25px;
     margin: 20px;
     padding: 10px 0;
     display: block;
 }
 
-
+.each-subtask {
+    color: whitesmoke;
+}
 
 
 
@@ -264,9 +267,20 @@ a {
 .all-tasks-div{
     background-color: white;
     border-radius: 10px;
-
+    padding: 15px;
 }
 
+.all-task-labels-div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.all-login-labels-div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+}
 
 .btn-logout{
 
