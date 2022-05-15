@@ -607,3 +607,7 @@ a {
     display: flex;
     justify-content: center;
 }
+
+.create-new-list-div{
+    margin-bottom: 50px;
+}
