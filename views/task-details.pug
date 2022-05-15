@@ -38,12 +38,12 @@ block content
 
             //------------- EACH SUBTASK WILL SHOW THE FOLLOWING --------------------
             div(id=`subtask-container-${subtask.id}`)
-                p(class='each-subtasks' id=`content-${subtask.id}`)= `Subtask ${subtask.id} : ${subtask.content}`
+                p(class='each-subtasks' id=`content-${subtask.id}`)= `Subtask : ${subtask.content}`
                 form(class='hidden edit-subtask-form' id=`edit-subtask-form-${subtask.id}` method='post')
                     input(type='hidden' name='_csrf' value=csrfToken)
                     div
                         label(for="content") Content:
-                        input(type='text' name='content' value=`${subtask.content}`)
+                        input(type='text' name='content' value=`${subtask.content}` required)
                     div(class="hidden")
                         label(for="taskId") TaskId:
                         input(readonly="readonly" type='text' name='taskId' value=`${task.id}`)

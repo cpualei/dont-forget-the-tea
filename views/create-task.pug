@@ -48,13 +48,14 @@ block content
                             input(type='hidden' name='_csrf' value=csrfToken)
                             div
                                 label(for="content") Content:
-                                input(type='text' name='content' value=`${task.content}`)
+                                input(type='text' name='content' value=`${task.content}` required)
                             div
                                 label(for='dueDate') Due Date:
-                                input(type='date' name='dueDate' value=`${date}`)
+                                div
+                                    input(type='date' name='dueDate' value=`${date}` required)
                             div
                                 label(for="listId") List:
-                                select(name="listId")
+                                select(name="listId" required)
                                     option(value='') --Select a list--
                                         each list in lists
                                             option(value=list.id)= list.title
