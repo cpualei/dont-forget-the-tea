@@ -1,26 +1,26 @@
-extends layout.pug
+extends layout-loggedin.pug
 
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
     //--------------BUTTON TO TASKS LIST------------------------
     button(onclick=`window.location.href='/tasks'` type='submit' class='btn btn-view-task') VIEW ALL TASKS
-    
 
-    //------------- TASK DETAIL -------------------- 
+
+    //------------- TASK DETAIL --------------------
     div(class="subtasks-in-detail-pg")
         p= `Task ID : ${task.id}`
         p= `Task Content : ${task.content}`
         p= `Task Due Date : ${task.dueDate}`
 
-    //------------- TASK CHECKBOX TO COMPLETE-------------------- 
+    //------------- TASK CHECKBOX TO COMPLETE--------------------
     //- div(class="check-to-complete")
     //-     label(for="completed") Check to Complete ^_^
-    //-     if task.completed 
-    //-         input(type="checkbox" checked class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
+    //-     if task.completed
+    //-         input(type="checkbox" checked class="check-to-complete" id=`to-complete-${task.id}` name="completed")
     //-     else
-    //-         input(type="checkbox" class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
-    
-    //------------- CREATE SUBTASK FORM -------------------- 
+    //-         input(type="checkbox" class="check-to-complete" id=`to-complete-${task.id}` name="completed")
+
+    //------------- CREATE SUBTASK FORM --------------------
     div(class="subtasks-in-detail-pg")
         p Create Subtasks:
         form(action=`/tasks/${task.id}` method='post')
@@ -30,13 +30,13 @@ block content
                 input(type="text" name="content" required)
             div
                 button(id='task-buttons' type='submit' class='btn btn-add-subtask') Add Subtask
-    
-    //------------- SUBTASKS LIST -------------------- 
+
+    //------------- SUBTASKS LIST --------------------
     div(class='subtasks-in-detail-pg')
         p Subtasks list:
         each subtask in subtasks
 
-            //------------- EACH SUBTASK WILL SHOW THE FOLLOWING -------------------- 
+            //------------- EACH SUBTASK WILL SHOW THE FOLLOWING --------------------
             div(id=`subtask-container-${subtask.id}`)
                 p(class='each-subtasks' id=`content-${subtask.id}`)= `Subtask ${subtask.id} : ${subtask.content}`
                 form(class='hidden edit-subtask-form' id=`edit-subtask-form-${subtask.id}` method='post')
@@ -51,10 +51,10 @@ block content
                         button(type='submit' class='btn btn-create-subtask') Save
                     div
                         button(id=`cancel-subtask-form-${subtask.id}` type='submit' class='btn btn-cancel-subtask') Cancel
-                        
-                //------------- SUBTASK BUTTONS --------------------          
+
+                //------------- SUBTASK BUTTONS --------------------
                 button(id=`edit-subtask-${subtask.id}` type='submit' class='btn btn-edit-subtask' ) Edit
                 button(id=`delete-subtask-${subtask.id}` type='submit' class='btn btn-delete-subtask' ) Delete
 
-                //------------- SUBTASK ERROR --------------------    
+                //------------- SUBTASK ERROR --------------------
                 div(id=`subtask-error-container-${subtask.id}`)
