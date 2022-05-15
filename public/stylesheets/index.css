@@ -13,10 +13,10 @@ body {
 .signup-form-div {
     background: whitesmoke;
     border-radius: 20px;
-    height: 600px;
+    height: fit-content;
     width: 350px;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     display: flex;
     align-items: stretch;
     flex-direction: row;

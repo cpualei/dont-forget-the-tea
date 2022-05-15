@@ -34,3 +34,11 @@ block content
             button(type='submit' id='button' class='btn btn-primary') Sign Up
           div
             a(href='/users/login' class='already-have-acc') Already have an account?
+
+    div
+      form(action='/users/login' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        input(type="hidden" name="username" value="DemoUser")
+        input(type="hidden" name="password" value="boba123")
+        div(id='demo-login-div')
+            button(type='submit' class='btn btn-primary' id='demo-login-button') Demo Login
