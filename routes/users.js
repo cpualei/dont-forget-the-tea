@@ -135,6 +135,12 @@ router.get('/login', csrfProtection, asyncHandler(async (req, res) => {
 
 router.use((req, res, next) => {
   console.log('IN THE USER ROUTER, REQUEST REACHES HERE')
+  next()
+})
+
+const middlewareChecker = router.use((req, res, next) => {
+  console.log('IN THE USER ROUTER, REQUEST REACHES HERE')
+  next()
 })
 
 //-----------------------LOG IN-------------------------------
