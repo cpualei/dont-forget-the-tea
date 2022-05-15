@@ -4,8 +4,9 @@ block content
     link(rel="stylesheet" href="/stylesheets/index.css")
 
     //------------- COMPLETED TASKS LIST --------------------
+    div(class='complete') These tasks have been completed!
     each task in tasks
-        div(id=`task-container-${task.id}`)
+        div(id=`task-container-${task.id}` class='tasks-completed') 
             li(id=`content-${task.id}`)= task.content
             each list in task.Lists
                 a(href=`/lists/${list.id}`)

@@ -298,12 +298,30 @@ body {
     justify-content: center;
 }
 
+.tasks-completed {
+    background-color: whitesmoke;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+}
+
 .btn-completed-tasks {
     width: 210px;
     height: 50px;
     font-size: large;
     background: rgb(107 108 241);
     margin-bottom: 30px;
+}
+
+.complete {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 40px;
+    padding-bottom: 15px;
+    color: white;
 }
 
 .task-title {
@@ -544,12 +562,13 @@ a {
 }
 
 
-.error-div{
+.error-div {
     display: flex;
     justify-content: center;
     color: rgb(179, 18, 18);
 
 }
+
 .delete-list-div {
     display: flex;
     flex-direction: column;
