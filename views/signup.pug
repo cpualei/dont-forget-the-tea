@@ -1,33 +1,36 @@
 extends homepage.pug
 
 block content
-  div(class='form-div')
-    div(class='signup-form-div')
-      link(rel="stylesheet" href="/stylesheets/index.css")
-      link(rel='stylesheet' href='/stylesheets/layout.css')
-      //------------- SIGN UP ERROR DISPLAY -------------------- 
-      if errors.length > 0
-        each error in errors
-          p= error
-      //------------- SIGN UP FORM -------------------- 
-      form(action='/users/signup' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        div
-          label(class='forms' for="firstName") First Name
-          input(type="text" name="firstName" required)
-        div
-          label(class='forms' for="lastName") Last Name
-          input(type="text" name="lastName" required)
-        div
-          label(class='forms' for="email") Email
-          input(type="text" name="email" required)
-        div
-          label(class='forms' for="username") Username
-          input(type="text" name="username" required)
-        div
-          label(class='forms' for="password") Password
-          input(type="text" name="password" required)
-        div
-          button(type='submit' id='button' class='btn btn-primary') Sign Up
-        div
-          a(href='/users/login' class='already-have-acc') Already have an account?
+    //------------- SIGN UP ERROR DISPLAY -------------------- 
+
+
+    //------------- SIGN UP FORM -------------------- 
+    div(class='form-div')
+      div(class='signup-form-div')
+        link(rel="stylesheet" href="/stylesheets/index.css")
+        link(rel='stylesheet' href='/stylesheets/layout.css')
+        form(action='/users/signup' method='post')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          div
+            label(class='forms' for="firstName") First Name
+            input(type="text" name="firstName" required)
+          div
+            label(class='forms' for="lastName") Last Name
+            input(type="text" name="lastName" required)
+          div
+            label(class='forms' for="email") Email
+            input(type="text" name="email" required)
+          div
+            label(class='forms' for="username") Username
+            input(type="text" name="username" required)
+          div
+            label(class='forms' for="password") Password
+            input(type="text" name="password" required)
+          div(class="error-div")
+            if errors.length > 0
+              each error in errors
+                p= `*${error}`
+          div
+            button(type='submit' id='button' class='btn btn-primary') Sign Up
+          div
+            a(href='/users/login' class='already-have-acc') Already have an account?

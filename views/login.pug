@@ -1,4 +1,5 @@
 extends homepage.pug
+
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
     div(class='login-form')
@@ -11,6 +12,10 @@ block content
                 div
                     label(for="password") Password
                     input(type="text" name="password" required)
+                div(class="error-div")
+                    if errors.length > 0
+                    each error in errors
+                        p= `*${error}`
                 div
                     button(id='button' type='submit' class='btn btn-primary') Log in
                 div

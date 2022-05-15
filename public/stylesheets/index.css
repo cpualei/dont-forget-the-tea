@@ -481,10 +481,10 @@ a {
     align-items: center;
 }
 
-.btn-logout {}
 
 
 .subtasks-in-detail-pg {
+    margin-top: 20px;
     background-color: white;
     border-radius: 10px;
     padding: 15px;
@@ -532,6 +532,12 @@ a {
 }
 
 
+.error-div{
+    display: flex;
+    justify-content: center;
+    color: rgb(179, 18, 18);
+    
+}
 .delete-list-div {
     display: flex;
     flex-direction: column;
