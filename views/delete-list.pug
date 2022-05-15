@@ -1,13 +1,13 @@
 extends layout-loggedin.pug
 
 block content
+  div(class='delete-list-title')
+    p Proceed with deleting this list?
   div(class='delete-list-div')
     h3= list.title
-    div
-      p Proceed with deleting this list?
     div
       form(action=`/lists/${list.id}/delete` method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div(class='delete-page-buttons')
           button(onclick=`window.location.href='/lists'` type='submit' class='btn btn-btn-danger') Delete List
-      button(onclick=`window.location.href='/lists'` class="btn") Cancel
+          button(onclick=`window.location.href='/lists'` class="btn") Cancel
