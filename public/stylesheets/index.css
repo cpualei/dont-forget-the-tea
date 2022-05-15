@@ -602,3 +602,8 @@ a {
 .aboutus-div {
     margin-top: 33px;
 }
+
+.view-all-list-btn-div{
+    display: flex;
+    justify-content: center;
+}

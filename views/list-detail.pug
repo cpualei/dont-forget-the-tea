@@ -2,7 +2,8 @@ extends layout-loggedin.pug
 
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
-    button(onclick=`window.location.href='/lists'` type='submit' class='btn btn-view-list') All lists
+    div(class="view-all-list-btn-div")
+        button(onclick=`window.location.href='/lists'` type='submit' class='btn btn-view-list') All lists
     div(class='details-div')
         div(class='details')
             div(class='task-detail')
