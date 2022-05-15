@@ -31,8 +31,11 @@ html
 
         div.header-right
           div(class='navbar-right')
-            form(action='/users/logout' method='post')
-              button(id='button' type='submit' class='btn btn-logout') Sign out
+            div(class='aboutus-div')
+              a(href='/users/aboutus' id='nav-aboutus') About Us
+            div(class='signout-button-div')
+              form(action='/users/logout' method='post')
+                button(id='button' type='submit' class='btn btn-logout') Sign out
 
   block content
 

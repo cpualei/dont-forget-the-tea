@@ -434,7 +434,17 @@ a {
     box-sizing: border-box;
 }
 
-/*weiqi can change the style of this div (for all tasks)*/
+.
+
+.navbar-right {
+    display: flex;
+    flex-direction: row;
+}
+
+.signout-button-div {
+    display: flex;
+}
+
 .all-tasks-div {
     background-color: white;
     border-radius: 10px;
