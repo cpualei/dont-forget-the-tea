@@ -208,7 +208,8 @@ body {
 /* ---------delete btn--------*/
 .btn-delete-subtask {
     color: #fff;
-    background: #d9534f;}
+    background: #d9534f;
+}
 
 .btn-delete-task {
     color: #fff;
@@ -502,4 +503,18 @@ a {
     background-color: white;
     border-radius: 10px;
     padding: 15px;
+}
+
+
+.delete-list-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background: whitesmoke;
+    border-radius: 15px;
+    width: fit-content; */
+}
+
+.delete-page-buttons {
+    display: flex;
 }

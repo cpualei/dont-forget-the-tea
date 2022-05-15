@@ -64,7 +64,7 @@ block content
 
                         //------------- TASK CHECKBOX TO COMPLETE --------------------       
                         div(class="check-to-complete")
-                            label(for="completed") Check to Completed ^_^
+                            label(for="completed") Check to Complete ^_^
                             if task.completed 
                                 input(type="checkbox" checked class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
                             else
@@ -76,4 +76,3 @@ block content
                         button(id=`delete-task-${task.id}` type='submit' class='btn btn-delete-task') Delete
                         //------------- TASK ERROR -------------------- 
                         div(id=`task-error-container-${task.id}`)
-
