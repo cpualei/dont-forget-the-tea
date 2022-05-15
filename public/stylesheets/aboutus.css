@@ -27,7 +27,6 @@ body {
     transform: scale(0.54);
   }
   .container-inner {
-    border-radius: ;
     position: relative;
     transform-origin: 50%;
     top: -200px;
@@ -58,16 +57,19 @@ body {
     left: 22px;
     top: 164px;
     width: 450px;
+    border: 10px white solid;
   }
   .img2 {
     left: -46px;
     top: 174px;
     width: 450px;
+    border: 10px white solid;
   }
   .img3 {
     left: -16px;
     top: 144px;
     width: 450px;
+    border: 10px white solid;
   }
   .divider {
     background-color: #ca6060;
@@ -76,8 +78,8 @@ body {
     margin-top: 10%;
   }
   .name {
-    color: #000000;
-    font-size: 36px;
+    color: rgb(3, 51, 28);;
+    font-size: 25px;
     font-weight: 600;
     margin-top: 16px;
     text-align: center;
@@ -97,4 +99,15 @@ body {
 .icon-div{
     display: flex;
     justify-content: left;
+}
+
+.about-us-intro{
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+#intro-text{
+    color: rgb(3, 51, 28);
+    margin-top: 5%;
+    margin-bottom: 10%;
 }
