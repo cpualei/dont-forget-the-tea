@@ -2,6 +2,8 @@ extends layout-loggedin.pug
 
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
+    div(class="create-new-list-div")
+        h1 Create Your List
     div(class='create-list-form-div')
         div(class='create-list-form')
             form(action='/lists/create' method='post')
