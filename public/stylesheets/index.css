@@ -599,7 +599,11 @@ a {
     display: flex;
 }
 
-.header-right {
+/* .header-right {
     background-color: red;
 display: flex;
+} */
+
+.aboutus-div {
+    margin-top: 33px;
 }
