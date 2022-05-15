@@ -486,9 +486,13 @@ a {
 } */
 
 .edit-lists-labels {
+    display: flex;
     background-color: white;
     border-radius: 10px;
-    padding: 15px;
+    padding: 15px 0px 0 0px;
+    height:fit-content;
+    width: fit-content;
+    justify-content: center;
 }
 
 .details-div {
@@ -610,4 +614,9 @@ a {
 
 .create-new-list-div{
     margin-bottom: 50px;
+}
+
+.edit-lists-page-btns{
+    display: flex;
+    justify-content: center;
 }
