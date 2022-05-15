@@ -177,7 +177,6 @@ router.post('/login', csrfProtection, userLoginValidator, asyncHandler(async (re
         }
         console.log('THIS IS REQ.RESSION.AUTH')
         res.redirect('/lists')
-
       } else {
         errors.push('Invalid username or password');
         res.render('login', { //re-render login page
@@ -186,19 +185,9 @@ router.post('/login', csrfProtection, userLoginValidator, asyncHandler(async (re
           user: {}
         });
       }
-
-    }else {
-      errors.push('Invalid username or password');
-      res.render('login', { //re-render login page
-        csrfToken: req.csrfToken(),
-        errors,
-        user: {}
-      });
     }
-
   } else {
     console.log("IN THE ELSE BLOCK OF VALIDATION ERRORS.ISEMPTY, DID NOT PASS userLoginValidator" )
-
     errors = validatorErrors.array().map((error) => error.msg);
     res.render('login', { //re-render login page
       csrfToken: req.csrfToken(),
@@ -207,6 +196,7 @@ router.post('/login', csrfProtection, userLoginValidator, asyncHandler(async (re
     });
   }
 }));
+
 
 // -----------------------LOG OUT------------------------------
 router.post('/logout', (req, res) => {
