@@ -434,8 +434,6 @@ a {
     box-sizing: border-box;
 }
 
-.
-
 .navbar-right {
     display: flex;
     flex-direction: row;
@@ -599,4 +597,9 @@ a {
 
 .delete-page-buttons {
     display: flex;
+}
+
+.header-right {
+    background-color: red;
+display: flex;
 }
