@@ -13,12 +13,12 @@ block content
         p= `Task Due Date : ${task.dueDate}`
 
     //------------- TASK CHECKBOX TO COMPLETE-------------------- 
-    div(class="check-to-complete")
-        label(for="completed") Check to Complete ^_^
-        if task.completed 
-            input(type="checkbox" checked class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
-        else
-            input(type="checkbox" class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
+    //- div(class="check-to-complete")
+    //-     label(for="completed") Check to Complete ^_^
+    //-     if task.completed 
+    //-         input(type="checkbox" checked class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
+    //-     else
+    //-         input(type="checkbox" class="check-to-complete" id=`to-complete-${task.id}` name="completed") 
     
     //------------- CREATE SUBTASK FORM -------------------- 
     div(class="subtasks-in-detail-pg")
@@ -32,7 +32,7 @@ block content
                 button(id='task-buttons' type='submit' class='btn btn-add-subtask') Add Subtask
     
     //------------- SUBTASKS LIST -------------------- 
-    div
+    div(class='subtasks-in-detail-pg')
         p Subtasks list:
         each subtask in subtasks
 
