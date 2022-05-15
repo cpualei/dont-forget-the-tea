@@ -8,6 +8,7 @@ html
     link(rel="stylesheet" href="/stylesheets/index.css")
     link(rel='stylesheet' href='/stylesheets/layout.css')
     link(rel='stylesheet' href='/stylesheets/homepage.css')
+    link(rel='stylesheet' href='/stylesheets/aboutus.css')
     //- add page specific js
     script(src="/javascripts/taskDelete.js" type="module")
     script(src="/javascripts/taskEdit.js" type="module")
@@ -17,8 +18,6 @@ html
       header.navbar
         div.header-left
           div(class='navbar-left')
-            div(class='boba-icon')
-              img(src='./icons/boba-icon.png' style='width:67px;height:67px;')
             div(class='home-link')
               a(href='/' id='nav-home') DON'T
               br
@@ -33,13 +32,13 @@ html
             div(class='other-navbar-links')
               a(href='/users/signup' id='nav-signup') Sign Up
 
-  block content
-    h1= title
-    div(class='signup-button-div')
-      button(id='sign-up-now-button' onclick="window.location.href='/users/signup'" type='submit' name='signUpButton') Sign Up Now!
-    div(class='matcha-boba')
-      img(src='./icons/matcha-boba.png')
-    div(class='quote-under-matcha-img') You've got matcha to do!
+    block content
+      h1= title
+      div(class='signup-button-div')
+        button(id='sign-up-now-button' onclick="window.location.href='/users/signup'" type='submit' name='signUpButton') Sign Up Now!
+      div(class='matcha-boba')
+        img(src='./icons/matcha-boba.png')
+      div(class='quote-under-matcha-img') You've got matcha to do!
 
   footer
     block footer

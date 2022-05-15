@@ -1,16 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 body {
     font-family: 'Karla', sans-serif;
     font-weight: normal;
 }
 
+#nav-home {
+    font-family: 'Bebas Neue', cursive;
+}
+
 .signup-form-div {
     background: whitesmoke;
     border-radius: 20px;
     height: 600px;
-    width: 500px;
+    width: 350px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     align-items: stretch;
     flex-direction: row;
@@ -164,7 +170,7 @@ body {
     line-height: 20px;
     padding: 0;
     border: none;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 
 #demo-login-button:hover {
@@ -292,12 +298,30 @@ body {
     justify-content: center;
 }
 
+.tasks-completed {
+    background-color: whitesmoke;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+}
+
 .btn-completed-tasks {
     width: 210px;
     height: 50px;
     font-size: large;
     background: rgb(107 108 241);
     margin-bottom: 30px;
+}
+
+.complete {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 40px;
+    padding-bottom: 15px;
+    color: white;
 }
 
 .task-title {
@@ -322,7 +346,7 @@ body {
 
 .forms {
     font-family: 'Karla', sans-serif;
-    color: #384047;
+    color: #000000;
 }
 
 form {
@@ -403,7 +427,7 @@ li {
 
 
 a {
-    color: #00B7FF;
+    color: #6a2498;
 }
 
 * {
@@ -436,10 +460,16 @@ a {
     align-items: center;
 }
 
-.create-lists-labels {
+.create-list-form-div {
+    display: flex;
+    justify-content: center;
+
+}
+
+.create-list-form {
     background-color: white;
     border-radius: 10px;
-    /* padding-top: 15px; */
+    width: 300px;
 }
 
 /* .task-detail {
@@ -529,15 +559,17 @@ a {
     background-color: white;
     border-radius: 10px;
     padding: 15px;
+    margin-bottom: 14px;
 }
 
 
-.error-div{
+.error-div {
     display: flex;
     justify-content: center;
     color: rgb(179, 18, 18);
-    
+
 }
+
 .delete-list-div {
     display: flex;
     flex-direction: column;

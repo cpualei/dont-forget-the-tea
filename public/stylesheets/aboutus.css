@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 
 body {
-    align-items: center;
     background-color:  rgb(20, 149, 93);
     display: flex;
     font-family: 'Karla', sans-serif;
@@ -10,6 +9,7 @@ body {
     height: 100vh;
     margin: 0;
     justify-content: center;
+    align-items: center
   }
   .person {
     display: flex;
@@ -110,4 +110,23 @@ body {
     color: rgb(3, 51, 28);
     margin-top: 5%;
     margin-bottom: 10%;
+}
+
+.footer-div{
+    display: flex;
+    justify-content: center;
+}
+
+.about-use{
+    display: flex;
+    justify-content: center;
+}
+.about-us-pic{
+    display: flex;
+    align-items: center;
+}
+
+.about-us-footer{
+	bottom:0px;
+    padding-bottom:10px;
 }

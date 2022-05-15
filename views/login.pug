@@ -1,10 +1,6 @@
-doctype html
-html
-  head
-    block head
-      title="Don't Forget The Tea!"
+extends layout-loggedout.pug
 
-        //- add page specific styles by appending to the head
+    //- add page specific styles by appending to the head
     link(rel="stylesheet" href="/stylesheets/index.css")
     link(rel='stylesheet' href='/stylesheets/layout.css')
     link(rel='stylesheet' href='/stylesheets/homepage.css')
@@ -34,8 +30,8 @@ html
           
     link(rel="stylesheet" href="/stylesheets/index.css")
     div(class='login-form')
-        div(class='all-login-labels-div') 
-            form(action='/users/login' method='post') 
+        div(class='all-login-labels-div')
+            form(action='/users/login' method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
                 div
                     label(for="username") Username
