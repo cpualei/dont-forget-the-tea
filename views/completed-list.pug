@@ -1,14 +1,14 @@
-extends layout.pug
+extends layout-loggedin.pug
 
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
-    p BELOW ARE YOUR COMPLETED TASKS! 
-    //------------- COMPLETED TASKS LIST -------------------- 
+    p BELOW ARE YOUR COMPLETED TASKS!
+    //------------- COMPLETED TASKS LIST --------------------
     each task in tasks
         div(id=`task-container-${task.id}`)
             li(id=`content-${task.id}`)= task.content
             each list in task.Lists
-                a(href=`/lists/${list.id}`) 
+                a(href=`/lists/${list.id}`)
                     p(id=`task-${task.id}-list-name`)= `${list.title}`
             form(class='hidden' class='edit-task-form' id=`edit-task-form-${task.id}` method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)

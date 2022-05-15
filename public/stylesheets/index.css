@@ -1,16 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 body {
     font-family: 'Karla', sans-serif;
     font-weight: normal;
 }
 
+#nav-home {
+    font-family: 'Bebas Neue', cursive;
+}
+
 .signup-form-div {
     background: whitesmoke;
     border-radius: 20px;
     height: 600px;
-    width: 500px;
+    width: 350px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     align-items: stretch;
     flex-direction: row;
@@ -322,7 +328,7 @@ body {
 
 .forms {
     font-family: 'Karla', sans-serif;
-    color: #384047;
+    color: #000000;
 }
 
 form {
@@ -536,7 +542,7 @@ a {
     display: flex;
     justify-content: center;
     color: rgb(179, 18, 18);
-    
+
 }
 .delete-list-div {
     display: flex;
