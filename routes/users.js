@@ -187,6 +187,13 @@ router.post('/login', csrfProtection, userLoginValidator, asyncHandler(async (re
         });
       }
 
+    }else {
+      errors.push('Invalid username or password');
+      res.render('login', { //re-render login page
+        csrfToken: req.csrfToken(),
+        errors,
+        user: {}
+      });
     }
 
   } else {
