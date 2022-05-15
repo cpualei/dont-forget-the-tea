@@ -1,0 +1,82 @@
+doctype html
+html
+  head
+    block head
+      title="Don't Forget The Tea!"
+
+      link(rel='stylesheet' href='/stylesheets/index.css')
+      link(rel='stylesheet' href='/stylesheets/taskDeleteBtn.css')
+      link(rel='stylesheet' href='/stylesheets/taskEdit.css')
+      link(rel='stylesheet' href='/stylesheets/layout.css')
+      link(rel='stylesheet' href='/stylesheets/homepage.css')
+      link(rel='stylesheet' href='/stylesheets/aboutus.css')
+
+      script(src="/javascripts/taskDelete.js" type="module")
+      script(src="/javascripts/taskEdit.js" type="module")
+      script(src="/javascripts/subtaskDelete.js" type="module")
+      script(src="/javascripts/subtaskEdit.js" type="module")
+      script(src="/javascripts/checkToComplete.js" type="module")
+
+body
+    block navibar
+      header.navbar
+        div.header-left
+          div(class='navbar-left')
+            div(class='home-link')
+              a(href='/' id='nav-home') DON'T
+              br
+              a(href='/' id='nav-home') FORGET
+              br
+              a(href='/' id='nav-home') THE TEA
+              
+        div.header-right
+          div(class='navbar-right')
+
+            div(class='other-navbar-links')
+              a(href='/users/login' id='nav-login') Log In
+
+block content
+    div(class="about-us-div")
+        div(class="about-us-intro")
+            h1 Don't Forget The Tea
+            h2(id="intro-text") "Don't Forget The Tea is a boba-themed web application inspired by Remember The Milk, a to-do list website where users can keep track of their tasks and organize them into lists."
+            h1 MEET OUR TEAM!
+        div(class="about-us")
+            div(class="person") 
+                div( class="container")
+                    div(class="container-inner")
+                        img(class="img img2" src="/icons/caitlin-photo.png")
+                div
+                    div(class="divider") 
+                    div(class="name") Caitlin Buen-Lucas
+                    div(class='icon-div')
+                        a(class="aboutus-github-link" href='https://github.com/cpualei')
+                            img(src='./icons/github.png' style='width:50px;height:50px;border-radius:100%;')
+                        a(class="aboutus-github-link" href='https://www.linkedin.com/in/caitlin-buen-lucas/')
+                            img(src='./icons/linkedin.png' style='width:50px;height:50px;border-radius:100%;')
+                    
+            div(class="person")
+                div( class="container")
+                    div(class="container-inner")
+                        img(class="img img2" src="/icons/weiqi-photo.png")
+                div
+                    div( class="divider") 
+                    div( class="name") Weiqi Mei
+                    div(class='icon-div')
+                        a(class="aboutus-github-link" href='https://github.com/weiqimei')
+                            img(src='./icons/github.png' style='width:50px;height:50px;border-radius:100%;')
+                        a(class="aboutus-github-link" href='https://www.linkedin.com/in/weiqimei/')
+                            img(src='./icons/linkedin.png' style='width:50px;height:50px;border-radius:100%;')
+            div(class="person")
+                div( class="container")
+                    div( class="container-inner")
+                        img(class="img img3" src="/icons/rena-photo.jpg")           
+                div 
+                    div(class="divider") 
+                    div(class="name") Rena Lin
+                    div(class='icon-div') 
+                        a(class="aboutus-github-link" href='https://github.com/ZhiqiLinn')
+                            img(class="aboutus-github-link" src='./icons/github.png' style='width:50px;height:50px;border-radius:100%;')
+                        a(class="aboutus-github-link" href='https://www.linkedin.com/in/zhiqi-linn')
+                            img(src='./icons/linkedin.png' style='width:50px;height:50px;border-radius:100%;')
+block footer 

@@ -9,6 +9,7 @@ html
       link(rel='stylesheet' href='/stylesheets/taskEdit.css')
       link(rel='stylesheet' href='/stylesheets/layout.css')
       link(rel='stylesheet' href='/stylesheets/homepage.css')
+      link(rel='stylesheet' href='/stylesheets/aboutus.css')
 
       script(src="/javascripts/taskDelete.js" type="module")
       script(src="/javascripts/taskEdit.js" type="module")
@@ -32,7 +33,7 @@ html
         div.header-right
           div(class='navbar-right')
             div(class='aboutus-div')
-              a(href='/users/aboutus' id='nav-aboutus') About Us
+              a(href='/aboutus' id='nav-aboutus') About Us
           div(class='signout-button-div')
             form(action='/users/logout' method='post')
               button(id='button' type='submit' class='btn btn-logout') Sign out
