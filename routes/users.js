@@ -163,7 +163,7 @@ router.post('/login', csrfProtection, userLoginValidator, asyncHandler(async (re
         res.redirect('/lists')
       }
     }
-    errors.push('Invalid username and password');
+    errors.push('Invalid username or password');
   }else {
     console.log("REACHES ERROR HANDLER")
     errors = validatorErrors.array().map((error) => error.msg);

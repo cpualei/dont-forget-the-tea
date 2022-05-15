@@ -18,22 +18,23 @@ html
 
 
   body
-  header.navbar
-    div.header-left
-      div(class='navbar-left')
-        div(class='boba-icon')
-          img(src='./icons/boba-icon.png' style='width:67px;height:67px;')
-        div(class='home-link')
-          a(href='/' id='nav-home') DON'T
-          br
-          a(href='/' id='nav-home') FORGET
-          br
-          a(href='/' id='nav-home') THE TEA
+    block navibar
+      header.navbar
+        div.header-left
+          div(class='navbar-left')
+            div(class='boba-icon')
+              img(src='./icons/boba-icon.png' style='width:67px;height:67px;')
+            div(class='home-link')
+              a(href='/' id='nav-home') DON'T
+              br
+              a(href='/' id='nav-home') FORGET
+              br
+              a(href='/' id='nav-home') THE TEA
 
-    div.header-right
-      div(class='navbar-right')
-        form(action='/users/logout' method='post')
-          button(id='button' type='submit' class='btn btn-logout') Sign out
+        div.header-right
+          div(class='navbar-right')
+            form(action='/users/logout' method='post')
+              button(id='button' type='submit' class='btn btn-logout') Sign out
 
   block content
 
