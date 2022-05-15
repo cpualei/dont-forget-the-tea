@@ -12,6 +12,7 @@ const usersRouter = require('./routes/users');
 const tasksRouter = require('./routes/tasks');
 const listsRouter = require('./routes/lists');
 const subtasksRouter = require('./routes/subtasks');
+const aboutUsRouter = require('./routes/aboutus.js')
 const { restoreUser, requireAuth } = require('./auth');
 
 const app = express();
@@ -45,6 +46,7 @@ app.use(restoreUser);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/aboutus',aboutUsRouter)
 
 app.use(requireAuth);
 
