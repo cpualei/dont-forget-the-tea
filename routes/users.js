@@ -187,7 +187,7 @@ router.post('/login', csrfProtection, userLoginValidator, asyncHandler(async (re
       }
     }
   } else {
-    console.log("IN THE ELSE BLOCK OF VALIDATION ERRORS.ISEMPTY, DID NOT PASS userLoginValidator" )
+    console.log("IN THE ELSE BLOCK OF VALIDATION ERRORS.ISEMPTY, DID NOT PASS userLoginValidator")
     errors = validatorErrors.array().map((error) => error.msg);
     res.render('login', { //re-render login page
       csrfToken: req.csrfToken(),
