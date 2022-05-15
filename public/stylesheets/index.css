@@ -474,10 +474,17 @@ a {
 
 }
 
-.create-list-form {
+.create-list-div {
+    display: flex;
+    flex-direction: column;
     background-color: white;
     border-radius: 10px;
     width: 300px;
+    height: fit-content;
+    
+}
+.create-list-form{
+    height:150px
 }
 
 /* .task-detail {
@@ -492,7 +499,7 @@ a {
     padding: 15px 0px 0 0px;
     height:fit-content;
     width: fit-content;
-    justify-content: center;
+    flex-direction: column;
 }
 
 .details-div {
@@ -588,7 +595,9 @@ a {
     align-items: center;
     background: whitesmoke;
     border-radius: 15px;
-    padding-top: 30px;
+    padding: 30px;
+    width: fit-content;
+    height:fit-content;
 }
 
 .delete-list-title {
@@ -614,6 +623,19 @@ a {
 
 .create-new-list-div{
     margin-bottom: 50px;
+}
+
+.edit-lists-page-btns{
+    display: flex;
+    justify-content: center;
+}
+
+.edit-lists-form{
+    height: 160px;
+}
+
+.delete-list-form{
+    height:75px
 }
 
 .edit-lists-page-btns{
