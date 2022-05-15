@@ -170,7 +170,7 @@ body {
     line-height: 20px;
     padding: 0;
     border: none;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 
 #demo-login-button:hover {
@@ -409,7 +409,7 @@ li {
 
 
 a {
-    color: #00B7FF;
+    color: #6a2498;
 }
 
 * {
@@ -442,10 +442,16 @@ a {
     align-items: center;
 }
 
-.create-lists-labels {
+.create-list-form-div {
+    display: flex;
+    justify-content: center;
+
+}
+
+.create-list-form {
     background-color: white;
     border-radius: 10px;
-    /* padding-top: 15px; */
+    width: 300px;
 }
 
 /* .task-detail {
