@@ -208,7 +208,8 @@ body {
 /* ---------delete btn--------*/
 .btn-delete-subtask {
     color: #fff;
-    background: #d9534f;}
+    background: #d9534f;
+}
 
 .btn-delete-task {
     color: #fff;
@@ -272,10 +273,36 @@ body {
     background: #00B7FF;
 }
 
+.add-task-button-div {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-evenly;
+}
+
 .btn-add-subtask {
     width: 110px;
     height: 40px;
     background: #00B7FF;
+}
+
+.completed-tasks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn-completed-tasks {
+    width: 210px;
+    height: 50px;
+    font-size: large;
+    background: rgb(107 108 241);
+    margin-bottom: 30px;
+}
+
+.task-title {
+    font-size: larger;
+    font-weight: bolder;
 }
 
 .btn:hover {
@@ -510,4 +537,16 @@ a {
     justify-content: center;
     color: rgb(179, 18, 18);
     
+}
+.delete-list-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background: whitesmoke;
+    border-radius: 15px;
+    width: fit-content; */
+}
+
+.delete-page-buttons {
+    display: flex;
 }
