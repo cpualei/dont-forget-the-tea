@@ -2,10 +2,15 @@ extends layout-loggedin.pug
 
 block content
     link(rel="stylesheet" href="/stylesheets/index.css")
-    form(action=`/lists/${list.id}/edit` method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
+    div(class="edit-lists-page-btns")
         div(class='edit-lists-labels')
-            label(for="title") List Name:
-            input(type="text" name="title" value=`${list.title}` required)
-        div
-            button(type='submit' class='btn btn-edit') Edit List
+            div(class='edit-lists-form')
+                form(action=`/lists/${list.id}/edit` method='post' )
+                    input(type='hidden' name='_csrf' value=csrfToken)
+                    div
+                        label(for="title") List Name:
+                        input(type="text" name="title" value=`${list.title}` required)
+                    div(class="edit-lists-page-btns") 
+                        button(type='submit' class='btn btn-edit') Edit List
+            div(class="edit-lists-page-btns") 
+                button(onclick=`window.location.href='/lists'` class='btn btn-view-list') Cancel

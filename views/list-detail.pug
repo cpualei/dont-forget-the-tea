@@ -9,9 +9,9 @@ block content
             div(class='task-detail')
                 div(class="tasks-in-detail-pg")
                     //- p= `List ID : ${list.id}`
-                    p= `List Content : ${list.title}`
+                    h2= `${list.title}`
 
             div(class="tasks-pg")
                 each task in listofTasks
-                    p(id=`content-${task.id}`)= `task ${task.id} : ${task.content}`
+                    p(id=`content-${task.id}`)= `task : ${task.content}`
                     button(onclick=`window.location.href='/tasks/${task.id}'` type='submit' class='btn btn-view-task') Edit

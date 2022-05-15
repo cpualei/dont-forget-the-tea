@@ -5,11 +5,14 @@ block content
     div(class="create-new-list-div")
         h1 Create Your List
     div(class='create-list-form-div')
-        div(class='create-list-form')
-            form(action='/lists/create' method='post')
-                input(type='hidden' name='_csrf' value=csrfToken)
-                div
-                    label(for="title") List Name:
-                    input(type="text" name="title" required)
-                div
-                    button(type='submit' class='btn btn-add-list') Add List
+        div(class='create-list-div')
+            div(class='create-list-form')
+                form(action='/lists/create' method='post')
+                    input(type='hidden' name='_csrf' value=csrfToken)
+                    div
+                        label(for="title") List Name:
+                        input(type="text" name="title" required)
+                    div(class='edit-lists-page-btns')
+                        button(type='submit' class='btn') Add List
+            div(class='edit-lists-page-btns')
+                button(onclick=`window.location.href='/lists'` class='btn') Cancel
