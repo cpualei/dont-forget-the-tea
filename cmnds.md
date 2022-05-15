@@ -88,3 +88,12 @@ if it successfully destroyed, json a msg of 'success' back to the front end
 then on the front end, translate the msg again with json,
 check if you have msg of success,
 if successful, find the div where the list is contained and remove the div
+
+
+
+config vars
+DATABASE_URL postgres://wunulsfdhjyxcw:c5a86a094eda105d1057f54b65e5dfbc8a4a043a528b9c1a2bdc9c2d33b568a2@ec2-44-194-4-127.compute-1.amazonaws.com:5432/d9t34q227e6k6e
+
+PGSSLMODE no-verify
+
+SESSION_SECRET superSecret123
