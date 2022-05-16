@@ -12,6 +12,9 @@ Lists
 Tasks
 - Logged-in users can create, view, edit, and delete tasks.
 
+Subtasks
+- Logged-in users can create, view, edit, and delete subtasks.
+
 # Application Architecture
 Don't Forget The Tea is built using an Express-based server, a PostgreSQL database, and Pug templates for the front-end. We implemented DOM manipulation for our ‘Edit’ and ‘Delete’ buttons associated with the task without causing a refresh/redirect. This created a dynamic rendering and allows for a uninterrupted user experience.
 
